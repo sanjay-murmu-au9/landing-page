@@ -10,7 +10,7 @@
     "start:watch": "nodemon --exec \"next start\"",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out -t true"
   },
   "dependencies": {
     "next": "15.3.2",
