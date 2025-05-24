@@ -14,7 +14,8 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-jobs:  build:
+jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
