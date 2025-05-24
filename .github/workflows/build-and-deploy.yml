@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          fetch-depth: 0 # Need all history for gh-pages
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,8 +29,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy .nojekyll file
+        run: touch ./out/.nojekyll
+
       - name: Deploy with gh-pages
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
