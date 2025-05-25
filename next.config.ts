@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+// Check if we're in development or production mode
+const isDev = process.env.NODE_ENV === 'development';
+
 const nextConfig: NextConfig = {
   output: 'export',
   // Disable image optimization since GitHub Pages doesn't support Next.js API routes
@@ -7,9 +10,13 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     domains: ['images.unsplash.com'],
   },
-  // Update basePath based on your repository name
-  // Uncomment and update this line when you create your repository
-  basePath: '/landing-page',
+  // Only use basePath and assetPrefix in production (for GitHub Pages)
+  ...(isDev ? {} : {
+    basePath: '/landing-page',
+    assetPrefix: '/landing-page',
+  }),
 };
+
+export default nextConfig;
 
 export default nextConfig;

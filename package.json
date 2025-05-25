@@ -9,7 +9,8 @@
     "start": "next start",
     "start:watch": "nodemon --exec \"next start\"",
     "lint": "next lint",
-    "predeploy": "npm run build",
+    "update-images": "node scripts/download-premium-images.js",
+    "predeploy": "npm run update-images && npm run build",
     "deploy": "gh-pages -d out"
   },
   "dependencies": {

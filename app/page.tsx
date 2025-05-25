@@ -29,46 +29,65 @@ export default function Home() {
   const formRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Hero background images
+  // Hero background images (using local premium images)
   const heroBackgrounds = [
     {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-      alt: "Luxury lakefront villa"
+      src: "/images/hero-luxury-exterior-1.jpg",
+      alt: "Luxury lakefront villa with modern architecture"
     },
     {
-      src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-      alt: "Modern luxury apartment exterior"
+      src: "/images/hero-luxury-exterior-2.jpg",
+      alt: "Modern luxury apartment exterior with landscaping"
     },
     {
-      src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-      alt: "Elegant living space with lake view"
+      src: "/images/hero-living-space.jpg",
+      alt: "Elegant living space with panoramic lake view"
     },
     {
-      src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-      alt: "Premium apartment with swimming pool"
+      src: "/images/hero-pool-view.jpg",
+      alt: "Premium infinity pool with architectural lighting"
+    },
+    {
+      src: "/images/luxury-home-facade.jpg",
+      alt: "Modern luxury home facade with artistic design"
     }
   ];
 
   const carouselImages = [
     {
-      src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Lake-facing view from Prestige Somerville",
-      caption: "Breathtaking lake views from your living room"
+      src: "/images/penthouse-interior.jpg",
+      alt: "Elegant penthouse interior with premium finishes",
+      caption: "Exquisite interiors with premium finishes"
     },
     {
-      src: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Luxury living room with marble flooring",
-      caption: "Spacious living areas with premium marble flooring"
+      src: "/images/luxury-bathroom.jpg",
+      alt: "Luxury bathroom with marble and premium fixtures",
+      caption: "Premium bathrooms with imported marble"
     },
     {
-      src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Glass balcony with lake view",
-      caption: "Modern glass balconies for unobstructed views"
+      src: "/images/luxury-kitchen.jpg",
+      alt: "Premium kitchen with top-of-the-line appliances",
+      caption: "Designer kitchens with high-end appliances"
     },
     {
-      src: "https://images.unsplash.com/photo-1486046866764-53490226c268?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Clubhouse and community area",
-      caption: "World-class clubhouse and amenities"
+      src: "/images/modern-bedroom.jpg",
+      alt: "Modern bedroom with luxurious design elements",
+      caption: "Spacious bedrooms with lake views"
+    },
+    {
+      src: "/images/amenity-gym.jpg",
+      alt: "Premium fitness center with modern equipment",
+      caption: "State-of-the-art fitness center"
+    },
+    {
+      src: "/images/amenity-spa.jpg",
+      alt: "Luxury spa area with premium relaxation facilities",
+      caption: "Exclusive spa and wellness facilities"
+    },
+    {
+      src: "/images/aerial-view.jpg",
+      alt: "Aerial view of the luxury apartment complex",
+      caption: "Prime location with breathtaking surroundings"
     }
   ];
 
@@ -231,19 +250,19 @@ export default function Home() {
                 fill
                 priority={index === 0}
                 sizes="100vw"
-                quality={90}
+                quality={100}
                 className="object-cover"
               />
             </div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c4c34]/30 via-transparent to-[#0c4c34]/40 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50 backdrop-blur-[1px]" />
         </div>
 
-        {/* Hero navigation buttons */}
+        {/* Hero navigation buttons - Refined elegant style */}
         <div className="absolute inset-y-0 left-0 z-20 flex items-center">
           <button
             onClick={() => navigateHeroBackground('prev')}
-            className="bg-black/30 hover:bg-black/50 text-white p-3 md:p-4 rounded-r-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4af37] touch-manipulation"
+            className="bg-black/20 hover:bg-black/40 text-white p-3 md:p-5 ml-2 rounded-full border border-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation hover:scale-105"
             aria-label="Previous background"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -255,7 +274,7 @@ export default function Home() {
         <div className="absolute inset-y-0 right-0 z-20 flex items-center">
           <button
             onClick={() => navigateHeroBackground('next')}
-            className="bg-black/30 hover:bg-black/50 text-white p-3 md:p-4 rounded-l-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#d4af37] touch-manipulation"
+            className="bg-black/20 hover:bg-black/40 text-white p-3 md:p-5 mr-2 rounded-full border border-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation hover:scale-105"
             aria-label="Next background"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -264,9 +283,9 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Hero background indicators */}
+        {/* Hero background indicators - Refined elegant style */}
         <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center">
-          <div className="flex space-x-3">
+          <div className="flex space-x-3 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
             {heroBackgrounds.map((_, index) => (
               <button
                 key={index}
@@ -282,8 +301,8 @@ export default function Home() {
                     setIsUserScrollingHero(false);
                   }, 10000);
                 }}
-                className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors touch-manipulation ${
-                  heroBackground === index ? 'bg-[#d4af37]' : 'bg-white/40 hover:bg-white/60'
+                className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 touch-manipulation ${
+                  heroBackground === index ? 'bg-primary scale-110' : 'bg-white/40 hover:bg-white/60'
                 }`}
                 aria-label={`Go to background ${index + 1}`}
               />
@@ -291,40 +310,76 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Logo and Brand */}
+        <div className="absolute top-6 left-6 z-30">
+          <div className="flex items-center">
+            <div className="bg-black/30 backdrop-blur-sm p-2 rounded-lg border border-white/10">
+              <h3 className="text-white font-serif text-xl md:text-2xl">
+                <span className="text-primary">Prestige</span> Somerville
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Hero Content - Luxury Redesign */}
         <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center">
-          <div className="max-w-3xl backdrop-blur-sm bg-black/20 p-4 md:p-8 rounded-lg border border-white/10">
-            <div className="animate-fadeIn">
-              <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                Prestige Somerville: Lakefront Luxury Apartments in Bangalore
+          <div className="max-w-3xl bg-gradient-to-r from-black/40 to-black/20 backdrop-blur-md p-6 md:p-10 rounded-lg border border-white/10 shadow-2xl animate-fadeIn">
+            <div className="animate-fadeIn space-y-6">
+              <div className="w-24 h-1 bg-primary mb-4"></div>
+             <h1 className="hidden md:block text-3xl md:text-4xl lg:text-6xl font-serif text-white leading-tight">
+                Prestige Somerville: <br />
+                <span className="text-primary">Lakefront Luxury</span> Apartments
               </h1>
 
-              <p className="text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8">
-                Pay Zero EMIs till March 2027 with EZ Pay Plan by Axis Bank
+              <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-light">
+                Experience unparalleled luxury living with spectacular lake views in Bangalore's most prestigious address
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-6 md:mb-8">
+              <div className="pt-4">
+                <p className="text-primary text-lg md:text-xl font-medium mb-4">
+                  Pay Zero EMIs till March 2027 with EZ Pay Plan by Axis Bank
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
                 <button
                   onClick={scrollToForm}
-                  className="bg-[#0c4c34] hover:bg-[#0a3f2b] text-white px-5 py-3 rounded-lg font-medium text-base md:text-lg transition-colors transform hover:scale-105 active:scale-95"
+                  className="luxury-button bg-primary hover:bg-primary-dark text-white group flex items-center justify-center"
                 >
-                  Download Brochure
+                  <span>Download Brochure</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
                 </button>
 
                 <button
                   onClick={scrollToForm}
-                  className="bg-[#d4af37] hover:bg-[#c4a030] text-white px-5 py-3 rounded-lg font-medium text-base md:text-lg transition-colors transform hover:scale-105 active:scale-95"
+                  className="luxury-button bg-white hover:bg-neutral-100 text-primary border border-primary group flex items-center justify-center"
                 >
-                  Schedule a Visit
+                  <span>Schedule a Visit</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               </div>
 
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6">
-                <p className="text-white text-base md:text-lg">Call Us Now:</p>
-                <a href="tel:+918260028808" className="text-white text-base md:text-lg hover:underline flex items-center group">
-                  <span className="mr-2 group-hover:animate-pulse">📞</span> +91-8260028808
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 pt-4">
+                <p className="text-white/80 text-base">Contact Sales:</p>
+                <a href="tel:+918260028808" className="text-white text-lg hover:text-primary transition-colors flex items-center group">
+                  <span className="bg-primary/20 rounded-full p-2 mr-2 group-hover:bg-primary/40 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </span>
+                  +91-8260028808
                 </a>
-                <a href="tel:+916361406787" className="text-white text-base md:text-lg hover:underline flex items-center group">
-                  <span className="mr-2 group-hover:animate-pulse">📞</span> +91-6361406787
+                <a href="tel:+916361406787" className="text-white text-lg hover:text-primary transition-colors flex items-center group">
+                  <span className="bg-primary/20 rounded-full p-2 mr-2 group-hover:bg-primary/40 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </span>
+                  +91-6361406787
                 </a>
               </div>
             </div>
@@ -333,18 +388,21 @@ export default function Home() {
       </section>
 
       {/* Visual Carousel Section */}
-      <section className="py-12 md:py-16 bg-white" ref={carouselRef}>
+      <section className="py-16 md:py-24 bg-neutral-light" ref={carouselRef}>
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-[#0c4c34]">
-            <span className="border-b-2 border-[#d4af37] pb-1">A Glimpse Into Your New Life</span>
-          </h2>
-          <p className="text-gray-800 max-w-2xl mx-auto text-center mb-8 md:mb-10">
-            Experience luxury living with exclusive views and premium finishes
-          </p>
+          <div className="flex flex-col items-center mb-12">
+            <div className="w-16 h-1 bg-primary mb-6"></div>
+            <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
+              Exquisite Living Spaces
+            </h2>
+            <p className="text-neutral-dark max-w-2xl mx-auto text-center text-lg">
+              Experience unparalleled luxury with premium finishes and breathtaking views
+            </p>
+          </div>
 
-          <div className="relative">
-            <div className="overflow-hidden rounded-xl shadow-lg">
-              <div className="relative h-64 md:h-[500px] transition-opacity duration-1000">
+          <div className="relative max-w-5xl mx-auto">
+            <div className="overflow-hidden rounded-xl shadow-2xl">
+              <div className="relative h-80 md:h-[600px] transition-all duration-1000">
                 {carouselImages.map((image, index) => (
                   <div
                     key={index}
@@ -358,179 +416,204 @@ export default function Home() {
                       fill
                       sizes="(max-width: 768px) 100vw, 90vw"
                       className="object-cover"
+                      quality={100}
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent py-3 md:py-4 px-4 md:px-6">
-                      <p className="text-white text-base md:text-lg">{image.caption}</p>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent pt-16 pb-6 px-6 md:px-8">
+                      <p className="text-white text-lg md:text-xl font-light">{image.caption}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10">
+            {/* Elegant carousel controls */}
+            <div className="absolute top-1/2 left-4 transform -translate-y-1/2 z-10">
               <button
                 onClick={() => setActiveSlide(activeSlide === 0 ? carouselImages.length - 1 : activeSlide - 1)}
-                className="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-[#0c4c34] touch-manipulation"
+                className="bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 hover:scale-110 touch-manipulation border border-primary/10"
                 aria-label="Previous slide"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
             </div>
 
-            <div className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10">
+            <div className="absolute top-1/2 right-4 transform -translate-y-1/2 z-10">
               <button
                 onClick={() => setActiveSlide((activeSlide + 1) % carouselImages.length)}
-                className="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-[#0c4c34] touch-manipulation"
+                className="bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 hover:scale-110 touch-manipulation border border-primary/10"
                 aria-label="Next slide"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
 
-            <div className="flex justify-center mt-4">
-              {carouselImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveSlide(index)}
-                  className={`w-2.5 h-2.5 mx-1 rounded-full transition-colors touch-manipulation ${
-                    activeSlide === index ? 'bg-[#0c4c34]' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+            {/* Elegant carousel indicators */}
+            <div className="absolute -bottom-12 left-0 right-0 z-10 flex justify-center">
+              <div className="flex space-x-3">
+                {carouselImages.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => setActiveSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      activeSlide === index
+                        ? 'bg-primary scale-125 shadow-md'
+                        : 'bg-neutral-dark/30 hover:bg-primary/50'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="text-center mt-8 md:mt-10">
-            <button
-              onClick={scrollToForm}
-              className="bg-[#0c4c34] hover:bg-[#0a3f2b] text-white px-6 py-3 rounded-lg font-medium text-lg transition-colors transform hover:scale-105 active:scale-95"
-            >
-              See Floor Plans
-            </button>
           </div>
         </div>
       </section>
 
-      {/* Project Highlights */}
-      <section className="py-12 md:py-16 bg-[#f0f5f3]">
+      {/* Project Highlights - Luxury Redesign */}
+      <section className="py-16 md:py-24 bg-neutral-light">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-[#0c4c34]">
-            <span className="border-b-2 border-[#d4af37] pb-1">Project Highlights</span>
-          </h2>
-          <p className="text-gray-800 max-w-2xl mx-auto text-center mb-8 md:mb-10">
-            Exclusive features that set Prestige Somerville apart
-          </p>
+          <div className="flex flex-col items-center mb-12">
+            <div className="w-16 h-1 bg-primary mb-6"></div>
+            <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
+              Exclusive Features
+            </h2>
+            <p className="text-neutral-dark max-w-2xl mx-auto text-center text-lg">
+              Distinctive elements that elevate Prestige Somerville above the ordinary
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {highlights.map((highlight, index) => (
               <div
                 key={index}
-                className="bg-white p-5 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 duration-300 border-l-4 border-[#0c4c34]"
+                className="luxury-card p-6 md:p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-500 border-b-4 border-primary overflow-hidden group"
               >
-                <div className="text-2xl md:text-3xl mb-3 text-[#d4af37]">{highlight.icon}</div>
-                <h3 className="text-lg md:text-xl font-semibold mb-2 text-[#0c4c34]">{highlight.title}</h3>
-                <p className="text-gray-800 text-sm md:text-base">{highlight.description}</p>
+                <div className="text-3xl md:text-4xl mb-4 text-primary group-hover:scale-110 transition-transform duration-500">{highlight.icon}</div>
+                <h3 className="text-xl md:text-2xl font-serif mb-3 text-secondary-dark">{highlight.title}</h3>
+                <div className="w-10 h-0.5 bg-primary mb-4 group-hover:w-16 transition-all duration-500"></div>
+                <p className="text-neutral-dark text-base md:text-lg">{highlight.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-8 md:mt-10">
+          <div className="text-center mt-12 md:mt-16">
             <button
               onClick={scrollToForm}
-              className="bg-[#0c4c34] hover:bg-[#0a3f2b] text-white px-6 py-3 rounded-lg font-medium text-lg transition-colors transform hover:scale-105 active:scale-95"
+              className="luxury-button bg-primary hover:bg-primary-dark text-white group flex items-center justify-center mx-auto"
             >
-              Check Apartment Availability
+              <span>Check Apartment Availability</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
       </section>
 
-      {/* Image + Text Split Section */}
-      <section className="py-12 md:py-16 bg-white overflow-hidden">
+      {/* Image + Text Split Section - Luxury Redesign */}
+      <section className="py-16 md:py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
-            {/* Image side - takes full width on mobile, half on desktop */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16">
+            {/* Image side */}
             <div className="w-full lg:w-1/2 order-1 lg:order-1 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-              <div className="relative overflow-hidden rounded-xl shadow-lg h-[400px] md:h-[500px] transform transition-transform duration-700 hover:scale-[1.02] bg-gray-200">
-                {/* Fallback background color in case image doesn't load */}
-                <img
-                  src = "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  // src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  alt="Glass balcony with lake view"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onError={(e) => {
-                    // If image fails to load, update the parent div with a background gradient
-                    const target = e.target as HTMLImageElement;
-                    if (target.parentElement) {
-                      target.parentElement.classList.add('bg-gradient-to-br', 'from-emerald-700', 'to-emerald-900');
-                      target.style.display = 'none';
-                    }
-                  }}
+              <div className="relative overflow-hidden rounded-xl shadow-2xl h-[400px] md:h-[600px] transform transition-transform duration-700 hover:scale-[1.02]">
+                <Image
+                  src="/images/hero-living-space.jpg"
+                  alt="Elegant living space with panoramic lake view"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  quality={100}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <span className="bg-[#d4af37] text-white text-xs uppercase tracking-wider py-1 px-2 rounded">Premium View</span>
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <span className="bg-primary text-white text-xs uppercase tracking-wider py-1 px-3 rounded-full">Premium View</span>
                 </div>
               </div>
             </div>
 
-            {/* Text side - takes full width on mobile, half on desktop */}
+            {/* Text side */}
             <div className="w-full lg:w-1/2 order-2 lg:order-2 animate-fadeIn" style={{ animationDelay: '0.4s' }}>
-              <div className="max-w-xl mx-auto lg:mx-0 p-4 md:p-6 lg:p-0">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-[#0c4c34] leading-tight">
-                  Experience Lakefront Living Like Never Before
+              <div className="max-w-xl mx-auto lg:mx-0 p-6 md:p-8 lg:p-0">
+                <div className="w-16 h-1 bg-primary mb-6"></div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-6 text-secondary-dark leading-tight text-[#0c4c34]">
+                  Experience Lakefront Living at Its Finest
                 </h2>
 
-                <div className="w-16 h-1 bg-[#d4af37] mb-6"></div>
-
-                <p className="text-gray-800 text-base md:text-lg mb-6 leading-relaxed">
-                  Prestige Somerville offers a rare blend of luxury and tranquility with panoramic lake views, spacious interiors, and complete privacy. With 90% of apartments featuring no common walls, enjoy an unparalleled sense of exclusivity in the heart of Bangalore.
+                <p className="text-neutral-dark text-lg md:text-xl mb-8 leading-relaxed text-[#0c4c34]">
+                  Prestige Somerville offers an exclusive blend of luxury and tranquility with panoramic lake views, spacious interiors, and complete privacy. With 90% of apartments featuring no common walls, enjoy an unparalleled sense of exclusivity in the heart of Bangalore.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-start gap-4 mb-8">
+                <div className="flex flex-col gap-4 mb-8">
                   <div className="flex items-center">
-                    <span className="text-[#0c4c34] mr-2">✓</span>
-                    <span className="text-gray-800">Premium Marble Flooring</span>
+                    <span className="bg-primary/10 p-2 rounded-full text-primary mr-4 text-[#0c4c34]">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span className="text-neutral-dark text-lg text-[#0c4c34]">Premium Imported Marble Flooring</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-[#0c4c34] mr-2">✓</span>
-                    <span className="text-gray-800">Floor-to-Ceiling Windows</span>
+                    <span className="bg-primary/10 p-2 rounded-full text-primary mr-4 text-[#0c4c34]">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span className="text-neutral-dark text-lg text-[#0c4c34]">Floor-to-Ceiling Windows with Lake Views</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-[#0c4c34] mr-2">✓</span>
-                    <span className="text-gray-800">Private Balconies</span>
+                    <span className="bg-primary/10 p-2 rounded-full text-primary mr-4 text-[#0c4c34]">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span className="text-neutral-dark text-lg text-[#0c4c34]">Private Glass-Façade Balconies</span>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
+                <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
                   <button
                     onClick={scrollToForm}
-                    className="bg-[#0c4c34] hover:bg-[#0a3f2b] text-white px-6 py-3 rounded-lg font-medium text-base md:text-lg transition-all transform hover:scale-105 active:scale-95 w-full sm:w-auto"
+                    className="luxury-button bg-primary hover:bg-primary-dark text-white group flex items-center justify-center"
                   >
-                    Schedule a Site Visit
+                    <span>Schedule a Site Visit</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </button>
 
                   <button
                     onClick={scrollToForm}
-                    className="bg-white hover:bg-gray-100 text-[#0c4c34] border-2 border-[#0c4c34] px-6 py-3 rounded-lg font-medium text-base md:text-lg transition-all transform hover:scale-105 active:scale-95 w-full sm:w-auto"
+                    className="luxury-button bg-white hover:bg-neutral-100 text-primary border border-primary group flex items-center justify-center"
                   >
-                    Get Floor Plan
+                    <span>Get Floor Plan</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
                   </button>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <p className="text-gray-700 font-medium">Contact Us:</p>
-                  <a href="tel:+918260028808" className="text-[#0c4c34] hover:text-[#d4af37] transition-colors flex items-center">
-                    <span className="mr-2">📞</span> +91-8260028808
+                <div className="flex flex-col sm:flex-row items-center gap-6 text-[#0c4c34]">
+                  <p className="text-secondary-dark font-medium">Contact Sales:</p>
+                  <a href="tel:+918260028808" className="text-primary hover:text-primary-dark transition-colors flex items-center group">
+                    <span className="bg-primary/10 rounded-full p-2 mr-2 group-hover:bg-primary/20 transition-colors text-[#0c4c34]">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </span>
+                    +91-8260028808
                   </a>
-                  <span className="hidden sm:inline text-gray-400">|</span>
-                  <a href="tel:+916361406787" className="text-[#0c4c34] hover:text-[#d4af37] transition-colors flex items-center">
-                    <span className="mr-2">📞</span> +91-6361406787
+                  <a href="tel:+916361406787" className="text-primary hover:text-primary-dark transition-colors flex items-center group">
+                    <span className="bg-primary/10 rounded-full p-2 mr-2 group-hover:bg-primary/20 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </span>
+                    +91-6361406787
                   </a>
                 </div>
               </div>
@@ -671,7 +754,7 @@ export default function Home() {
             <div className="relative overflow-hidden pt-[56.25%] rounded-xl shadow-lg border-2 border-[#d4af37]/20">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/uj-qkAh7xAA"
                 title="Virtual tour of Prestige Somerville"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -728,116 +811,119 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lead Form */}
-      <section className="py-12 md:py-16 bg-white" ref={formRef}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-[#0c4c34]">
-              <span className="border-b-2 border-[#d4af37] pb-1">Get More Details, Prices & Floor Plans</span>
-            </h2>
-            <p className="text-gray-800 text-center mb-8 md:mb-10">
-              Fill out the form below and our team will get back to you shortly
-            </p>
+    {/* Premium Inquiry Form */}
+    <section className="py-12 md:py-20 bg-gradient-to-b from-white to-neutral-50" ref={formRef}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto relative">
+          {/* Decorative elements for premium feel */}
+          <div className="absolute -top-10 -left-10 w-20 h-20 rounded-full bg-primary/5 z-0"></div>
+          <div className="absolute -bottom-10 -right-10 w-24 h-24 rounded-full bg-primary/5 z-0"></div>
+
+          <div className="relative z-10">
+            <div className="flex flex-col items-center mb-10">
+              <div className="w-16 h-1 bg-[#d4af37] mb-6"></div>
+              <h2 className="text-2xl md:text-3xl font-serif text-center mb-3 text-[#0c4c34]">
+                Premium Inquiry
+              </h2>
+              <p className="text-neutral-700 max-w-lg mx-auto text-center text-base md:text-lg">
+                Receive exclusive details about Prestige Somerville luxury apartments
+              </p>
+            </div>
 
             {isFormSubmitted ? (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center animate-fadeIn">
-                <div className="text-4xl mb-4">🎉</div>
-                <h3 className="text-xl font-semibold text-green-800 mb-2">Thank You for Your Interest!</h3>
-                <p className="text-green-700 mb-4">
-                  We've received your request and will send you the brochure shortly. Our team will call you within 24 hours.
+              <div className="bg-gradient-to-r from-[#f8f6f0] to-[#f0f5f3] border border-[#d4af37]/20 rounded-xl p-8 shadow-xl text-center animate-fadeIn">
+                <div className="inline-block p-3 bg-[#0c4c34]/10 rounded-full mb-4">
+                  <div className="text-4xl">✨</div>
+                </div>
+                <h3 className="text-xl font-serif text-[#0c4c34] mb-3">Thank You for Your Interest</h3>
+                <p className="text-neutral-700 mb-6 leading-relaxed">
+                  We've received your request and will send you the exclusive brochure shortly. Our luxury property consultant will call you within 24 hours.
                 </p>
                 <button
                   onClick={() => setIsFormSubmitted(false)}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors transform hover:scale-105 active:scale-95"
+                  className="bg-[#0c4c34] hover:bg-[#0a3f2b] text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 active:scale-95 shadow-md"
                 >
-                  Submit Another Request
+                  Submit Another Inquiry
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit} className="bg-[#f8f8f8] p-6 md:p-8 rounded-lg shadow-lg border border-[#0c4c34]/10">
-                <div className="mb-5">
-                  <label htmlFor="fullName" className="block text-gray-800 font-medium mb-2">Full Name *</label>
+              <form onSubmit={handleFormSubmit} className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-[#d4af37]/20">
+                <div className="mb-6">
+                  <label htmlFor="fullName" className="block text-[#0c4c34] font-medium mb-2">Full Name *</label>
                   <input
                     type="text"
                     id="fullName"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className={`w-full p-3 md:p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0c4c34] ${
-                      formErrors.fullName ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full p-3 md:p-4 bg-transparent border-b-2 focus:outline-none focus:border-[#d4af37] transition-colors ${
+                      formErrors.fullName ? 'border-red-500' : 'border-[#0c4c34]/20'
                     }`}
-                    placeholder="Your full name"
+                    placeholder="John Smith"
                   />
                   {formErrors.fullName && (
                     <p className="text-red-500 text-sm mt-1">{formErrors.fullName}</p>
                   )}
                 </div>
 
-                <div className="mb-5">
-                  <label htmlFor="email" className="block text-gray-800 font-medium mb-2">Email *</label>
+                <div className="mb-6">
+                  <label htmlFor="email" className="block text-[#0c4c34] font-medium mb-2">Email Address *</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full p-3 md:p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0c4c34] ${
-                      formErrors.email ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full p-3 md:p-4 bg-transparent border-b-2 focus:outline-none focus:border-[#d4af37] transition-colors ${
+                      formErrors.email ? 'border-red-500' : 'border-[#0c4c34]/20'
                     }`}
-                    placeholder="Your email address"
+                    placeholder="name@example.com"
                   />
                   {formErrors.email && (
                     <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
                   )}
                 </div>
 
-                <div className="mb-5">
-                  <label htmlFor="phone" className="block text-gray-800 font-medium mb-2">Phone *</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className={`w-full p-3 md:p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0c4c34] ${
-                      formErrors.phone ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="Your 10-digit phone number"
-                    maxLength={10}
-                  />
+                <div className="mb-8">
+                  <label htmlFor="phone" className="block text-[#0c4c34] font-medium mb-2">Phone Number *</label>
+                  <div className={`flex items-center border-b-2 ${formErrors.phone ? 'border-red-500' : 'border-[#0c4c34]/20'}`}>
+                    <div className="flex-shrink-0 bg-[#f8f6f0] text-[#0c4c34] p-3 rounded-tl-lg border-r border-[#0c4c34]/10">
+                      +91
+                    </div>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full p-3 md:p-4 bg-transparent focus:outline-none"
+                      placeholder="9876543210"
+                      maxLength={10}
+                    />
+                  </div>
                   {formErrors.phone && (
                     <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
                   )}
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-gray-800 font-medium mb-2">Message (Optional)</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full p-3 md:p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0c4c34]"
-                    placeholder="Any specific requirements or questions"
-                    rows={4}
-                  ></textarea>
-                </div>
-
                 <button
                   type="submit"
-                  className="w-full bg-[#d4af37] hover:bg-[#c4a030] text-white py-3 md:py-4 rounded-lg font-medium text-lg transition-all shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full bg-gradient-to-r from-[#d4af37] to-[#c4a030] hover:from-[#c4a030] hover:to-[#b39020] text-white py-4 rounded-lg font-medium text-lg transition-all shadow-md hover:shadow-lg transform hover:scale-[1.01] active:scale-[0.98]"
                 >
-                  Get Brochure & Callback
+                  Request Exclusive Brochure
                 </button>
 
-                <p className="text-gray-700 text-sm text-center mt-4">
-                  We value your privacy. No spam, ever.
+                <p className="text-neutral-600 text-sm text-center mt-5">
+                  We respect your privacy. Your information is secure with us.
+                  <br />
+                  <a href="#" className="text-[#0c4c34] hover:text-[#d4af37] underline transition-colors">View Privacy Policy</a>
                 </p>
               </form>
             )}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Google Map Location */}
       <section className="py-12 md:py-16 bg-[#f0f5f3]">
