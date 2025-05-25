@@ -1,0 +1,50 @@
+[
+  {
+    "src": "/images/hero-luxury-exterior-1.jpg",
+    "alt": "Luxury lakefront villa with modern architecture"
+  },
+  {
+    "src": "/images/hero-luxury-exterior-2.jpg",
+    "alt": "Modern luxury apartment exterior with landscaping"
+  },
+  {
+    "src": "/images/hero-living-space.jpg",
+    "alt": "Elegant living space with panoramic lake view"
+  },
+  {
+    "src": "/images/hero-pool-view.jpg",
+    "alt": "Premium infinity pool with architectural lighting"
+  },
+  {
+    "src": "/images/luxury-home-facade.jpg",
+    "alt": "Modern luxury home facade with artistic design"
+  },
+  {
+    "src": "/images/penthouse-interior.jpg",
+    "alt": "Elegant penthouse interior with premium finishes"
+  },
+  {
+    "src": "/images/luxury-bathroom.jpg",
+    "alt": "Luxury bathroom with marble and premium fixtures"
+  },
+  {
+    "src": "/images/luxury-kitchen.jpg",
+    "alt": "Premium kitchen with top-of-the-line appliances"
+  },
+  {
+    "src": "/images/modern-bedroom.jpg",
+    "alt": "Modern bedroom with luxurious design elements"
+  },
+  {
+    "src": "/images/amenity-gym.jpg",
+    "alt": "Premium fitness center with modern equipment"
+  },
+  {
+    "src": "/images/amenity-spa.jpg",
+    "alt": "Luxury spa area with premium relaxation facilities"
+  },
+  {
+    "src": "/images/aerial-view.jpg",
+    "alt": "Aerial view of the luxury apartment complex"
+  }
+]
