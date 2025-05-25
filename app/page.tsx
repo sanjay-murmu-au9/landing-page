@@ -255,7 +255,7 @@ export default function Home() {
               />
             </div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50 backdrop-blur-[1px]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50 backdrop-blur-[1px]" /> */}
         </div>
 
         {/* Hero navigation buttons - Refined elegant style */}
