@@ -15,6 +15,26 @@ const nextConfig = {
     if (!isDev) {
       config.output = config.output || {};
       config.output.publicPath = `${basePath}/`;
+
+      // Ensure CSS files are handled correctly
+      const rules = config.module?.rules || [];
+      const cssRule = rules.find(
+        (rule) => rule.test?.toString().includes('css')
+      );
+      if (cssRule && typeof cssRule === 'object') {
+        cssRule.use = cssRule.use || [];
+        cssRule.use.forEach((loader: any) => {
+          if (loader?.options?.modules) {
+            loader.options.modules = {
+              ...loader.options.modules,
+              // Add basePath to CSS module paths
+              getLocalIdent: (context: any, _: any, localName: string) => {
+                return `${basePath.replace('/', '')}_${localName}`;
+              }
+            };
+          }
+        });
+      }
     }
     return config;
   },
