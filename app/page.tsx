@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ImageSkeleton from '../components/ImageSkeleton';
+import { getImagePath } from '../lib/image-path';
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -29,63 +31,63 @@ export default function Home() {
   const formRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Hero background images (using local premium images)
+  // Hero background images with corrected paths
   const heroBackgrounds = [
     {
-      src: "/images/hero-luxury-exterior-1.jpg",
+      src: getImagePath('images/hero-luxury-exterior-1.jpg'),
       alt: "Luxury lakefront villa with modern architecture"
     },
     {
-      src: "/images/hero-luxury-exterior-2.jpg",
+      src: getImagePath('images/hero-luxury-exterior-2.jpg'),
       alt: "Modern luxury apartment exterior with landscaping"
     },
     {
-      src: "/images/hero-living-space.jpg",
+      src: getImagePath('images/hero-living-space.jpg'),
       alt: "Elegant living space with panoramic lake view"
     },
     {
-      src: "/images/hero-pool-view.jpg",
+      src: getImagePath('images/hero-pool-view.jpg'),
       alt: "Premium infinity pool with architectural lighting"
     },
     {
-      src: "/images/luxury-home-facade.jpg",
+      src: getImagePath('images/luxury-home-facade.jpg'),
       alt: "Modern luxury home facade with artistic design"
     }
   ];
 
   const carouselImages = [
     {
-      src: "/images/penthouse-interior.jpg",
+      src: getImagePath('images/penthouse-interior.jpg'),
       alt: "Elegant penthouse interior with premium finishes",
       caption: "Exquisite interiors with premium finishes"
     },
     {
-      src: "/images/luxury-bathroom.jpg",
+      src: getImagePath('images/luxury-bathroom.jpg'),
       alt: "Luxury bathroom with marble and premium fixtures",
       caption: "Premium bathrooms with imported marble"
     },
     {
-      src: "/images/luxury-kitchen.jpg",
+      src: getImagePath('images/luxury-kitchen.jpg'),
       alt: "Premium kitchen with top-of-the-line appliances",
       caption: "Designer kitchens with high-end appliances"
     },
     {
-      src: "/images/modern-bedroom.jpg",
+      src: getImagePath('images/modern-bedroom.jpg'),
       alt: "Modern bedroom with luxurious design elements",
       caption: "Spacious bedrooms with lake views"
     },
     {
-      src: "/images/amenity-gym.jpg",
+      src: getImagePath('images/amenity-gym.jpg'),
       alt: "Premium fitness center with modern equipment",
       caption: "State-of-the-art fitness center"
     },
     {
-      src: "/images/amenity-spa.jpg",
+      src: getImagePath('images/amenity-spa.jpg'),
       alt: "Luxury spa area with premium relaxation facilities",
       caption: "Exclusive spa and wellness facilities"
     },
     {
-      src: "/images/aerial-view.jpg",
+      src: getImagePath('images/aerial-view.jpg'),
       alt: "Aerial view of the luxury apartment complex",
       caption: "Prime location with breathtaking surroundings"
     }
@@ -244,6 +246,7 @@ export default function Home() {
                 heroBackground === index ? 'opacity-100' : 'opacity-0'
               }`}
             >
+              <ImageSkeleton className="absolute inset-0" />
               <Image
                 src={bg.src}
                 alt={bg.alt}
@@ -410,6 +413,7 @@ export default function Home() {
                       activeSlide === index ? 'opacity-100' : 'opacity-0'
                     }`}
                   >
+                    <ImageSkeleton className="absolute inset-0" />
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -521,8 +525,9 @@ export default function Home() {
             {/* Image side */}
             <div className="w-full lg:w-1/2 order-1 lg:order-1 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
               <div className="relative overflow-hidden rounded-xl shadow-2xl h-[400px] md:h-[600px] transform transition-transform duration-700 hover:scale-[1.02]">
+                <ImageSkeleton className="absolute inset-0" />
                 <Image
-                  src="/images/hero-living-space.jpg"
+                  src={getImagePath('images/hero-living-space.jpg')}
                   alt="Elegant living space with panoramic lake view"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

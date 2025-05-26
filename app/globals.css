@@ -193,3 +193,17 @@ h1, h2, h3, h4, h5, h6 {
 ::-ms-input-placeholder {
   color: rgba(12, 76, 52, 0.5) !important;
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background-size: 1000px 100%;
+}

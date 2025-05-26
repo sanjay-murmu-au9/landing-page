@@ -5,15 +5,13 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const nextConfig: NextConfig = {
   output: 'export',
-  // Disable image optimization since GitHub Pages doesn't support Next.js API routes
   images: {
     unoptimized: true,
-    domains: ['images.unsplash.com'],
   },
   // Only use basePath and assetPrefix in production (for GitHub Pages)
   ...(isDev ? {} : {
-    basePath: '/landing-page',
-    assetPrefix: '/landing-page',
+    basePath: '/real-estate-landing',
+    assetPrefix: '/real-estate-landing',
   }),
 };
 
