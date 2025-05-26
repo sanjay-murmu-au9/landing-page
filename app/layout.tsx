@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
-import { useEffect } from 'react';
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -44,9 +43,9 @@ export default function RootLayout({
         {/* Add favicon */}
         <link rel="icon" href={`${basePath}/favicon.ico`} sizes="any" />
         {/* Force CSS reload in production */}
-        <link 
-          rel="stylesheet" 
-          href={`${basePath}/_next/static/css/app/page.css`} 
+        <link
+          rel="stylesheet"
+          href={`${basePath}/_next/static/css/app/page.css`}
           precedence="high"
         />
       </head>
