@@ -18,8 +18,24 @@ const nextConfig = {
 
       // Ensure CSS files are handled correctly
       const rules = config.module?.rules || [];
-      const cssRule = rules.find(
-        (rule) => rule.test?.toString().includes('css')
+      interface Loader {
+        loader?: string;
+        options?: {
+          modules?: {
+        [key: string]: any;
+        getLocalIdent?: (context: any, localIdentName: string, localName: string) => string;
+          };
+        };
+      }
+
+      interface CssRule {
+        test?: RegExp;
+        use?: Loader[];
+        [key: string]: any;
+      }
+
+      const cssRule: CssRule | undefined = (rules as CssRule[]).find(
+        (rule: CssRule) => rule.test?.toString().includes('css')
       );
       if (cssRule && typeof cssRule === 'object') {
         cssRule.use = cssRule.use || [];

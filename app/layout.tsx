@@ -43,14 +43,14 @@ export default function RootLayout({
         {/* Add favicon */}
         <link rel="icon" href={`${basePath}/favicon.ico`} sizes="any" />
         {/* Ensure correct CSS loading in both dev and prod */}
-        <link 
-          rel="stylesheet" 
-          href={`${basePath}/_next/static/css/app/layout.css`} 
+        <link
+          rel="stylesheet"
+          href={`${basePath}/_next/static/css/app/layout.css`}
           precedence="high"
         />
-        <link 
-          rel="stylesheet" 
-          href={`${basePath}/_next/static/css/app/page.css`} 
+        <link
+          rel="stylesheet"
+          href={`${basePath}/_next/static/css/app/page.css`}
           precedence="high"
         />
       </head>
