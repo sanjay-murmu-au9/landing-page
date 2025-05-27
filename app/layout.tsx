@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const isDev = process.env.NODE_ENV === 'development';
-  const basePath = isDev ? '' : '/real-estate-landing';
+  const basePath = isDev ? '' : '/landing-page';
 
   return (
     <html lang="en">
@@ -42,17 +42,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Add favicon */}
         <link rel="icon" href={`${basePath}/favicon.ico`} sizes="any" />
-        {/* Ensure correct CSS loading in both dev and prod */}
-        <link
-          rel="stylesheet"
-          href={`${basePath}/_next/static/css/app/layout.css`}
-          precedence="high"
-        />
-        <link
-          rel="stylesheet"
-          href={`${basePath}/_next/static/css/app/page.css`}
-          precedence="high"
-        />
       </head>
       <body
         className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}
