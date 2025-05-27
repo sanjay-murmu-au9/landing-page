@@ -10,11 +10,15 @@ const nextConfig = {
   },
   basePath: isDev ? '' : basePath,
   assetPrefix: isDev ? '' : basePath,
-  // Simplified webpack config for CSS handling
-  webpack: (config) => {
-    if (!isDev) {
-      config.output = config.output || {};
-      config.output.publicPath = `${basePath}/`;
+  trailingSlash: true, // This helps with GitHub Pages routing
+  webpack: (config, { isServer }) => {
+    if (!isDev && !isServer) {
+      config.output = {
+        ...config.output,
+        publicPath: `${basePath}/_next/`,
+        // Ensure chunk filenames are consistent
+        chunkFilename: `static/chunks/[name].[chunkhash].js`,
+      };
     }
     return config;
   },

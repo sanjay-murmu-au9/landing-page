@@ -374,7 +374,8 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </span>
-                  +91-8260028808
+                  +91-6361406787
+
                 </a>
                 <a href="tel:+916361406787" className="text-white text-lg hover:text-primary transition-colors flex items-center group">
                   <span className="bg-primary/20 rounded-full p-2 mr-2 group-hover:bg-primary/40 transition-colors">
@@ -382,7 +383,7 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </span>
-                  +91-6361406787
+                  +91-8260028808
                 </a>
               </div>
             </div>
@@ -697,10 +698,10 @@ export default function Home() {
             <p className="text-lg md:text-xl font-medium text-[#0c4c34] mb-4">Ready to secure your dream home?</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 mb-5">
               <a href="tel:+918260028808" className="text-gray-800 text-lg hover:text-[#0c4c34] flex items-center transition-colors">
-                <span className="mr-2 text-[#d4af37]">📞</span> +91-8260028808
+                <span className="mr-2 text-[#d4af37]">📞</span> +91-6361406787
               </a>
               <a href="tel:+916361406787" className="text-gray-800 text-lg hover:text-[#0c4c34] flex items-center transition-colors">
-                <span className="mr-2 text-[#d4af37]">📞</span> +91-6361406787
+                <span className="mr-2 text-[#d4af37]">📞</span> +91-8260028808
               </a>
             </div>
             <button
@@ -1017,10 +1018,10 @@ export default function Home() {
                 <h3 className="text-lg md:text-xl font-bold mb-4">Contact Us</h3>
                 <div className="space-y-3">
                   <a href="tel:+918260028808" className="block hover:text-[#d4af37] transition-colors flex items-center group">
-                    <span className="mr-2 group-hover:animate-pulse">📞</span> +91-8260028808
+                    <span className="mr-2 group-hover:animate-pulse">📞</span> +91-6361406787
                   </a>
                   <a href="tel:+916361406787" className="block hover:text-[#d4af37] transition-colors flex items-center group">
-                    <span className="mr-2 group-hover:animate-pulse">📞</span> +91-6361406787
+                    <span className="mr-2 group-hover:animate-pulse">📞</span> +91-8260028808
                   </a>
                   <p className="text-sm text-white/80 mt-2">
                     Sales Office: Prestige Somerville, Bangalore
@@ -1046,9 +1047,9 @@ export default function Home() {
                       <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                     </svg>
                   </a>
-                  <a href="https://wa.me/918260028808" className="text-white hover:text-[#d4af37] transition-all transform hover:scale-110" aria-label="WhatsApp">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  <a href="https://wa.me/916361406787" className="text-white hover:text-[#d4af37] transition-all transform hover:scale-105" aria-label="WhatsApp">
+                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
                     </svg>
                   </a>
                 </div>
