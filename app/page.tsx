@@ -209,19 +209,27 @@ export default function Home() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Run validation first
     if (validateForm()) {
-      // In a real app, you would send this data to your backend
+      // If valid, proceed with submission
       console.log('Form submitted:', formData);
+  
       setIsFormSubmitted(true);
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        message: ''
-      });
+  
+      // Reset form after a delay
+      setTimeout(() => {
+        setIsFormSubmitted(false);
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      }, 3000);
     }
   };
+  
 
   return (
     <main className="relative">
@@ -477,13 +485,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Project Highlights - Luxury Redesign */}
-      <section className="py-16 md:py-24 bg-neutral-light">
+ev      {/* Project Highlights - Luxury Redesign */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-white to-neutral-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center mb-12">
             <div className="w-16 h-1 bg-primary mb-6"></div>
-            <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif text-center mb-4 text-secondary-dark">
               Exclusive Features
             </h2>
             <p className="text-neutral-dark max-w-2xl mx-auto text-center text-lg">
@@ -495,12 +502,30 @@ export default function Home() {
             {highlights.map((highlight, index) => (
               <div
                 key={index}
-                className="luxury-card p-6 md:p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-500 border-b-4 border-primary overflow-hidden group"
+                className="relative bg-white rounded-xl p-6 md:p-8 
+                         shadow-[0_8px_30px_rgb(0,0,0,0.06)] 
+                         border border-neutral-light/50
+                         hover:shadow-[0_15px_35px_rgb(0,0,0,0.1)]
+                         hover:border-primary/30
+                         transition-all duration-500 transform hover:-translate-y-1
+                         overflow-hidden group"
               >
-                <div className="text-3xl md:text-4xl mb-4 text-primary group-hover:scale-110 transition-transform duration-500">{highlight.icon}</div>
-                <h3 className="text-xl md:text-2xl font-serif mb-3 text-secondary-dark">{highlight.title}</h3>
-                <div className="w-10 h-0.5 bg-primary mb-4 group-hover:w-16 transition-all duration-500"></div>
-                <p className="text-neutral-dark text-base md:text-lg">{highlight.description}</p>
+                {/* Subtle highlight effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Content with improved contrast */}
+                <div className="relative z-10">
+                  <div className="text-3xl md:text-4xl mb-4 text-primary group-hover:scale-110 transition-transform duration-500">
+                    {highlight.icon}
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-serif mb-3 text-secondary-dark font-medium">
+                    {highlight.title}
+                  </h3>
+                  <div className="w-10 h-0.5 bg-primary mb-4 group-hover:w-16 transition-all duration-500"></div>
+                  <p className="text-neutral-dark text-base md:text-lg">
+                    {highlight.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -508,7 +533,8 @@ export default function Home() {
           <div className="text-center mt-12 md:mt-16">
             <button
               onClick={scrollToForm}
-              className="luxury-button bg-primary hover:bg-primary-dark text-white group flex items-center justify-center mx-auto"
+              className="luxury-button bg-primary text-white group flex items-center justify-center mx-auto
+                       shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <span>Check Apartment Availability</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -862,8 +888,8 @@ export default function Home() {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className={`w-full p-3 md:p-4 bg-transparent border-b-2 focus:outline-none focus:border-[#d4af37] transition-colors ${
-                      formErrors.fullName ? 'border-red-500' : 'border-[#0c4c34]/20'
+                    className={`w-full p-3 md:p-4 bg-transparent text-[#0c4c34] border-b-2 focus:outline-none focus:border-[#d4af37] transition-colors ${
+                      formErrors.email ? 'border-red-500' : 'border-[#0c4c34]/20'
                     }`}
                     placeholder="John Smith"
                   />
@@ -880,7 +906,7 @@ export default function Home() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full p-3 md:p-4 bg-transparent border-b-2 focus:outline-none focus:border-[#d4af37] transition-colors ${
+                    className={`w-full p-3 md:p-4 bg-transparent text-[#0c4c34] border-b-2 focus:outline-none focus:border-[#d4af37] transition-colors ${
                       formErrors.email ? 'border-red-500' : 'border-[#0c4c34]/20'
                     }`}
                     placeholder="name@example.com"
@@ -902,7 +928,7 @@ export default function Home() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full p-3 md:p-4 bg-transparent focus:outline-none"
+                      className="w-full p-3 md:p-4 bg-transparent text-[#0c4c34] focus:outline-none"
                       placeholder="9876543210"
                       maxLength={10}
                     />
