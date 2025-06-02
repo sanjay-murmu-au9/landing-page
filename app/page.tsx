@@ -407,7 +407,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
               Exquisite Living Spaces
             </h2>
-            <p className="text-neutral-dark max-w-2xl mx-auto text-center text-lg">
+            <p className="text-3xl max-w-2xl mx-auto text-center text-lg">
               Experience unparalleled luxury with premium finishes and breathtaking views
             </p>
           </div>
@@ -485,7 +485,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-ev      {/* Project Highlights - Luxury Redesign */}
+      {/* Project Highlights - Luxury Redesign */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-white to-neutral-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center mb-12">
@@ -965,8 +965,8 @@ ev      {/* Project Highlights - Luxury Redesign */}
             Strategically located with excellent connectivity to key areas
           </p>
 
-          <div className="max-w-5xl mx-auto">
-            <div className="relative overflow-hidden pt-[56.25%] rounded-xl shadow-lg mb-6 md:mb-8 border border-[#0c4c34]/20">
+          <div className="w-full">
+            <div className="relative w-full h-[400px] rounded-none shadow-lg mb-6 md:mb-10 border-t border-b border-[#0c4c34]/20">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3861643633713!2d77.63719531482293!3d13.012343990827535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17b55e75f6c9%3A0x3a77a0ec00f4fcd1!2sBangalore%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1621234567890!5m2!1sen!2sus"
