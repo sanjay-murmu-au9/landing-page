@@ -1,7 +1,8 @@
 import { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === 'development';
-const basePath = '/landing-page';
+// const basePath = '/landing-page';
+const basePath = '';
 
 const nextConfig = {
   output: 'export',
