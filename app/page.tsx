@@ -207,26 +207,47 @@ export default function Home() {
     return isValid;
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Run validation first
     if (validateForm()) {
-      // If valid, proceed with submission
-      console.log('Form submitted:', formData);
+      try {
+        const response = await fetch('https://api.lutui.in/tp/hod/join', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        // If valid, proceed with submission
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log('Form submitted:', formData);
 
-      setIsFormSubmitted(true);
+        setIsFormSubmitted(true);
 
-      // Reset form after a delay
-      setTimeout(() => {
-        setIsFormSubmitted(false);
-        setFormData({
-          fullName: '',
+        // Reset form after a delay
+        setTimeout(() => {
+          setIsFormSubmitted(false);
+          setFormData({
+            fullName: '',
+            email: '',
+            phone: '',
+            message: '',
+          });
+        }, 3000);
+      } catch (err) {
+        console.error('Error during form submission:', err);
+        setFormErrors({
+          fullName:
+            'An error occurred while submitting the form. Please try again later.',
           email: '',
           phone: '',
-          message: ''
         });
-      }, 3000);
+        return;
+      }
     }
   };
 
