@@ -209,14 +209,14 @@ export default function Home() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     // Run validation first
     if (validateForm()) {
       // If valid, proceed with submission
       console.log('Form submitted:', formData);
-  
+
       setIsFormSubmitted(true);
-  
+
       // Reset form after a delay
       setTimeout(() => {
         setIsFormSubmitted(false);
@@ -229,7 +229,7 @@ export default function Home() {
       }, 3000);
     }
   };
-  
+
 
   return (
     <main className="relative">
@@ -502,8 +502,8 @@ export default function Home() {
             {highlights.map((highlight, index) => (
               <div
                 key={index}
-                className="relative bg-white rounded-xl p-6 md:p-8 
-                         shadow-[0_8px_30px_rgb(0,0,0,0.06)] 
+                className="relative bg-white rounded-xl p-6 md:p-8
+                         shadow-[0_8px_30px_rgb(0,0,0,0.06)]
                          border border-neutral-light/50
                          hover:shadow-[0_15px_35px_rgb(0,0,0,0.1)]
                          hover:border-primary/30
@@ -512,7 +512,7 @@ export default function Home() {
               >
                 {/* Subtle highlight effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Content with improved contrast */}
                 <div className="relative z-10">
                   <div className="text-3xl md:text-4xl mb-4 text-primary group-hover:scale-110 transition-transform duration-500">
