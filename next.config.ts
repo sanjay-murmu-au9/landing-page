@@ -16,7 +16,8 @@ const nextConfig = {
     if (!isDev && !isServer) {
       config.output = {
         ...config.output,
-        publicPath: `${basePath}/_next/`,
+        // publicPath: `${basePath}/_next/`,
+        publicPath: '_next/',
         // Ensure chunk filenames are consistent
         chunkFilename: `static/chunks/[name].[chunkhash].js`,
       };
