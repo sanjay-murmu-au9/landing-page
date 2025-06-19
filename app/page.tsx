@@ -969,7 +969,7 @@ export default function Home() {
                 <p className="text-neutral-600 text-sm text-center mt-5">
                   We respect your privacy. Your information is secure with us.
                   <br />
-                  <a href="#" className="text-[#0c4c34] hover:text-[#d4af37] underline transition-colors">View Privacy Policy</a>
+                  <Link href="/privacy-policy" className="text-[#0c4c34] hover:text-[#d4af37] underline transition-colors">View Privacy Policy</Link>
                 </p>
               </form>
             )}
