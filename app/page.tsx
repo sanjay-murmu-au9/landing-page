@@ -31,28 +31,28 @@ export default function Home() {
   const formRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Hero background images with corrected paths
+  // Hero background images with optimized paths
   const heroBackgrounds = [
-    {
-      src: getImagePath('images/hero-luxury-exterior-1.jpg'),
-      alt: "Luxury lakefront villa with modern architecture"
-    },
-    {
-      src: getImagePath('images/hero-luxury-exterior-2.jpg'),
-      alt: "Modern luxury apartment exterior with landscaping"
-    },
-    {
-      src: getImagePath('images/hero-living-space.jpg'),
-      alt: "Elegant living space with panoramic lake view"
-    },
+    // {
+    //   src: getImagePath('images/optimized/hero-luxury-exterior-1.jpg'),
+    //   alt: "Luxury lakefront villa with modern architecture"
+    // },
+    // {
+    //   src: getImagePath('images/hero-luxury-exterior-2.jpg'),
+    //   alt: "Modern luxury apartment exterior with landscaping"
+    // },
+    // {
+    //   src: getImagePath('images/hero-living-space.jpg'),
+    //   alt: "Elegant living space with panoramic lake view"
+    // },
     {
       src: getImagePath('images/hero-pool-view.jpg'),
       alt: "Premium infinity pool with architectural lighting"
     },
-    {
-      src: getImagePath('images/luxury-home-facade.jpg'),
-      alt: "Modern luxury home facade with artistic design"
-    }
+    // {
+    //   src: getImagePath('images/luxury-home-facade.jpg'),
+    //   alt: "Modern luxury home facade with artistic design"
+    // }
   ];
 
   const carouselImages = [
@@ -282,7 +282,8 @@ export default function Home() {
                 fill
                 priority={index === 0}
                 sizes="100vw"
-                quality={100}
+                quality={75}
+                loading={index === 0 ? "eager" : "lazy"}
                 className="object-cover"
               />
             </div>
@@ -315,8 +316,8 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Hero background indicators - Refined elegant style */}
-        <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center">
+        {/* Hero background indicators - Hidden on mobile, visible on desktop */}
+        <div className="absolute bottom-8 left-0 right-0 z-20 hidden md:flex justify-center">
           <div className="flex space-x-3 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
             {heroBackgrounds.map((_, index) => (
               <button
@@ -342,8 +343,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Logo and Brand */}
-        <div className="absolute top-6 left-6 z-30">
+        {/* Logo and Brand - Hidden on mobile */}
+        <div className="absolute top-6 left-6 z-30 hidden md:block">
           <div className="flex items-center">
             <div className="bg-black/30 backdrop-blur-sm p-2 rounded-lg border border-white/10">
               <h3 className="text-white font-serif text-xl md:text-2xl">
@@ -358,19 +359,42 @@ export default function Home() {
           <div className="max-w-3xl bg-gradient-to-r from-black/40 to-black/20 backdrop-blur-md p-6 md:p-10 rounded-lg border border-white/10 shadow-2xl animate-fadeIn">
             <div className="animate-fadeIn space-y-6">
               <div className="w-24 h-1 bg-primary mb-4"></div>
-             <h1 className="hidden md:block text-3xl md:text-4xl lg:text-6xl font-serif text-white leading-tight">
+             {/* Desktop Heading */}
+              <h1 className="hidden md:block text-3xl md:text-4xl lg:text-6xl font-serif text-white leading-tight">
                 Prestige Somerville: <br />
                 <span className="text-primary">Lakefront Luxury</span> Apartments
               </h1>
 
-              <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-light">
+              {/* Mobile Heading */}
+              <div className="md:hidden space-y-2">
+                <h1 className="text-2xl sm:text-3xl font-serif text-white leading-tight">
+                  Prestige Somerville
+                </h1>
+                <h2 className="text-xl sm:text-2xl font-serif text-primary leading-tight">
+                  Lakefront Luxury Apartments
+                </h2>
+              </div>
+
+              <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-light pt-2">
                 Experience unparalleled luxury living with spectacular lake views in Bangalore's most prestigious address
               </p>
 
               <div className="pt-4">
-                <p className="text-primary text-lg md:text-xl font-medium mb-4">
-                  Pay Zero EMIs till March 2027 with EZ Pay Plan by Axis Bank
-                </p>
+                <div className="bg-[#d4af37]/10 backdrop-blur-sm p-4 rounded-lg border border-[#d4af37]/20 animate-pulse-slow">
+                  <div className="flex flex-col items-center md:flex-row md:justify-center md:items-center gap-2">
+                    <span className="text-[#d4af37] font-bold text-lg md:text-2xl animate-bounce">
+                      🎉 Limited Time Offer
+                    </span>
+                    <div className="text-center md:text-left">
+                      <p className="text-white text-base md:text-xl font-medium">
+                        Pay <span className="text-[#d4af37] font-bold">ZERO EMIs</span> till March 2027
+                      </p>
+                      <p className="text-white/80 text-sm md:text-base">
+                        Exclusive EZ Pay Plan by Axis Bank
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
@@ -449,8 +473,9 @@ export default function Home() {
                       alt={image.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 90vw"
+                      quality={75}
+                      loading="lazy"
                       className="object-cover"
-                      quality={100}
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent pt-16 pb-6 px-6 md:px-8">
                       <p className="text-white text-lg md:text-xl font-light">{image.caption}</p>
@@ -485,21 +510,37 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Elegant carousel indicators */}
-            <div className="absolute -bottom-12 left-0 right-0 z-10 flex justify-center">
-              <div className="flex space-x-3">
+            {/* Desktop carousel indicators */}
+            <div className="hidden md:flex absolute bottom-4 left-0 right-0 z-20 justify-center">
+              <div className="flex space-x-3 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
                 {carouselImages.map((_, index) => (
                   <button
                     key={index}
                     type="button"
                     onClick={() => setActiveSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       activeSlide === index
-                        ? 'bg-primary scale-125 shadow-md'
-                        : 'bg-neutral-dark/30 hover:bg-primary/50'
+                        ? 'bg-[#d4af37] scale-125 shadow-md'
+                        : 'bg-white/50 hover:bg-white/80'
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile slide indicator */}
+            <div className="md:hidden absolute bottom-4 left-0 right-0 z-20">
+              <div className="flex justify-center items-center gap-1.5">
+                {carouselImages.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      activeSlide === index
+                        ? 'w-6 bg-[#d4af37]'
+                        : 'w-2 bg-white/40'
+                    }`}
+                  ></div>
                 ))}
               </div>
             </div>
@@ -950,7 +991,7 @@ export default function Home() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full p-3 md:p-4 bg-transparent text-[#0c4c34] focus:outline-none"
-                      placeholder="9876543210"
+                      placeholder="Enter your 10-digit mobile number"
                       maxLength={10}
                     />
                   </div>
@@ -987,9 +1028,19 @@ export default function Home() {
           </p>
 
           <div className="w-full">
-            <div className="relative w-full h-[400px] rounded-none shadow-lg mb-6 md:mb-10 border-t border-b border-[#0c4c34]/20">
+            <div
+              onClick={scrollToForm}
+              className="relative w-full h-[400px] rounded-none shadow-lg mb-6 md:mb-10 border-t border-b border-[#0c4c34]/20 group cursor-pointer overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] z-10 group-hover:backdrop-blur-0 transition-all duration-300">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white/90 px-6 py-3 rounded-lg transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-[#0c4c34] font-medium">Click to Get Exact Location</p>
+                  </div>
+                </div>
+              </div>
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
+                className="absolute top-0 left-0 w-full h-full filter group-hover:blur-none transition-all duration-300"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3861643633713!2d77.63719531482293!3d13.012343990827535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17b55e75f6c9%3A0x3a77a0ec00f4fcd1!2sBangalore%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1621234567890!5m2!1sen!2sus"
                 allowFullScreen={true}
                 loading="lazy"
@@ -1010,16 +1061,6 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="text-center">
-              <a
-                href="https://goo.gl/maps/1234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#0c4c34] hover:bg-[#0a3f2b] text-white px-5 md:px-6 py-3 rounded-lg font-medium text-base md:text-lg transition-all inline-block shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
-              >
-                Get Directions on Google Maps
-              </a>
-            </div>
           </div>
         </div>
       </section>

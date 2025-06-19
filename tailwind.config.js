@@ -26,6 +26,22 @@ module.exports = {
                 serif: ['var(--font-playfair)', 'Georgia', 'serif'],
                 mono: ['var(--font-mono)', 'monospace'],
             },
+            animation: {
+                'pulse-slow': 'pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'bounce': 'bounce 1s infinite',
+            },
+            keyframes: {
+                'pulse-slow': {
+                    '0%, 100%': {
+                        opacity: 1,
+                        transform: 'scale(1)',
+                    },
+                    '50%': {
+                        opacity: .95,
+                        transform: 'scale(1.02)',
+                    },
+                },
+            },
         },
     },
     plugins: [],

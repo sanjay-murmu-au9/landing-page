@@ -176,11 +176,21 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse 1.5s infinite;
 }
 
-/* Touch optimization */
-.touch-manipulation {
-  touch-action: manipulation;
+@keyframes pulse-slow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
 }
 
+.animate-pulse-slow {
+  animation: pulse-slow 2s infinite;
+}
 
 /* Add this to your globals.css */
 ::placeholder {
