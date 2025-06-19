@@ -1,21 +1,23 @@
 import { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === 'development';
-const basePath = '/landing-page';
+const isCustomDomain = process.env.NEXT_PUBLIC_CUSTOM_DOMAIN === 'true';
+const basePath = isCustomDomain ? '' : '/landing-page';
 
 const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true, // Required for static export
   },
-  basePath: isDev ? '' : basePath,
-  assetPrefix: isDev ? '' : basePath,
+  basePath: isDev || isCustomDomain ? '' : basePath,
+  assetPrefix: isDev || isCustomDomain ? '' : basePath,
   trailingSlash: true,
   compress: true, // Enable gzip compression
   webpack: (config, { isServer, dev }) => {
     // Optimize JS bundles
     if (!dev) {
-      config.optimization = {
+      config.optimization
+       = {
         ...config.optimization,
         minimize: true,
         splitChunks: {

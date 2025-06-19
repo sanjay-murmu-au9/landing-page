@@ -31,9 +31,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isDev = process.env.NODE_ENV === 'development';
-  const basePath = isDev ? '' : '/landing-page';
-
   return (
     <html lang="en">
       <head>
@@ -41,7 +38,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Add favicon */}
-        <link rel="icon" href={`${basePath}/favicon.ico`} sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* Ensure CSS is loaded first */}
+        <link rel="preload" href="/globals.css" as="style" />
       </head>
       <body
         className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}
