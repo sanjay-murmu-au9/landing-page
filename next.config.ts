@@ -1,6 +1,6 @@
 import { NextConfig } from "next";
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV;
 const isCustomDomain = process.env.NEXT_PUBLIC_CUSTOM_DOMAIN === 'true';
 const basePath = isCustomDomain ? '' : '/landing-page';
 
@@ -9,8 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
-  basePath: isDev || isCustomDomain ? '' : basePath,
-  assetPrefix: isDev || isCustomDomain ? '' : basePath,
+  basePath: isCustomDomain ? '' : '/landing-page', // Use '' for custom domain, '/repo-name' for GitHub Pages
+  assetPrefix: isCustomDomain ? '' : '/landing-page',
   trailingSlash: true,
   compress: true, // Enable gzip compression
   webpack: (config, { isServer, dev }) => {
