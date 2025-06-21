@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "dev:watch": "nodemon --exec \"next dev --turbopack\"",
     "optimize-images": "node scripts/optimize-images.js",
-    "build": "npm run optimize-images && next build",
+    "build": "npm run optimize-images && next build && next export",
     "start": "next start",
     "start:watch": "nodemon --exec \"next start\"",
     "lint": "next lint",

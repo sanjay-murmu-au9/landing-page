@@ -362,7 +362,7 @@ export default function Home() {
              {/* Desktop Heading */}
               <h1 className="hidden md:block text-3xl md:text-4xl lg:text-6xl font-serif text-white leading-tight">
                 Prestige Somerville: <br />
-                <span className="text-primary">Lakefront Luxury</span> Apartments
+                <span className="text-primary">Lakefront Luxury</span> Apartments With 2 Years Zero EMI
               </h1>
 
               {/* Mobile Heading */}
@@ -371,7 +371,7 @@ export default function Home() {
                   Prestige Somerville
                 </h1>
                 <h2 className="text-xl sm:text-2xl font-serif text-primary leading-tight">
-                  Lakefront Luxury Apartments
+                  Lakefront Luxury Apartments With 2 Years Zero EMI
                 </h2>
               </div>
 
@@ -385,20 +385,20 @@ export default function Home() {
                     <span className="text-[#d4af37] font-bold text-lg md:text-2xl animate-bounce">
                       🎉 Limited Time Offer
                     </span>
-                    <div className="text-center md:text-left">
+                    {/* <div className="text-center md:text-left">
                       <p className="text-white text-base md:text-xl font-medium">
                         Pay <span className="text-[#d4af37] font-bold">ZERO EMIs</span> till March 2027
                       </p>
                       <p className="text-white/80 text-sm md:text-base">
                         Exclusive EZ Pay Plan by Axis Bank
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-                <button
+                {/* <button
                   onClick={scrollToForm}
                   className="luxury-button bg-primary hover:bg-primary-dark text-white group flex items-center justify-center"
                 >
@@ -406,7 +406,7 @@ export default function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
-                </button>
+                </button> */}
 
                 <button
                   onClick={scrollToForm}
@@ -1156,7 +1156,7 @@ export default function Home() {
                 <h3 className="text-lg md:text-xl font-bold mb-4">Legal</h3>
                 <div className="space-y-2">
                   <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Terms & Conditions</a>
-                  <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Privacy Policy</a>
+                  <a href="/privacy-policy" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Privacy Policy</a>
                   <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">RERA Information</a>
                   <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Disclaimer</a>
                 </div>

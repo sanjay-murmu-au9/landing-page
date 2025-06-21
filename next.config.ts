@@ -9,8 +9,12 @@ const nextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
+  /*
   basePath: isCustomDomain ? '' : '/landing-page', // Use '' for custom domain, '/repo-name' for GitHub Pages
   assetPrefix: isCustomDomain ? '' : '/landing-page',
+  */
+  basePath: '', // Always empty for custom domain
+  assetPrefix: '', // Always empty for custom domain
   trailingSlash: true,
   compress: true, // Enable gzip compression
   webpack: (config, { isServer, dev }) => {
@@ -33,16 +37,18 @@ const nextConfig = {
               minChunks: 2,
             },
             shared: {
-              name: (module: any) => {
-                const moduleFileName = module
-                  .identifier()
-                  .split('/')
-                  .reduceRight((item: string) => item);
-                return `shared-${moduleFileName}`;
+                name: (module: any) => {
+                  const fullIdentifier = module.identifier();
+                  const moduleFileName = fullIdentifier
+                    .split('/')
+                    .pop()
+                    ?.replace(/[^a-zA-Z0-9_-]/g, '') || 'shared';
+
+                  return `shared-${moduleFileName}`;
+                },
+                test: /[\\/]node_modules[\\/]/,
+                chunks: 'all',
               },
-              test: /[\\/]node_modules[\\/]/,
-              chunks: 'all',
-            },
           },
         },
       };

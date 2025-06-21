@@ -40,3 +40,4 @@ jobs:
           npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEXT_PUBLIC_CUSTOM_DOMAIN: ${{ secrets.NEXT_PUBLIC_CUSTOM_DOMAIN }}
