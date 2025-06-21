@@ -17,45 +17,45 @@ const nextConfig = {
   assetPrefix: '', // Always empty for custom domain
   trailingSlash: true,
   compress: true, // Enable gzip compression
-  webpack: (config, { isServer, dev }) => {
-    // Optimize JS bundles
-    if (!dev) {
-      config.optimization
-       = {
-        ...config.optimization,
-        minimize: true,
-        splitChunks: {
-          chunks: 'all',
-          minSize: 20000,
-          maxSize: 90000,
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            commons: {
-              name: 'commons',
-              chunks: 'all',
-              minChunks: 2,
-            },
-            shared: {
-                name: (module: any) => {
-                  const fullIdentifier = module.identifier();
-                  const moduleFileName = fullIdentifier
-                    .split('/')
-                    .pop()
-                    ?.replace(/[^a-zA-Z0-9_-]/g, '') || 'shared';
+  // webpack: (config, { isServer, dev }) => {
+  //   // Optimize JS bundles
+  //   if (!dev) {
+  //     config.optimization
+  //      = {
+  //       ...config.optimization,
+  //       minimize: true,
+  //       splitChunks: {
+  //         chunks: 'all',
+  //         minSize: 20000,
+  //         maxSize: 90000,
+  //         cacheGroups: {
+  //           default: false,
+  //           vendors: false,
+  //           commons: {
+  //             name: 'commons',
+  //             chunks: 'all',
+  //             minChunks: 2,
+  //           },
+  //           shared: {
+  //               name: (module: any) => {
+  //                 const fullIdentifier = module.identifier();
+  //                 const moduleFileName = fullIdentifier
+  //                   .split('/')
+  //                   .pop()
+  //                   ?.replace(/[^a-zA-Z0-9_-]/g, '') || 'shared';
 
-                  return `shared-${moduleFileName}`;
-                },
-                test: /[\\/]node_modules[\\/]/,
-                chunks: 'all',
-              },
-          },
-        },
-      };
-    }
+  //                 return `shared-${moduleFileName}`;
+  //               },
+  //               test: /[\\/]node_modules[\\/]/,
+  //               chunks: 'all',
+  //             },
+  //         },
+  //       },
+  //     };
+  //   }
 
-    return config;
-  },
+  //   return config;
+  // },
 } as NextConfig;
 
 export default nextConfig;
