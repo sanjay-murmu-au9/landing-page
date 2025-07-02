@@ -46,7 +46,7 @@ export default function Home() {
     //   alt: "Elegant living space with panoramic lake view"
     // },
     {
-      src: getImagePath('images/hero-pool-view.jpg'),
+      src: getImagePath('images/bhartiya-city01.jpeg'),
       alt: "Premium infinity pool with architectural lighting"
     },
     // {
@@ -57,14 +57,14 @@ export default function Home() {
 
   const carouselImages = [
     {
+      src: getImagePath('images/bhartiya-city01.jpeg'),
+      alt: "Luxury bathroom with marble and premium fixtures",
+      caption: "Prime location with breathtaking surroundings"
+    },
+    {
       src: getImagePath('images/penthouse-interior.jpg'),
       alt: "Elegant penthouse interior with premium finishes",
       caption: "Exquisite interiors with premium finishes"
-    },
-    {
-      src: getImagePath('images/luxury-bathroom.jpg'),
-      alt: "Luxury bathroom with marble and premium fixtures",
-      caption: "Premium bathrooms with imported marble"
     },
     {
       src: getImagePath('images/luxury-kitchen.jpg'),
@@ -86,11 +86,11 @@ export default function Home() {
       alt: "Luxury spa area with premium relaxation facilities",
       caption: "Exclusive spa and wellness facilities"
     },
-    {
-      src: getImagePath('images/aerial-view.jpg'),
-      alt: "Aerial view of the luxury apartment complex",
-      caption: "Prime location with breathtaking surroundings"
-    }
+    // {
+    //   src: getImagePath('images/aerial-view.jpg'),
+    //   alt: "Aerial view of the luxury apartment complex",
+    //   caption: "Prime location with breathtaking surroundings"
+    // }
   ];
 
   const highlights = [
@@ -132,7 +132,7 @@ export default function Home() {
     if (!isUserScrollingHero) {
       heroTimer = setInterval(() => {
         setHeroBackground((prev) => (prev + 1) % heroBackgrounds.length);
-      }, 7000);
+      }, 4000);
     }
 
     return () => {
@@ -616,7 +616,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-xl shadow-2xl h-[400px] md:h-[600px] transform transition-transform duration-700 hover:scale-[1.02]">
                 <ImageSkeleton className="absolute inset-0" />
                 <Image
-                  src={getImagePath('images/hero-living-space.jpg')}
+                  src={getImagePath('images/bhartiya-city.jpeg')}
                   alt="Elegant living space with panoramic lake view"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -1120,7 +1120,7 @@ export default function Home() {
               <div>
                 <h3 className="text-lg md:text-xl font-bold mb-4">Connect With Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-white hover:text-[#d4af37] transition-all transform hover:scale-110" aria-label="Facebook">
+                  <a href="https://www.facebook.com/profile.php?id=61577984246859" className="text-white hover:text-[#d4af37] transition-all transform hover:scale-110" aria-label="Facebook">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
                     </svg>
@@ -1144,10 +1144,10 @@ export default function Home() {
 
                 <div className="mt-6">
                   <a
-                    href="mailto:info@prestigesomerville.com"
+                    href="mailto:info@houseofdreamsrealty.com"
                     className="block hover:text-[#d4af37] transition-colors text-sm"
                   >
-                    info@prestigesomerville.com
+                    info@houseofdreamsrealty.com
                   </a>
                 </div>
               </div>
