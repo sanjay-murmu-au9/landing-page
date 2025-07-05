@@ -105,9 +105,9 @@ export default function CookiePolicy() {
               If you have any questions about our use of cookies, please contact us at:
             </p>
             <div className="mt-2">
-              <p><strong>Email:</strong> privacy@yourluxuryrealestate.com</p>
-              <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-              <p><strong>Address:</strong> 1234 Luxury Lane, Estate City, EC 12345</p>
+              <p><strong>Email:</strong> info@houseofdreamsrealty.com</p>
+              <p><strong>Phone:</strong> +91 8260028808</p>
+              <p><strong>Address:</strong> Prestige Somerville, Bangalore India</p>
             </div>
           </section>
         </div>
@@ -120,7 +120,7 @@ export default function CookiePolicy() {
             <Link href="/" className="text-white hover:text-primary-light">Home</Link>
             <Link href="/privacy-policy" className="text-white hover:text-primary-light">Privacy Policy</Link>
             <Link href="/cookie-policy" className="text-white hover:text-primary-light">Cookie Policy</Link>
-            <Link href="/term-condtion" className="text-white hover:text-primary-light">Terms & Conditions</Link>
+            <Link href="/term-condition" className="text-white hover:text-primary-light">Terms & Conditions</Link>
           </div>
           <p className="text-sm">
             © 2025 Prestige Somerville. All rights reserved.
