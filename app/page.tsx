@@ -1157,8 +1157,9 @@ export default function Home() {
                 <div className="space-y-2">
                   <a href="/term-condition" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Terms & Conditions</a>
                   <a href="/privacy-policy" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Privacy Policy</a>
-                  <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">RERA Information</a>
-                  <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Disclaimer</a>
+                  <a href="/cookie-policy" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Cookie Policy</a>
+                  {/* <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">RERA Information</a> */}
+                  <a href="/disclaimer" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Disclaimer</a>
                 </div>
               </div>
             </div>
