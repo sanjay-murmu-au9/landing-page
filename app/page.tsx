@@ -1155,7 +1155,7 @@ export default function Home() {
               <div>
                 <h3 className="text-lg md:text-xl font-bold mb-4">Legal</h3>
                 <div className="space-y-2">
-                  <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Terms & Conditions</a>
+                  <a href="/term-condition" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Terms & Conditions</a>
                   <a href="/privacy-policy" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Privacy Policy</a>
                   <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">RERA Information</a>
                   <a href="#" className="block hover:text-[#d4af37] transition-colors text-sm md:text-base">Disclaimer</a>
