@@ -151,7 +151,7 @@ export default function Disclaimer() {
             <Link href="/privacy-policy" className="text-white hover:text-primary-light">Privacy Policy</Link>
             <Link href="/cookie-policy" className="text-white hover:text-primary-light">Cookie Policy</Link>
             <Link href="/disclaimer" className="text-white hover:text-primary-light">Disclaimer</Link>
-            <Link href="/term-condtion" className="text-white hover:text-primary-light">Terms & Conditions</Link>
+            <Link href="/term-condition" className="text-white hover:text-primary-light">Terms & Conditions</Link>
           </div>
           <p className="text-sm">
             © 2025 Prestige Somerville. All rights reserved.
