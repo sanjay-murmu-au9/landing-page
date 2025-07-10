@@ -141,13 +141,13 @@ export default function PrivacyPolicy() {
                 If you have any questions about our privacy practices, please reach out:
               </p>
               <div className="space-y-4">
-                <a href="mailto:privacy@prestigesomerville.com"
+                <a href="mailto:info@houseofdreamsrealty.com"
                    className="flex items-center justify-center space-x-3 text-[#0c4c34] hover:text-[#d4af37] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
-                  <span>privacy@prestigesomerville.com</span>
+                  <span>info@houseofdreamsrealty.com</span>
                 </a>
                 <a href="tel:+918260028808"
                    className="flex items-center justify-center space-x-3 text-[#0c4c34] hover:text-[#d4af37] transition-colors">
@@ -165,6 +165,14 @@ export default function PrivacyPolicy() {
       {/* Footer */}
       <footer className="bg-[#0c4c34] text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 mb-6">
+            <Link href="/" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1 min-w-[80px]">Home</Link>
+            <Link href="/blog" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1 min-w-[80px]">Blog</Link>
+            <Link href="/privacy-policy" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1">Privacy Policy</Link>
+            <Link href="/cookie-policy" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1">Cookie Policy</Link>
+            <Link href="/disclaimer" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1 min-w-[80px]">Disclaimer</Link>
+            <Link href="/term-condtion" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1">Terms & Conditions</Link>
+          </div>
           <p className="text-sm">
             © 2025 Prestige Somerville. All rights reserved.
           </p>

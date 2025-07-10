@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import CookieConsentContainer from "./providers/CookieConsentContainer";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -44,8 +45,11 @@ export default function RootLayout({
       </head>
       <body
         className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}
+        data-theme="light"
       >
         {children}
+        {/* Cookie Consent Banner - client component loaded at the root */}
+        <CookieConsentContainer />
       </body>
     </html>
   );
