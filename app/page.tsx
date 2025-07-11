@@ -751,7 +751,7 @@ export default function Home() {
                 Experience the pinnacle of luxury living with our exclusive lakefront residences.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="text-white hover:text-primary transition-colors">
+                <a href="https://www.facebook.com/profile.php?id=61577984246859" className="text-white hover:text-primary transition-colors">
                   <span className="sr-only">Facebook</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
@@ -786,7 +786,7 @@ export default function Home() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-white text-opacity-90">info@lakesideluxury.com</span> {/* Changed from text-neutral-300 */}
+                <span className="text-white text-opacity-90">info@houseofdreamsrealty.com</span> {/* Changed from text-neutral-300 */}
               </p>
             </div>
             <div>
