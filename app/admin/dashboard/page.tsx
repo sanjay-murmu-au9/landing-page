@@ -187,19 +187,19 @@ export default function AdminDashboard() {
     try {
       // Using the correct PUT /hod/:id route as per your API specification
       const response = await axios.put(`https://api.lutui.in/tp/hod/${userId}`, userForm);
-      
+
       if (response.data.success) {
         // If API call was successful, update the local state
-        setUsers(users.map(user => 
-          user._id === userId 
-            ? { ...user, ...userForm } 
+        setUsers(users.map(user =>
+          user._id === userId
+            ? { ...user, ...userForm }
             : user
         ));
-        
+
         setEditingUser(null);
         setEditModalUser(null);
         setUserForm({});
-        
+
         // Show success notification
         setNotification({
           type: 'success',
@@ -224,7 +224,7 @@ export default function AdminDashboard() {
       setFormSubmitting(false);
     }
   };
-  
+
   // Register new user
   const registerNewUser = async (userData: Partial<User>) => {
     setFormSubmitting(true);
@@ -232,13 +232,13 @@ export default function AdminDashboard() {
     try {
       // Using the POST /hod/join route as per your API specification
       const response = await axios.post('https://api.lutui.in/tp/hod/join', userData);
-      
+
       if (response.data.success) {
         // Add the new user to the local state
         const newUser = response.data.data.user;
         setUsers([newUser, ...users]);
         setTotalUsers(prevTotal => prevTotal + 1);
-        
+
         // Reset form and show success notification
         setNotification({
           type: 'success',
@@ -265,19 +265,19 @@ export default function AdminDashboard() {
       setFormSubmitting(false);
     }
   };
-  
+
   // Get counts for dashboard metrics
   const getHighInterestCount = () => {
     return users.filter(user => user.propertyInterest === 'High').length;
   };
-  
+
   const getRecentlyContactedCount = () => {
     const today = new Date();
     const weekAgo = new Date();
     weekAgo.setDate(today.getDate() - 7);
-    
-    return users.filter(user => 
-      user.callStatus === 'Called' && 
+
+    return users.filter(user =>
+      user.callStatus === 'Called' &&
       new Date(user.createdAt) > weekAgo
     ).length;
   };
@@ -296,7 +296,7 @@ export default function AdminDashboard() {
   const handleViewDetails = async (user: User) => {
     // Set the user initially from our local state
     setSelectedUser(user);
-    
+
     // Try to fetch the latest data from the API
     try {
       const latestUserData = await getUserById(user._id);
@@ -340,12 +340,12 @@ export default function AdminDashboard() {
     setNotification(null);
     try {
       const response = await axios.delete(`https://api.lutui.in/tp/hod/${userId}`);
-      
+
       if (response.data.success) {
         // Remove the user from the local state
         setUsers(users.filter(user => user._id !== userId));
         setTotalUsers(prevTotal => prevTotal - 1);
-        
+
         setNotification({
           type: 'success',
           message: 'User successfully deleted'
@@ -368,7 +368,7 @@ export default function AdminDashboard() {
       setLoading(false);
     }
   };
-  
+
   // Show loading state when checking authentication
   if (authLoading) {
     return (
@@ -383,7 +383,7 @@ export default function AdminDashboard() {
   }
 
   // If not authenticated, useAuth will redirect to login page
-  
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -406,7 +406,7 @@ export default function AdminDashboard() {
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        
+
         {/* Notification */}
         {notification && (
           <div className={`mb-6 p-4 rounded-md ${notification.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
@@ -427,8 +427,8 @@ export default function AdminDashboard() {
               </div>
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     onClick={() => setNotification(null)}
                     className={`inline-flex rounded-md p-1.5 ${notification.type === 'success' ? 'text-green-500 hover:bg-green-100' : 'text-red-500 hover:bg-red-100'}`}
                   >
@@ -478,7 +478,7 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white overflow-hidden shadow rounded-lg">
             <div className="px-4 py-5 sm:p-6">
               <div className="flex items-center">
@@ -496,7 +496,7 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white overflow-hidden shadow rounded-lg">
             <div className="px-4 py-5 sm:p-6">
               <div className="flex items-center">
@@ -528,7 +528,7 @@ export default function AdminDashboard() {
               Refresh
             </button>
           </div>
-          
+
           {loading ? (
             <div className="text-center py-10">
               <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 border-t-indigo-500 border-r-transparent border-b-indigo-500 border-l-transparent rounded-full" role="status">
@@ -539,7 +539,7 @@ export default function AdminDashboard() {
           ) : error ? (
             <div className="text-center py-10">
               <p className="text-red-500">{error}</p>
-              <button 
+              <button
                 onClick={fetchUsers}
                 className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
               >
@@ -618,10 +618,10 @@ export default function AdminDashboard() {
                             <option value="Low">Low</option>
                           </select>
                         ) : (
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                            ${user.propertyInterest === 'High' ? 'bg-green-100 text-green-800' : 
-                              user.propertyInterest === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 
-                              user.propertyInterest === 'Low' ? 'bg-red-100 text-red-800' : 
+                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                            ${user.propertyInterest === 'High' ? 'bg-green-100 text-green-800' :
+                              user.propertyInterest === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                              user.propertyInterest === 'Low' ? 'bg-red-100 text-red-800' :
                               'bg-gray-100 text-gray-800'}`}>
                             {user.propertyInterest || 'Not set'}
                           </span>
@@ -641,9 +641,9 @@ export default function AdminDashboard() {
                             <option value="Follow Up Required">Follow Up Required</option>
                           </select>
                         ) : (
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                            ${user.callStatus === 'Called' ? 'bg-green-100 text-green-800' : 
-                              user.callStatus === 'Follow Up Required' ? 'bg-yellow-100 text-yellow-800' : 
+                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                            ${user.callStatus === 'Called' ? 'bg-green-100 text-green-800' :
+                              user.callStatus === 'Follow Up Required' ? 'bg-yellow-100 text-yellow-800' :
                               'bg-gray-100 text-gray-800'}`}>
                             {user.callStatus || 'Not set'}
                           </span>
@@ -715,7 +715,7 @@ export default function AdminDashboard() {
               <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4">
                 <div className="flex justify-between items-center p-6 border-b">
                   <h2 className="text-xl font-semibold text-gray-800">Lead Details</h2>
-                  <button 
+                  <button
                     onClick={handleCloseDetails}
                     className="text-gray-500 hover:text-gray-700 focus:outline-none"
                   >
@@ -724,7 +724,7 @@ export default function AdminDashboard() {
                     </svg>
                   </button>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -748,17 +748,17 @@ export default function AdminDashboard() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-medium text-gray-900 mb-4">Property Preferences</h3>
                       <div className="space-y-3">
                         <div>
                           <span className="text-sm font-medium text-gray-500">Interest Level</span>
                           <p className="mt-1">
-                            <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                              ${selectedUser.propertyInterest === 'High' ? 'bg-green-100 text-green-800' : 
-                                selectedUser.propertyInterest === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 
-                                selectedUser.propertyInterest === 'Low' ? 'bg-red-100 text-red-800' : 
+                            <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
+                              ${selectedUser.propertyInterest === 'High' ? 'bg-green-100 text-green-800' :
+                                selectedUser.propertyInterest === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                                selectedUser.propertyInterest === 'Low' ? 'bg-red-100 text-red-800' :
                                 'bg-gray-100 text-gray-800'}`}>
                               {selectedUser.propertyInterest || 'Not set'}
                             </span>
@@ -775,9 +775,9 @@ export default function AdminDashboard() {
                         <div>
                           <span className="text-sm font-medium text-gray-500">Call Status</span>
                           <p className="mt-1">
-                            <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                              ${selectedUser.callStatus === 'Called' ? 'bg-green-100 text-green-800' : 
-                                selectedUser.callStatus === 'Follow Up Required' ? 'bg-yellow-100 text-yellow-800' : 
+                            <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
+                              ${selectedUser.callStatus === 'Called' ? 'bg-green-100 text-green-800' :
+                                selectedUser.callStatus === 'Follow Up Required' ? 'bg-yellow-100 text-yellow-800' :
                                 'bg-gray-100 text-gray-800'}`}>
                               {selectedUser.callStatus || 'Not contacted'}
                             </span>
@@ -786,21 +786,21 @@ export default function AdminDashboard() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6">
                     <h3 className="text-lg font-medium text-gray-900 mb-3">Message from Lead</h3>
                     <div className="bg-gray-50 p-4 rounded-md">
                       <p className="text-gray-700 whitespace-pre-wrap">{selectedUser.message || 'No message provided'}</p>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6">
                     <h3 className="text-lg font-medium text-gray-900 mb-3">Call Notes</h3>
                     <div className="bg-gray-50 p-4 rounded-md">
                       <p className="text-gray-700 whitespace-pre-wrap">{selectedUser.callNotes || 'No call notes yet'}</p>
                     </div>
                   </div>
-                  
+
                   <div className="mt-8 flex justify-between">
                     <button
                       onClick={() => {
@@ -814,7 +814,7 @@ export default function AdminDashboard() {
                       </svg>
                       Edit Lead
                     </button>
-                    
+
                     <button
                       onClick={handleCloseDetails}
                       className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -835,7 +835,7 @@ export default function AdminDashboard() {
               <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4">
                 <div className="flex justify-between items-center p-6 border-b">
                   <h2 className="text-xl font-semibold text-gray-800">Edit Lead</h2>
-                  <button 
+                  <button
                     onClick={handleCancelEdit}
                     className="text-gray-500 hover:text-gray-700 focus:outline-none"
                   >
@@ -844,7 +844,7 @@ export default function AdminDashboard() {
                     </svg>
                   </button>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -872,7 +872,7 @@ export default function AdminDashboard() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-medium text-gray-900 mb-4">Edit Lead Information</h3>
                       <div className="space-y-4">
@@ -890,7 +890,7 @@ export default function AdminDashboard() {
                             <option value="Low">Low</option>
                           </select>
                         </div>
-                        
+
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Budget Range</label>
                           <input
@@ -902,7 +902,7 @@ export default function AdminDashboard() {
                             placeholder="Budget range"
                           />
                         </div>
-                        
+
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Location</label>
                           <input
@@ -914,7 +914,7 @@ export default function AdminDashboard() {
                             placeholder="Preferred location"
                           />
                         </div>
-                        
+
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Call Status</label>
                           <select
@@ -929,7 +929,7 @@ export default function AdminDashboard() {
                             <option value="Follow Up Required">Follow Up Required</option>
                           </select>
                         </div>
-                        
+
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Call Notes</label>
                           <textarea
@@ -944,7 +944,7 @@ export default function AdminDashboard() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-8 flex justify-end space-x-4">
                     <button
                       onClick={handleCancelEdit}
@@ -952,7 +952,7 @@ export default function AdminDashboard() {
                     >
                       Cancel
                     </button>
-                    
+
                     <button
                       onClick={() => handleUpdateUser(editModalUser._id)}
                       disabled={formSubmitting}

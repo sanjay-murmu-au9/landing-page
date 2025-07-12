@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 
+<<<<<<< HEAD
 // Make this route compatible with static export
 export const dynamic = 'force-static';
 
+=======
+>>>>>>> 2b06ac731a01b49491ec3e8b2ad471b9607a7983
 // Test API endpoint for House of Dream
 export async function GET() {
   try {

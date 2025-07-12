@@ -28,7 +28,7 @@ export default function CookiePolicy() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12">
-          
+
           {/* Section 1: Introduction */}
           <section className="mb-12">
             <div className="flex items-center mb-6">
@@ -37,7 +37,7 @@ export default function CookiePolicy() {
             </div>
             <div className="ml-16 text-gray-700">
               <p>
-                This Cookie Policy explains how we use cookies and similar tracking technologies on our website. 
+                This Cookie Policy explains how we use cookies and similar tracking technologies on our website.
                 This policy is effective as of July 5, 2025 and was last updated on July 5, 2025.
               </p>
             </div>
@@ -51,9 +51,9 @@ export default function CookiePolicy() {
             </div>
             <div className="ml-16 text-gray-700">
               <p>
-                Cookies are small text files that are placed on your device when you visit our website. 
-                They allow us to recognize your device and remember certain information about your visit, 
-                such as your preferences and actions on our site. Cookies are widely used to make websites 
+                Cookies are small text files that are placed on your device when you visit our website.
+                They allow us to recognize your device and remember certain information about your visit,
+                such as your preferences and actions on our site. Cookies are widely used to make websites
                 work more efficiently and provide valuable information to website owners.
               </p>
             </div>
@@ -70,35 +70,35 @@ export default function CookiePolicy() {
                 <div className="bg-[#f8f6f0] p-4 rounded-lg border border-[#0c4c34]/10">
                   <h3 className="text-[#0c4c34] font-semibold mb-2">Essential Cookies</h3>
                   <p className="text-gray-600">
-                    These cookies are necessary for the website to function properly. They enable core functionality 
-                    such as security, network management, and account access. You may disable these by changing your 
+                    These cookies are necessary for the website to function properly. They enable core functionality
+                    such as security, network management, and account access. You may disable these by changing your
                     browser settings, but this may affect how the website functions.
                   </p>
                 </div>
-                
+
                 <div className="bg-[#f8f6f0] p-4 rounded-lg border border-[#0c4c34]/10">
                   <h3 className="text-[#0c4c34] font-semibold mb-2">Analytics Cookies</h3>
                   <p className="text-gray-600">
-                    We use analytics cookies, such as those provided by Google Analytics, to help us understand how 
-                    visitors interact with our website. They collect information such as the number of visitors to the site, 
-                    where visitors have come from, and which pages they visited. This helps us improve our website and your 
+                    We use analytics cookies, such as those provided by Google Analytics, to help us understand how
+                    visitors interact with our website. They collect information such as the number of visitors to the site,
+                    where visitors have come from, and which pages they visited. This helps us improve our website and your
                     user experience.
                   </p>
                 </div>
-                
+
                 <div className="bg-[#f8f6f0] p-4 rounded-lg border border-[#0c4c34]/10">
                   <h3 className="text-[#0c4c34] font-semibold mb-2">Marketing and Advertising Cookies</h3>
                   <p className="text-gray-600">
-                    These cookies are used to track visitors across websites. They are set to display targeted advertisements 
-                    based on your interests and online behavior. They also help measure the effectiveness of advertising campaigns. 
+                    These cookies are used to track visitors across websites. They are set to display targeted advertisements
+                    based on your interests and online behavior. They also help measure the effectiveness of advertising campaigns.
                     These cookies may be set by us or our advertising partners.
                   </p>
                 </div>
-                
+
                 <div className="bg-[#f8f6f0] p-4 rounded-lg border border-[#0c4c34]/10">
                   <h3 className="text-[#0c4c34] font-semibold mb-2">Preference Cookies</h3>
                   <p className="text-gray-600">
-                    These cookies allow our website to remember choices you have made in the past, like your language preference, 
+                    These cookies allow our website to remember choices you have made in the past, like your language preference,
                     location, or user credentials. They enhance your experience by personalizing the site based on your selections.
                   </p>
                 </div>
@@ -114,7 +114,7 @@ export default function CookiePolicy() {
             </div>
             <div className="ml-16 text-gray-700">
               <p className="mb-4">
-                In addition to our own cookies, we may also use various third-party cookies to report usage statistics 
+                In addition to our own cookies, we may also use various third-party cookies to report usage statistics
                 of the website and deliver advertisements on and through the website. These may include:
               </p>
               <ul className="list-none space-y-3">
@@ -141,9 +141,9 @@ export default function CookiePolicy() {
             </div>
             <div className="ml-16 text-gray-700">
               <p>
-                Most web browsers allow you to control cookies through their settings preferences. 
+                Most web browsers allow you to control cookies through their settings preferences.
                 However, if you limit the ability of websites to set cookies, you may worsen your overall user experience.
-                To find out more about cookies, including how to see what cookies have been set and how to manage 
+                To find out more about cookies, including how to see what cookies have been set and how to manage
                 and delete them, visit <a href="https://www.allaboutcookies.org" className="text-[#0c4c34] hover:text-[#d4af37] font-medium" target="_blank" rel="noopener noreferrer">www.allaboutcookies.org</a>.
               </p>
             </div>
@@ -157,8 +157,8 @@ export default function CookiePolicy() {
             </div>
             <div className="ml-16 text-gray-700">
               <p>
-                When you first visit our website, we may ask for your consent to use cookies through a cookie banner. 
-                By clicking "Accept All Cookies" or continuing to use our site, you agree to the storing of cookies on your device 
+                When you first visit our website, we may ask for your consent to use cookies through a cookie banner.
+                By clicking "Accept All Cookies" or continuing to use our site, you agree to the storing of cookies on your device
                 to enhance site navigation, analyze site usage, and assist in our marketing efforts.
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function CookiePolicy() {
             </div>
             <div className="ml-16 text-gray-700">
               <p>
-                We may update our Cookie Policy from time to time. We will notify you of any changes by posting the new 
+                We may update our Cookie Policy from time to time. We will notify you of any changes by posting the new
                 Cookie Policy on this page and updating the effective date.
               </p>
             </div>

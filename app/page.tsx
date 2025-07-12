@@ -222,12 +222,11 @@ export default function Home() {
           },
           body: JSON.stringify(formData),
         });
-        
+
         // Check for 409 status code (already registered)
         if (externalResponse.status === 409) {
           console.log('User already registered');
           setAlreadyRegistered(true);
-          
           // Reset form after a delay
           setTimeout(() => {
             setAlreadyRegistered(false);
@@ -240,11 +239,11 @@ export default function Home() {
           }, 3000);
           return;
         }
-        
+
         if (!externalResponse.ok) {
           throw new Error('Network response was not ok');
         }
-        
+
         // Also submit to our internal API for admin dashboard
         try {
           await fetch('/api/users', {
@@ -332,24 +331,24 @@ export default function Home() {
                 Luxury Living • Premium Location • Exceptional Design
               </span>
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow animate-fade-in">
               <span className="block">Lakeside Luxury</span>
               <span className="block mt-2 text-primary-light">Redefined</span>
             </h1>
-            
+
             <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white drop-shadow-md animate-fade-in-delay"> {/* Changed from text-neutral-100 to text-white */}
               Experience unparalleled luxury with breathtaking lake views and world-class amenities
             </p>
-            
+
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 animate-fade-in-delay-2">
-              <button 
+              <button
                 onClick={scrollToForm}
                 className="px-8 py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl"
               >
                 Request Information
               </button>
-              <Link 
+              <Link
                 href="/blog"
                 className="px-8 py-4 bg-secondary hover:bg-secondary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center"
               >
@@ -360,7 +359,7 @@ export default function Home() {
                 </span>
                 Luxury Insights
               </Link>
-              <button 
+              <button
                 onClick={scrollToAbout}
                 className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border border-white/30 text-lg font-medium rounded-md transition-all duration-300 backdrop-blur-sm"
               >
@@ -387,8 +386,8 @@ export default function Home() {
                   }, 10000);
                 }}
                 className={`w-3 h-3 rounded-full transition-all ${
-                  heroBackground === idx 
-                    ? 'bg-primary w-8' 
+                  heroBackground === idx
+                    ? 'bg-primary w-8'
                     : 'bg-white/50 hover:bg-white/80'
                 }`}
                 aria-label={`View slide ${idx + 1}`}
@@ -399,15 +398,15 @@ export default function Home() {
 
         {/* Scroll down indicator */}
         <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="24" 
-            height="24" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="white" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
             strokeLinejoin="round"
             className="opacity-80"
           >
@@ -452,7 +451,7 @@ export default function Home() {
           {/* Highlights grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="flex items-start p-6 bg-neutral-50 rounded-lg shadow-md hover:shadow-lg specification-card border border-primary/30" /* Changed to bg-neutral-50 and increased border opacity */
               >
@@ -477,7 +476,7 @@ export default function Home() {
             <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           </div>
 
-          <div 
+          <div
             ref={carouselRef}
             className="relative h-[60vh] md:h-[70vh] rounded-xl overflow-hidden shadow-2xl mb-12"
           >
@@ -537,8 +536,8 @@ export default function Home() {
                   key={idx}
                   onClick={() => setActiveSlide(idx)}
                   className={`w-2 h-2 rounded-full transition-all ${
-                    activeSlide === idx 
-                      ? 'bg-primary w-6' 
+                    activeSlide === idx
+                      ? 'bg-primary w-6'
                       : 'bg-white/50 hover:bg-white/80'
                   }`}
                   aria-label={`View slide ${idx + 1}`}
@@ -565,7 +564,7 @@ export default function Home() {
           {/* Specifications grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {specifications.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="flex flex-col items-center p-8 bg-neutral-50 border border-primary/10 rounded-lg shadow-md hover:shadow-lg text-center specifications-card specification-card" /* Matched styling with stat cards */
               >
@@ -589,11 +588,11 @@ export default function Home() {
               <p className="text-lg text-white font-medium mb-8 text-shadow-sm">
                 Situated in a prime location that balances serenity with convenience, our development offers easy access to essential services and entertainment options.
               </p>
-              
+
               {/* Proximity features */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {proximityFeatures.map((item, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="flex items-center p-4 bg-secondary-dark/80 rounded-lg shadow-md backdrop-blur-sm" /* Changed to bg-secondary-dark with opacity */
                   >
@@ -606,7 +605,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl border-2 border-primary-light/30 transform hover:scale-[1.02] transition-transform duration-500">
               <ResponsiveImage
                 src={getImagePath('images/bhartiya-city.png')}
@@ -642,7 +641,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-black bg-opacity-80"></div> {/* Increased opacity from 70% to 80% */}
         </div>
-        
+
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="bg-white/15 backdrop-blur-md rounded-xl p-8 md:p-12 shadow-xl border border-white/30"> {/* Increased opacity */}
             <div className="text-center mb-12 text-white">
@@ -653,7 +652,6 @@ export default function Home() {
                 Limited collection of premium residences available. Complete the form below for priority access to floor plans, pricing and exclusive offers.
               </p>
             </div>
-            
             <div ref={formRef} className="max-w-xl mx-auto">
               {isFormSubmitted ? (
                 <div className="bg-green-100/90 backdrop-blur-sm text-green-800 p-6 rounded-lg text-center">

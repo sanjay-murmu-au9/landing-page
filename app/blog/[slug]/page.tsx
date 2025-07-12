@@ -20,13 +20,13 @@ export async function generateMetadata({ params }: PageProps) {
   // Make sure params is properly awaited and accessed
   const slug = params.slug;
   const post = await getBlogPostBySlugAsync(slug);
-  
+
   if (!post) {
     return {
       title: 'Post Not Found | Lakeside Luxury Blog',
     };
   }
-  
+
   return {
     title: `${post.title} | Lakeside Luxury Blog`,
     description: post.excerpt,
@@ -51,20 +51,20 @@ export default async function BlogPost({ params }: PageProps) {
   // Make sure params is properly awaited and accessed
   const slug = params.slug;
   const post = await getBlogPostBySlugAsync(slug);
-  
+
   if (!post) {
     notFound();
   }
-  
+
   // Find related posts (posts with at least one matching keyword)
   const relatedPosts = getAllBlogPosts()
     .filter(
-      (p) => 
-        p.slug !== post.slug && 
+      (p) =>
+        p.slug !== post.slug &&
         p.keywords.some((keyword) => post.keywords.includes(keyword))
     )
     .slice(0, 3);
-  
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <main className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 flex-grow">
@@ -78,7 +78,7 @@ export default async function BlogPost({ params }: PageProps) {
               Back to Blog
             </Link>
           </div>
-          
+
           {/* Post Header */}
           <div className="mb-6 sm:mb-8 text-center">
             <div className="inline-block bg-primary/10 text-primary px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
@@ -99,7 +99,7 @@ export default async function BlogPost({ params }: PageProps) {
               </div>
             </div>
           </div>
-          
+
           {/* Featured Image */}
           <div className="relative rounded-xl overflow-hidden shadow-xl h-[300px] md:h-[400px] lg:h-[500px] mb-10">
             <ResponsiveImage
@@ -112,7 +112,7 @@ export default async function BlogPost({ params }: PageProps) {
               borderRadius="12px"
             />
           </div>
-          
+
           {/* Post Content */}
           <div className="prose prose-base sm:prose-lg max-w-none px-1">
             {post.content.map((section, index) => (
@@ -155,13 +155,13 @@ export default async function BlogPost({ params }: PageProps) {
               </section>
             ))}
           </div>
-          
+
           {/* Tags */}
           <div className="mt-10 sm:mt-12 mb-10 sm:mb-16">
             <div className="flex flex-wrap gap-2">
               {post.keywords.map((keyword, index) => (
-                <span 
-                  key={index} 
+                <span
+                  key={index}
                   className="bg-neutral-100 text-gray-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm"
                 >
                   {keyword}
@@ -169,7 +169,7 @@ export default async function BlogPost({ params }: PageProps) {
               ))}
             </div>
           </div>
-          
+
           {/* Share */}
           <div className="border-t border-b border-gray-200 py-4 sm:py-6 my-6 sm:my-8">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
@@ -202,16 +202,16 @@ export default async function BlogPost({ params }: PageProps) {
               </div>
             </div>
           </div>
-          
+
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
             <div className="mt-12 sm:mt-16">
               <h3 className="text-xl sm:text-2xl font-serif font-bold mb-4 sm:mb-6 text-secondary-dark px-1">Related Articles</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 {relatedPosts.map((relatedPost) => (
-                  <Link 
-                    href={`/blog/${relatedPost.slug}`} 
-                    key={relatedPost.slug} 
+                  <Link
+                    href={`/blog/${relatedPost.slug}`}
+                    key={relatedPost.slug}
                     className="group bg-neutral-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
                   >
                     <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden">
@@ -236,7 +236,7 @@ export default async function BlogPost({ params }: PageProps) {
           )}
         </div>
       </main>
-      
+
       {/* Footer */}
       <footer className="bg-[#0c4c34] text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">

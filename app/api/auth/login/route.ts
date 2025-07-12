@@ -18,14 +18,14 @@ const ADMIN_CREDENTIALS = {
 export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json();
-    
+
     if (!username || !password) {
       return NextResponse.json(
         { success: false, message: 'Username and password are required' },
         { status: 400 }
       );
     }
-    
+
     // In a real implementation, this would call your backend API
     // const response = await fetch('https://your-backend-api.com/auth/login', {
     //   method: 'POST',
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     //   body: JSON.stringify({ username, password })
     // });
     // const data = await response.json();
-    
+
     // Simple credential check for demonstration
     if (username !== ADMIN_CREDENTIALS.username || password !== ADMIN_CREDENTIALS.password) {
       return NextResponse.json(
@@ -41,14 +41,14 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-    
+
     // Generate JWT token
     const token = jwt.sign(
       { id: '1', username: ADMIN_CREDENTIALS.username, isAdmin: true },
       JWT_SECRET,
       { expiresIn: '1d' }
     );
-    
+
     // Return success response with token
     return NextResponse.json({
       success: true,
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
         email: ADMIN_CREDENTIALS.email,
       },
     });
-    
+
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(

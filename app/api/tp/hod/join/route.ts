@@ -9,27 +9,27 @@ export async function POST(request: NextRequest) {
   try {
     // Parse the request body
     const body = await request.json();
-    
+
     // Validate required fields
     const { fullName, email, phone } = body;
-    
+
     if (!fullName || !email || !phone) {
       return NextResponse.json(
         { success: false, message: 'Missing required fields' },
         { status: 400 }
       );
     }
-    
+
     // Check if user with same email already exists
     const existingUser = MOCK_HODS.find((user: HodUser) => user.email === email);
-    
+
     if (existingUser) {
       return NextResponse.json(
         { success: false, message: 'Email is already registered', statusCode: 409 },
         { status: 409 }
       );
     }
-    
+
     // In a real implementation, this would call your backend API
     // const response = await fetch('https://your-backend-api.com/hod/join', {
     //   method: 'POST',
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     //   body: JSON.stringify(body)
     // });
     // const data = await response.json();
-    
+
     // Using mock response for demonstration
     const newUser: HodUser = {
       _id: Date.now().toString(),
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
       callNotes: '',
       preferredLocation: body.preferredLocation || ''
     };
-    
+
     return NextResponse.json({
       success: true,
       message: 'User registered successfully',

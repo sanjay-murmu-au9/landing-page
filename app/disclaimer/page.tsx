@@ -29,7 +29,6 @@ export default function Disclaimer() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12">
-          
           {/* Section 1: General Disclaimer */}
           <section className="mb-12">
             <div className="flex items-center mb-6">
@@ -38,16 +37,16 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                The information contained on this website is for general information purposes only. The information is provided 
-                by Prestige Somerville and while we endeavor to keep the information up to date and correct, we make no 
-                representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, 
-                suitability or availability with respect to the website or the information, products, services, or related 
+                The information contained on this website is for general information purposes only. The information is provided
+                by Prestige Somerville and while we endeavor to keep the information up to date and correct, we make no
+                representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability,
+                suitability or availability with respect to the website or the information, products, services, or related
                 graphics contained on the website for any purpose.
               </p>
               <p>
-                Any reliance you place on such information is therefore strictly at your own risk. In no event will we be 
-                liable for any loss or damage including without limitation, indirect or consequential loss or damage, or 
-                any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, 
+                Any reliance you place on such information is therefore strictly at your own risk. In no event will we be
+                liable for any loss or damage including without limitation, indirect or consequential loss or damage, or
+                any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with,
                 the use of this website.
               </p>
             </div>
@@ -61,16 +60,16 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                All information, including but not limited to prices, floor plans, dimensions, illustrations, amenities, 
-                materials, features, finishes and utilities, areas, reference to view and directions, and size of the 
-                property or individual rooms and units may vary per unit and are subject to change or substitution 
-                without notice. 
+                All information, including but not limited to prices, floor plans, dimensions, illustrations, amenities,
+                materials, features, finishes and utilities, areas, reference to view and directions, and size of the
+                property or individual rooms and units may vary per unit and are subject to change or substitution
+                without notice.
               </p>
               <p>
-                Images, videos, and virtual tours are artist's impressions or for conceptual purposes only. Furniture, 
-                decorative elements, accessories, and color schemes are not part of the standard offering and are shown 
-                for illustrative purposes only. All plans are not to scale and are subject to architectural modifications 
-                without notice. The developer reserves the right to modify, revise, change, or substitute amenities, 
+                Images, videos, and virtual tours are artist's impressions or for conceptual purposes only. Furniture,
+                decorative elements, accessories, and color schemes are not part of the standard offering and are shown
+                for illustrative purposes only. All plans are not to scale and are subject to architectural modifications
+                without notice. The developer reserves the right to modify, revise, change, or substitute amenities,
                 specifications, materials, and features.
               </p>
             </div>
@@ -84,16 +83,16 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                Any information on this website does not constitute financial advice or an offer to buy or sell any 
-                product, service, or property. Property prices and availability are subject to change without notice. 
-                The depiction of any investments on this site should not be construed as an endorsement or recommendation. 
-                Past performance is not necessarily indicative of future results, and there is no guarantee that any 
+                Any information on this website does not constitute financial advice or an offer to buy or sell any
+                product, service, or property. Property prices and availability are subject to change without notice.
+                The depiction of any investments on this site should not be construed as an endorsement or recommendation.
+                Past performance is not necessarily indicative of future results, and there is no guarantee that any
                 investment will achieve results comparable to those shown.
               </p>
               <p>
-                Potential buyers and investors should conduct their own due diligence and seek appropriate professional 
-                advice before making any financial or investment decisions. The purchase of real estate involves significant 
-                financial, legal, and tax implications, and we encourage prospective purchasers to seek independent 
+                Potential buyers and investors should conduct their own due diligence and seek appropriate professional
+                advice before making any financial or investment decisions. The purchase of real estate involves significant
+                financial, legal, and tax implications, and we encourage prospective purchasers to seek independent
                 professional advice before making any decisions.
               </p>
             </div>
@@ -107,16 +106,16 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                All project details mentioned on this website are tentative and subject to approval from relevant 
-                authorities. The development is being constructed in phases and the imagery may represent both current 
-                and future phases of the development. All plans, dimensions, and specifications are subject to variations, 
-                modifications, and substitutions as may be recommended by the architect or engineer and/or required by the 
+                All project details mentioned on this website are tentative and subject to approval from relevant
+                authorities. The development is being constructed in phases and the imagery may represent both current
+                and future phases of the development. All plans, dimensions, and specifications are subject to variations,
+                modifications, and substitutions as may be recommended by the architect or engineer and/or required by the
                 relevant planning authorities.
               </p>
               <p>
-                The company has obtained all required approvals for the development as of the date of publication. 
-                However, we do not guarantee that such approvals will not be withdrawn, revoked, or subject to change. 
-                Dates of completion are estimates only and are subject to delays due to construction contingencies and 
+                The company has obtained all required approvals for the development as of the date of publication.
+                However, we do not guarantee that such approvals will not be withdrawn, revoked, or subject to change.
+                Dates of completion are estimates only and are subject to delays due to construction contingencies and
                 obtaining necessary approvals from authorities.
               </p>
             </div>
@@ -130,14 +129,14 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                Our advertising aims to be truthful and non-misleading. We use our best efforts to ensure that all 
-                information published in any advertisement, brochure, or other marketing material is accurate at the time 
+                Our advertising aims to be truthful and non-misleading. We use our best efforts to ensure that all
+                information published in any advertisement, brochure, or other marketing material is accurate at the time
                 of publication and corresponds to the quality and type of property being advertised.
               </p>
               <p>
-                However, all descriptions, dimensions, references to condition, necessary permissions for use and occupation, 
-                and other details are given in good faith and are believed to be correct, but any intending purchasers should 
-                not rely on them as statements or representations of fact but must satisfy themselves by inspection or 
+                However, all descriptions, dimensions, references to condition, necessary permissions for use and occupation,
+                and other details are given in good faith and are believed to be correct, but any intending purchasers should
+                not rely on them as statements or representations of fact but must satisfy themselves by inspection or
                 otherwise as to their correctness.
               </p>
             </div>
@@ -151,12 +150,12 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                Through this website, you may be able to link to other websites which are not under our control. We have no 
-                control over the nature, content, and availability of those sites. The inclusion of any links does not 
+                Through this website, you may be able to link to other websites which are not under our control. We have no
+                control over the nature, content, and availability of those sites. The inclusion of any links does not
                 necessarily imply a recommendation or endorsement of the views expressed within them.
               </p>
               <p>
-                Every effort is made to keep the website up and running smoothly. However, we take no responsibility for, and 
+                Every effort is made to keep the website up and running smoothly. However, we take no responsibility for, and
                 will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.
               </p>
             </div>
@@ -170,8 +169,8 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700 space-y-4">
               <p>
-                This website and its content are copyright of Prestige Somerville - © Prestige Somerville {new Date().getFullYear()}. 
-                All rights reserved. Any redistribution or reproduction of part or all of the contents in any form is prohibited 
+                This website and its content are copyright of Prestige Somerville - © Prestige Somerville {new Date().getFullYear()}.
+                All rights reserved. Any redistribution or reproduction of part or all of the contents in any form is prohibited
                 other than the following:
               </p>
               <ul className="list-none space-y-3 mt-4">
@@ -186,7 +185,7 @@ export default function Disclaimer() {
                 ))}
               </ul>
               <p className="mt-4">
-                You may not, except with our express written permission, distribute or commercially exploit the content. 
+                You may not, except with our express written permission, distribute or commercially exploit the content.
                 Nor may you transmit it or store it in any other website or other form of electronic retrieval system.
               </p>
             </div>
@@ -200,7 +199,7 @@ export default function Disclaimer() {
             </div>
             <div className="ml-16 text-gray-700">
               <p>
-                We may update our disclaimer from time to time. We will notify you of any changes by posting the new 
+                We may update our disclaimer from time to time. We will notify you of any changes by posting the new
                 disclaimer on this page. You are advised to review this disclaimer periodically for any changes.
               </p>
             </div>

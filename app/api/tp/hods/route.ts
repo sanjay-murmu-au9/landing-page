@@ -10,11 +10,11 @@ export async function GET() {
     // In a real implementation, this would call your backend API
     // const response = await fetch('https://your-backend-api.com/hods');
     // const data = await response.json();
-    
+
     // Using mock data for demonstration
     const hods = MOCK_HODS;
     const totalHods = hods.length;
-    
+
     return NextResponse.json({
       success: true,
       data: {

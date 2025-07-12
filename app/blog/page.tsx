@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function Blog() {
   const blogPosts = getAllBlogPosts();
-  
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <main className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 flex-grow">
@@ -77,9 +77,9 @@ export default function Blog() {
         {/* Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {blogPosts.slice(1).map((post: BlogPost) => (
-            <Link 
-              href={`/blog/${post.slug}`} 
-              key={post.slug} 
+            <Link
+              href={`/blog/${post.slug}`}
+              key={post.slug}
               className="group bg-neutral-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
             >
               <div className="relative h-64 overflow-hidden">
@@ -144,7 +144,7 @@ export default function Blog() {
         </div>
       </div>
       </main>
-      
+
       {/* Footer */}
       <footer className="bg-[#0c4c34] text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">
