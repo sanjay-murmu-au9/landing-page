@@ -335,12 +335,12 @@ export default function Home() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow animate-fade-in">
-              <span className="block">Lakeside Luxury</span>
-              <span className="block mt-2 text-primary-light">Redefined</span>
+              <span className="block">Lakeside Luxury Apartments</span>
+              {/* <span className="block mt-2 text-primary-light">4/5BHK Residences</span> */}
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white drop-shadow-md animate-fade-in-delay"> {/* Changed from text-neutral-100 to text-white */}
-              Experience unparalleled luxury with breathtaking lake views and world-class amenities
+              Experience unparalleled luxury breathtaking lake views and world-class amenities
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 animate-fade-in-delay-2">
@@ -424,7 +424,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <span className="inline-block text-primary font-semibold mb-2">EXCLUSIVE OFFERING</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 text-white luxury-heading">
-              A New Standard of Luxury 
+              A New Standard of Luxury
             </h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
             <p className="max-w-3xl mx-auto text-lg text-black font-medium">
