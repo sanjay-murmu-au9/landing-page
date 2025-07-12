@@ -165,6 +165,14 @@ export default function PrivacyPolicy() {
       {/* Footer */}
       <footer className="bg-[#0c4c34] text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 mb-6">
+            <Link href="/" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1 min-w-[80px]">Home</Link>
+            <Link href="/blog" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1 min-w-[80px]">Blog</Link>
+            <Link href="/privacy-policy" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1">Privacy Policy</Link>
+            <Link href="/cookie-policy" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1">Cookie Policy</Link>
+            <Link href="/disclaimer" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1 min-w-[80px]">Disclaimer</Link>
+            <Link href="/term-condtion" className="text-white hover:text-[#d4af37] transition-colors px-2 py-1">Terms & Conditions</Link>
+          </div>
           <p className="text-sm">
             © 2025 Prestige Somerville. All rights reserved.
           </p>

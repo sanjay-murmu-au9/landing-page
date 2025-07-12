@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sanjay-murmu-au9.github.io/landing-page/
+
+# Sitemaps
+Sitemap: https://sanjay-murmu-au9.github.io/landing-page/sitemap.xml

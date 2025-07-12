@@ -1,0 +1,41 @@
+/* Admin-specific styles to override any global dark mode settings */
+:root {
+  --background: #ffffff !important;
+  --foreground: #171717 !important;
+  color-scheme: light !important;
+}
+
+body {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+}
+
+input, select, textarea {
+  color: #111827 !important; /* text-gray-900 */
+  background-color: white !important;
+  border-color: #d1d5db !important;
+}
+
+label {
+  color: #374151 !important; /* text-gray-700 */
+}
+
+.bg-white {
+  background-color: white !important;
+}
+
+.text-gray-900 {
+  color: #111827 !important;
+}
+
+.text-gray-700 {
+  color: #374151 !important;
+}
+
+/* Force light mode for all admin pages */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff !important;
+    --foreground: #171717 !important;
+  }
+}
