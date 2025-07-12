@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom placeholder styles */
+.dark-placeholder::placeholder {
+  color: #4B5563 !important; /* gray-600 */
+  opacity: 1;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #121212;

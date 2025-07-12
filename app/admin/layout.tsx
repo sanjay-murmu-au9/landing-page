@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import './admin.css';
+import ProtectedLayout from './ProtectedLayout';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard - Prestige Somerville',
@@ -13,7 +14,9 @@ export default function AdminLayout({
 }) {
   return (
     <div className="min-h-screen bg-gray-100 !text-gray-900">
-      {children}
+      <ProtectedLayout>
+        {children}
+      </ProtectedLayout>
     </div>
   )
 }

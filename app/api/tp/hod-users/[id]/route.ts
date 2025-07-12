@@ -11,33 +11,24 @@ export function generateStaticParams() {
   }));
 }
 
-/**
- * GET handler for fetching a specific HOD user by ID
- */
-export function GET(
+// GET handler for a specific HOD user by ID
+export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const id = params.id;
+  
   try {
-    const { id } = params;
-
-    if (!id) {
-      return NextResponse.json(
-        { success: false, message: 'User ID is required' },
-        { status: 400 }
-      );
-    }
-
     // Using mock data for demonstration
     const hod = MOCK_HODS.find((user: HodUser) => user._id === id);
-
+    
     if (!hod) {
       return NextResponse.json(
         { success: false, message: 'User not found' },
         { status: 404 }
       );
     }
-
+    
     return NextResponse.json({
       success: true,
       data: hod
@@ -51,87 +42,65 @@ export function GET(
   }
 }
 
-/**
- * PUT handler for updating a specific HOD user
- */
-export function PUT(
+// PUT handler for updating a specific HOD user
+export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const getData = async () => {
-    try {
-      const { id } = params;
-
-      if (!id) {
-        return NextResponse.json(
-          { success: false, message: 'User ID is required' },
-          { status: 400 }
-        );
-      }
-
-      const userData = await request.json();
-
-      // Mock update for demonstration
-      const userIndex = MOCK_HODS.findIndex((user: HodUser) => user._id === id);
-
-      if (userIndex === -1) {
-        return NextResponse.json(
-          { success: false, message: 'User not found' },
-          { status: 404 }
-        );
-      }
-
-      // For mock purposes, we'll just return the updated user
-      const updatedUser = {
-        ...MOCK_HODS[userIndex],
-        ...userData,
-        _id: id // Ensure ID doesn't change
-      };
-
-      return NextResponse.json({
-        success: true,
-        message: 'User updated successfully',
-        data: updatedUser
-      });
-    } catch (error) {
-      console.error('Error updating House of Dream user:', error);
-      return NextResponse.json(
-        { success: false, message: 'Failed to update user' },
-        { status: 500 }
-      );
-    }
-  };
-
-  return getData();
-}
-
-/**
- * DELETE handler for removing a specific HOD user
- */
-export function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+  const id = params.id;
+  
   try {
-    const { id } = params;
-
-    if (!id) {
-      return NextResponse.json(
-        { success: false, message: 'User ID is required' },
-        { status: 400 }
-      );
-    }
-
-    // Mock delete operation
+    const userData = await request.json();
+    
+    // Mock update for demonstration
     const userIndex = MOCK_HODS.findIndex((user: HodUser) => user._id === id);
-
+    
     if (userIndex === -1) {
       return NextResponse.json(
         { success: false, message: 'User not found' },
         { status: 404 }
       );
     }
+    
+    // For mock purposes, we'll just return the updated user
+    const updatedUser = {
+      ...MOCK_HODS[userIndex],
+      ...userData,
+      _id: id // Ensure ID doesn't change
+    };
+    
+    return NextResponse.json({
+      success: true,
+      message: 'User updated successfully',
+      data: updatedUser
+    });
+  } catch (error) {
+    console.error('Error updating House of Dream user:', error);
+    return NextResponse.json(
+      { success: false, message: 'Failed to update user' },
+      { status: 500 }
+    );
+  }
+}
 
+// DELETE handler for removing a specific HOD user
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id;
+  
+  try {
+    // Mock delete operation
+    const userIndex = MOCK_HODS.findIndex((user: HodUser) => user._id === id);
+    
+    if (userIndex === -1) {
+      return NextResponse.json(
+        { success: false, message: 'User not found' },
+        { status: 404 }
+      );
+    }
+    
     return NextResponse.json({
       success: true,
       message: 'User deleted successfully'

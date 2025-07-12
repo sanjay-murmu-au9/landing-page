@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import ImageSkeleton from '../components/ImageSkeleton';
+import ResponsiveImage from '../components/ResponsiveImage';
 import { getImagePath } from '../lib/image-path';
 
 export default function Home() {
@@ -228,7 +227,6 @@ export default function Home() {
         if (externalResponse.status === 409) {
           console.log('User already registered');
           setAlreadyRegistered(true);
-
           // Reset form after a delay
           setTimeout(() => {
             setAlreadyRegistered(false);
@@ -310,15 +308,15 @@ export default function Home() {
                 heroBackground === index ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <ImageSkeleton className="absolute inset-0" />
-              <Image
+              <ResponsiveImage
                 src={bg.src}
                 alt={bg.alt}
                 fill
                 priority={index === 0}
                 sizes="100vw"
                 quality={90}
-                className="object-cover"
+                objectFit="cover"
+                loadingAnimation="shimmer"
               />
               <div className="absolute inset-0 bg-black bg-opacity-60" /> {/* Increased opacity from 40% to 60% */}
             </div>
@@ -489,14 +487,14 @@ export default function Home() {
                   activeSlide === index ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <ImageSkeleton className="absolute inset-0" />
-                <Image
+                <ResponsiveImage
                   src={image.src}
                   alt={image.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 80vw"
-                  className="object-cover"
+                  objectFit="cover"
                   priority={index === 0}
+                  loadingAnimation="pulse"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div> {/* Enhanced gradient opacity */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
@@ -609,13 +607,15 @@ export default function Home() {
             </div>
 
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl border-2 border-primary-light/30 transform hover:scale-[1.02] transition-transform duration-500">
-              <Image
+              <ResponsiveImage
                 src={getImagePath('images/bhartiya-city.png')}
                 alt="Aerial view of the property and surrounding area"
                 fill
-                className="object-cover"
+                objectFit="cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 quality={90}
+                loadingAnimation="dots"
+                borderRadius="8px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end">
                 <div className="p-6 text-white">
@@ -629,14 +629,15 @@ export default function Home() {
       </section>
 
       {/* Call to action */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="contact-section" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
+          <ResponsiveImage
             src={getImagePath('images/luxury-home-facade.jpg')}
             alt="Luxury home facade"
             fill
-            className="object-cover"
+            objectFit="cover"
             sizes="100vw"
+            loadingAnimation="shimmer"
           />
           <div className="absolute inset-0 bg-black bg-opacity-80"></div> {/* Increased opacity from 70% to 80% */}
         </div>
@@ -644,14 +645,13 @@ export default function Home() {
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="bg-white/15 backdrop-blur-md rounded-xl p-8 md:p-12 shadow-xl border border-white/30"> {/* Increased opacity */}
             <div className="text-center mb-12 text-white">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 drop-shadow-md"> {/* Added drop-shadow */}
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 drop-shadow-md text-white"> {/* Added explicit text-white */}
                 Reserve Your Exclusive Residence
               </h2>
               <p className="text-lg text-white max-w-3xl mx-auto drop-shadow-sm"> {/* Changed from opacity-90 to text-white */}
                 Limited collection of premium residences available. Complete the form below for priority access to floor plans, pricing and exclusive offers.
               </p>
             </div>
-
             <div ref={formRef} className="max-w-xl mx-auto">
               {isFormSubmitted ? (
                 <div className="bg-green-100/90 backdrop-blur-sm text-green-800 p-6 rounded-lg text-center">
@@ -680,7 +680,7 @@ export default function Home() {
                       placeholder="Full Name"
                       className={`w-full px-4 py-3 bg-white/30 border ${  /* Increased opacity from 20% to 30% */
                         formErrors.fullName ? "border-red-400" : "border-white/50"  /* Increased border opacity from 40% to 50% */
-                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all`} /* Increased placeholder opacity from 80% to 90% */
+                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all dark-placeholder`} /* Increased placeholder opacity from 80% to 90% */
                     />
                     {formErrors.fullName && (
                       <p className="mt-1 text-red-200 text-sm font-medium">{formErrors.fullName}</p> /* Changed from text-red-300 to text-red-200 */
@@ -695,7 +695,7 @@ export default function Home() {
                       placeholder="Email Address"
                       className={`w-full px-4 py-3 bg-white/30 border ${  /* Increased opacity from 20% to 30% */
                         formErrors.email ? "border-red-400" : "border-white/50"  /* Increased border opacity from 40% to 50% */
-                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all`} /* Increased placeholder opacity from 80% to 90% */
+                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all dark-placeholder`} /* Increased placeholder opacity from 80% to 90% */
                     />
                     {formErrors.email && (
                       <p className="mt-1 text-red-200 text-sm font-medium">{formErrors.email}</p> /* Changed from text-red-300 to text-red-200 */
@@ -710,7 +710,7 @@ export default function Home() {
                       placeholder="Phone Number"
                       className={`w-full px-4 py-3 bg-white/30 border ${  /* Increased opacity from 20% to 30% */
                         formErrors.phone ? "border-red-400" : "border-white/50"  /* Increased border opacity from 40% to 50% */
-                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all`} /* Increased placeholder opacity from 80% to 90% */
+                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all dark-placeholder`} /* Increased placeholder opacity from 80% to 90% */
                     />
                     {formErrors.phone && (
                       <p className="mt-1 text-red-200 text-sm font-medium">{formErrors.phone}</p> /* Changed from text-red-300 to text-red-200 */
@@ -723,7 +723,7 @@ export default function Home() {
                       onChange={handleInputChange}
                       placeholder="Your Message (Optional)"
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/30 border border-white/50 rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all" /* Increased background and border opacity */
+                      className="w-full px-4 py-3 bg-white/30 border border-white/50 rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all dark-placeholder" /* Increased background and border opacity */
                     />
                   </div>
                   <div>
@@ -751,18 +751,39 @@ export default function Home() {
                 Experience the pinnacle of luxury living with our exclusive lakefront residences.
               </p>
               <div className="flex gap-4">
-                <a href="https://www.facebook.com/profile.php?id=61577984246859" className="text-white hover:text-primary transition-colors">
+                <a href="#" className="text-white hover:text-[#1877F2] transition-colors">
                   <span className="sr-only">Facebook</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </a>
-                <a href="#" className="text-white hover:text-primary transition-colors">
+                <a href="#" className="text-white hover:text-[#E4405F] transition-colors">
                   <span className="sr-only">Instagram</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="#" className="text-white hover:text-[#1DA1F2] transition-colors">
+                  <span className="sr-only">Twitter</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="text-white hover:text-[#0A66C2] transition-colors">
+                  <span className="sr-only">LinkedIn</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="#" className="text-white hover:text-[#FF0000] transition-colors">
+                  <span className="sr-only">YouTube</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                   </svg>
                 </a>
               </div>
@@ -774,7 +795,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-white text-opacity-90">123 Lake View Drive, Luxury Estate, India</span> {/* Changed from text-neutral-300 */}
+                <span className="text-white text-opacity-90">Lake View Drive, Luxury Estate Bengaluru, India</span> {/* Changed from text-neutral-300 */}
               </p>
               <p className="mb-2 flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -786,7 +807,7 @@ export default function Home() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-white text-opacity-90">info@houseofdreamsrealty.com</span> {/* Changed from text-neutral-300 */}
+                <span className="text-white text-opacity-90">info@lakesideluxury.com</span> {/* Changed from text-neutral-300 */}
               </p>
             </div>
             <div>
@@ -808,7 +829,7 @@ export default function Home() {
                   <Link href="/term-condtion" className="text-white text-opacity-90 hover:text-primary transition-colors">Terms & Conditions</Link> {/* Changed from text-neutral-300 */}
                 </li>
                 <li>
-                  <a href="#" onClick={scrollToForm} className="text-white text-opacity-90 hover:text-primary transition-colors">Contact Us</a> {/* Changed from text-neutral-300 */}
+                  <a href="#contact-section" className="text-white text-opacity-90 hover:text-primary transition-colors">Contact Us</a> {/* Using anchor instead of scrollToForm */}
                 </li>
               </ul>
             </div>

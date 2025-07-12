@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import ResponsiveImage from '@/components/ResponsiveImage';
 
 export default function Disclaimer() {
   return (
@@ -28,7 +29,6 @@ export default function Disclaimer() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12">
-
           {/* Section 1: General Disclaimer */}
           <section className="mb-12">
             <div className="flex items-center mb-6">
@@ -232,7 +232,7 @@ export default function Disclaimer() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
-                  <span>123 Lake View Drive, Luxury Estate, India</span>
+                  <span>Lake View Drive, Luxury Estate Bengaluru, India</span>
                 </div>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import ResponsiveImage from '@/components/ResponsiveImage';
 // Import directly from the file path
 import { getAllBlogPosts, BlogPost, BlogPostSection } from '@/app/blog/blog-data';
 
@@ -12,7 +13,7 @@ export const metadata = {
 
 export default function Blog() {
   const blogPosts = getAllBlogPosts();
-  
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <main className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 flex-grow">
@@ -33,13 +34,16 @@ export default function Blog() {
           <div className="mb-16">
             <Link href={`/blog/${blogPosts[0].slug}`} className="block group">
               <div className="relative rounded-xl overflow-hidden shadow-xl h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] mb-6">
-                <Image
+                <ResponsiveImage
                   src={blogPosts[0].coverImage}
                   alt={blogPosts[0].title}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 1200px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  objectFit="cover"
+                  className="group-hover:scale-105 transition-transform duration-500"
+                  loadingAnimation="shimmer"
+                  borderRadius="12px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/60 to-transparent flex items-end">
                   <div className="p-4 sm:p-6 md:p-8 text-white">
@@ -73,18 +77,20 @@ export default function Blog() {
         {/* Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {blogPosts.slice(1).map((post: BlogPost) => (
-            <Link 
-              href={`/blog/${post.slug}`} 
-              key={post.slug} 
+            <Link
+              href={`/blog/${post.slug}`}
+              key={post.slug}
               className="group bg-neutral-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
             >
               <div className="relative h-64 overflow-hidden">
-                <Image
+                <ResponsiveImage
                   src={post.coverImage}
                   alt={post.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  objectFit="cover"
+                  className="group-hover:scale-105 transition-transform duration-500"
+                  loadingAnimation="pulse"
                 />
               </div>
               <div className="p-6">
@@ -121,7 +127,7 @@ export default function Blog() {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-grow px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                className="flex-grow px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-gray-900 dark-placeholder"
                 required
               />
               <button
@@ -138,7 +144,7 @@ export default function Blog() {
         </div>
       </div>
       </main>
-      
+
       {/* Footer */}
       <footer className="bg-[#0c4c34] text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">

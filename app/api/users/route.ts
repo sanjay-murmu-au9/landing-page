@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Make this route compatible with static export
+export const dynamic = 'force-static';
+
 // Mock data for demonstration - this would be replaced by API calls to your backend
 const MOCK_USERS = [
   {
@@ -166,11 +169,11 @@ export async function GET() {
     // In a real implementation, this would call your backend API
     // const response = await fetch('https://your-backend-api.com/users');
     // const data = await response.json();
-    
+
     // Using mock data for demonstration
     const users = MOCK_USERS;
     const totalUsers = users.length;
-    
+
     return NextResponse.json({
       success: true,
       data: {
@@ -192,17 +195,17 @@ export async function POST(request: NextRequest) {
   try {
     // Parse the request body
     const body = await request.json();
-    
+
     // Validate required fields
     const { fullName, email, phone } = body;
-    
+
     if (!fullName || !email || !phone) {
       return NextResponse.json(
         { success: false, message: 'Missing required fields' },
         { status: 400 }
       );
     }
-    
+
     // In a real implementation, this would call your backend API
     // const response = await fetch('https://your-backend-api.com/users', {
     //   method: 'POST',
@@ -210,14 +213,14 @@ export async function POST(request: NextRequest) {
     //   body: JSON.stringify(body)
     // });
     // const data = await response.json();
-    
+
     // Using mock response for demonstration
     const newUser = {
       _id: Date.now().toString(),
       ...body,
       createdAt: new Date().toISOString()
     };
-    
+
     return NextResponse.json({
       success: true,
       message: 'User registered successfully',
