@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-    // loader: 'custom',
-    // loaderFile: './app/utils/imageLoader.ts',
+    loader: 'custom',
+    loaderFile: './app/utils/imageLoader.ts',
   },
   // Only use basePath and assetPrefix in production (for GitHub Pages)
   ...(isDev ? {} : {
