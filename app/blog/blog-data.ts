@@ -24,7 +24,7 @@ const blogPosts: BlogPost[] = [
   {
     slug: 'luxury-real-estate-investment-guide-2025',
     title: 'The Ultimate Guide to Luxury Real Estate Investment in 2025',
-    excerpt: 'Discover the key trends shaping luxury real estate investments and how to make informed decisions in the current market landscape.',
+    excerpt: 'Discover the key trends shaping luxury real estate investments and current market landscape.',
     coverImage: '/images/luxury-home-facade.jpg',
     date: 'July 5, 2025',
     author: 'Alexandra Chen',
@@ -82,7 +82,7 @@ const blogPosts: BlogPost[] = [
       },
       {
         type: 'image',
-        url: '/images/hero-pool-view.jpg',
+        url: '/images/hero-living-space.jpg',
         alt: 'Luxury property with infinity pool overlooking scenic views',
         caption: 'Properties offering exceptional views and outdoor living spaces command significant premiums'
       },
@@ -136,7 +136,7 @@ const blogPosts: BlogPost[] = [
       },
       {
         type: 'image',
-        url: '/images/penthouse-interior.jpg',
+        url: '/images/houseofdreamreality-penthouse.jpg',
         alt: 'Sustainable luxury interior with natural materials',
         caption: 'Eco-luxury interiors emphasize natural materials, energy efficiency, and biophilic design'
       },
@@ -203,7 +203,7 @@ const blogPosts: BlogPost[] = [
     slug: 'designing-perfect-luxury-bathroom',
     title: 'Designing the Perfect Luxury Bathroom: Elements of Spa-Like Serenity',
     excerpt: 'Transform your bathroom into a personal sanctuary with these luxury design elements and premium features.',
-    coverImage: '/images/luxury-bathroom.jpg',
+    coverImage: '/images/houseofdreamreality-washroom.jpg',
     date: 'June 15, 2025',
     author: 'Olivia Washington',
     category: 'Design',
@@ -223,7 +223,7 @@ const blogPosts: BlogPost[] = [
       },
       {
         type: 'image',
-        url: '/images/luxury-bathroom.jpg',
+        url: '/images/houseofdreamreality-penthouse.jpg',
         alt: 'Spacious luxury bathroom with natural stone and freestanding bathtub',
         caption: 'Natural stone, abundant light, and clean lines create a foundation for luxury bathroom design'
       },
@@ -316,7 +316,7 @@ const blogPosts: BlogPost[] = [
     slug: 'smart-home-technology-luxury-living',
     title: 'Smart Home Technology: The New Standard in Luxury Living',
     excerpt: 'How integrated smart home systems are revolutionizing luxury properties and enhancing the living experience.',
-    coverImage: '/images/hero-living-space.jpg',
+    coverImage: '/images/hero-luxury-exterior-1.jpg',
     date: 'June 1, 2025',
     author: 'Javier Rodriguez',
     category: 'Technology',

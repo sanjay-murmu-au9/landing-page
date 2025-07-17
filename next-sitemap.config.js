@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://sanjay-murmu-au9.github.io/landing-page/',
+  siteUrl: 'https://houseofdreamsrealty.com/',
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [

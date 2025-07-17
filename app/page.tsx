@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ImageSkeleton from '../components/ImageSkeleton';
 import { getImagePath } from '../lib/image-path';
+import CanonicalUrl from '../components/CanonicalUrl';
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -25,67 +26,118 @@ export default function Home() {
   const [heroBackground, setHeroBackground] = useState(0);
   // Track if user is manually scrolling through hero images
   const [isUserScrollingHero, setIsUserScrollingHero] = useState(false);
+  // State to track whether to show text banner
+  const [showHeroText, setShowHeroText] = useState(false);
+  // State to track iteration count - to show banner from 2nd iteration
+  // Start at 1 to immediately show the banner for debugging
+  const [heroIterationCount, setHeroIterationCount] = useState(1);
   // Timeout to resume auto rotation after manual scrolling
   const autoScrollResumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // Timeout for showing text banner
+  const textBannerTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const formRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  
+  // Effect to show banner on initial load after a delay
+  useEffect(() => {
+    // Show banner after initial load with delay
+    setTimeout(() => {
+      console.log('Initial load effect - setting showHeroText to true');
+      setShowHeroText(true);
+    }, 2500);
+  }, []);
 
+  // Function to create ripple effect on button click
+  const createRippleEffect = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const button = event.currentTarget;
+    
+    // Create ripple element
+    const circle = document.createElement('span');
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+    
+    // Position ripple based on click location
+    const rect = button.getBoundingClientRect();
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - rect.left - radius}px`;
+    circle.style.top = `${event.clientY - rect.top - radius}px`;
+    
+    // Add ripple class
+    circle.classList.add('ripple-effect');
+    
+    // Clear existing ripples
+    const ripple = button.querySelector('.ripple-effect');
+    if (ripple) {
+      ripple.remove();
+    }
+    
+    // Add to DOM
+    button.appendChild(circle);
+    
+    // Remove after animation completes
+    setTimeout(() => {
+      if (circle) {
+        circle.remove();
+      }
+    }, 600);
+  };
+  
   // Hero background images with optimized paths
   const heroBackgrounds = [
+      {
+      src: getImagePath('images/houseofdreamreality-emotion.jpg'),
+      alt: 'images/houseofdreamreality-emotion.jpg'
+    },
     {
       src: getImagePath('images/optimized/houseofdreamsreality.jpg'),
-      alt: "Luxury lakefront villa with modern architecture"
+      alt: 'images/optimized/houseofdreamsreality.jpg'
     },
     {
       src: getImagePath('images/optimized/houseofdreamreality02.jpg'),
-      alt: "Modern luxury apartment exterior with landscaping"
+      alt: 'images/optimized/houseofdreamreality02.jpg'
     },
     {
       src: getImagePath('images/optimized/houseofdreamreality03.jpg'),
-      alt: "Elegant living space with panoramic lake view"
+      alt: 'images/optimized/houseofdreamreality03.jpg'
     },
     {
       src: getImagePath('images/optimized/houseofdreamreality04.jpeg'),
-      alt: "Premium infinity pool with architectural lighting"
+      alt: 'images/optimized/houseofdreamreality04.jpeg'
     },
-    {
-      src: getImagePath('images/houseofdreamreality06.jpg'),
-      alt: "Modern luxury home facade with artistic design"
-    }
   ];
 
   const carouselImages = [
+        {
+        src: getImagePath('images/houseofdreamreality-living.jpg'),
+        alt: "Premium living room with modern amenities",
+        caption: "State-of-the-art living spaces"
+      },
     {
-      src: getImagePath('images/penthouse-interior.jpg'),
+      src: getImagePath('images/houseofdreamreality-penthouse.jpg'),
       alt: "Elegant penthouse interior with premium finishes",
-      caption: "Exquisite interiors with premium finishes"
+      caption: "Exquisite penthouse interiors with luxury details"
     },
     {
       src: getImagePath('images/optimized/hero-living-space.jpg'),
-      alt: "Luxury livingroom with marble and premium fixtures",
-      caption: "Premium livingrooms with imported marble"
+      alt: "Luxury living room with marble and premium fixtures",
+      caption: "Living rooms adorned with imported marble"
     },
     {
-      src: getImagePath('images/luxury-kitchen.jpg'),
-      alt: "Premium kitchen with top-of-the-line appliances",
-      caption: "Designer kitchens with high-end appliances"
+      src: getImagePath('images/houseofdreamreality-luxury-kitchen.jpg'),
+      alt: "Premium kitchen with top-tier appliances",
+      caption: "Designer kitchens featuring high-end appliances"
     },
     {
       src: getImagePath('images/modern-bedroom.jpg'),
       alt: "Modern bedroom with luxurious design elements",
-      caption: "Spacious bedrooms with lake views"
+      caption: "Spacious bedrooms offering serene lake views"
     },
     {
-      src: getImagePath('images/amenity-gym.jpg'),
-      alt: "Premium fitness center with modern equipment",
-      caption: "State-of-the-art fitness center"
-    },
-    {
-      src: getImagePath('images/amenity-spa.jpg'),
-      alt: "Luxury spa area with premium relaxation facilities",
-      caption: "Exclusive spa and wellness facilities"
+      src: getImagePath('images/houseofdreamreality-washroom.jpg'),
+      alt: "Luxury washroom with premium fixtures",
+      caption: "Exclusive spa and wellness amenities"
     },
   ];
 
@@ -127,15 +179,52 @@ export default function Home() {
     let heroTimer: NodeJS.Timeout | null = null;
     if (!isUserScrollingHero) {
       heroTimer = setInterval(() => {
-        setHeroBackground((prev) => (prev + 1) % heroBackgrounds.length);
-      }, 7000);
+        // First hide the text banner
+        setShowHeroText(false);
+        
+        // Wait for text to fade out completely before changing background
+        setTimeout(() => {
+          // Increment the iteration counter first
+          const newIterationCount = heroIterationCount + 1;
+          setHeroIterationCount(newIterationCount);
+          
+          // Change the background image with a smooth transition
+          setHeroBackground((prev) => (prev + 1) % heroBackgrounds.length);
+          
+          // After the image has loaded, show the text banner with a longer delay
+          // But only if we're past the first iteration
+          if (textBannerTimeoutRef.current) {
+            clearTimeout(textBannerTimeoutRef.current);
+          }
+          
+          // Use the new iteration count we calculated
+          if (newIterationCount >= 1) { // Only show banner from second iteration onwards
+            textBannerTimeoutRef.current = setTimeout(() => {
+              setShowHeroText(true);
+            }, 3500); // 3.5 seconds delay for smoother transition with the new animations
+          }
+        }, 1200); // Wait longer for text to fade out completely for smoother transitions
+      }, 8500); // Increased duration between slides for better viewing experience
     }
 
+    // Initial setup - show text banner if we're already past the first iteration
+    if (heroIterationCount >= 1 && !showHeroText) {
+      if (textBannerTimeoutRef.current) {
+        clearTimeout(textBannerTimeoutRef.current);
+      }
+      textBannerTimeoutRef.current = setTimeout(() => {
+        setShowHeroText(true);
+      }, 3500); // Increased for consistency with other transitions
+    }
+    
     return () => {
       clearInterval(carouselTimer);
       if (heroTimer) clearInterval(heroTimer);
+      if (textBannerTimeoutRef.current) {
+        clearTimeout(textBannerTimeoutRef.current);
+      }
     };
-  }, [carouselImages.length, heroBackgrounds.length, isUserScrollingHero]);
+  }, [carouselImages.length, heroBackgrounds.length, isUserScrollingHero, heroIterationCount]);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -148,19 +237,39 @@ export default function Home() {
   // Function to manually navigate hero backgrounds
   const navigateHeroBackground = (direction: 'prev' | 'next') => {
     setIsUserScrollingHero(true);
+    setShowHeroText(false); // Hide text banner immediately
 
     // Clear any existing timeout
     if (autoScrollResumeTimeoutRef.current) {
       clearTimeout(autoScrollResumeTimeoutRef.current);
     }
+    
+    if (textBannerTimeoutRef.current) {
+      clearTimeout(textBannerTimeoutRef.current);
+    }
 
-    setHeroBackground(prev => {
-      if (direction === 'prev') {
-        return prev === 0 ? heroBackgrounds.length - 1 : prev - 1;
-      } else {
-        return (prev + 1) % heroBackgrounds.length;
+    // Wait for text to fade out before changing background
+    setTimeout(() => {
+      // Increment the iteration counter for manual navigation first
+      const newIterationCount = heroIterationCount + 1;
+      setHeroIterationCount(newIterationCount);
+      
+      // Change the background image
+      setHeroBackground(prev => {
+        if (direction === 'prev') {
+          return prev === 0 ? heroBackgrounds.length - 1 : prev - 1;
+        } else {
+          return (prev + 1) % heroBackgrounds.length;
+        }
+      });
+      
+      // Show text banner after a longer delay, but only after first iteration
+      if (newIterationCount >= 1) { // Only show banner from second iteration onwards
+        textBannerTimeoutRef.current = setTimeout(() => {
+          setShowHeroText(true);
+        }, 3500); // 3.5 seconds delay for smoother transition
       }
-    });
+    }, 1200); // Longer delay before changing background for smoother transition
 
     // Resume auto rotation after 10 seconds of inactivity
     autoScrollResumeTimeoutRef.current = setTimeout(() => {
@@ -289,24 +398,27 @@ export default function Home() {
 
   return (
     <main className="relative">
+      <CanonicalUrl />
       {/* Fixed Call Now button for mobile */}
       <div className="fixed bottom-4 right-4 z-50 md:hidden">
-        <a
-          href="tel:+918260028808"
-          className="flex items-center justify-center bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition-all"
+        <button
+          onClick={() => window.location.href = "tel:+918260028808"}
+          className="flex items-center justify-center bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition-all active:scale-95 relative overflow-hidden button-effect"
           aria-label="Call now"
+          onMouseDown={createRippleEffect}
         >
-          <span className="mr-2">📞</span> Call Now
-        </a>
+          <span className="relative z-10 mr-2">📞</span> <span className="relative z-10">Call Now</span>
+          <span className="absolute inset-0 bg-white/20 transform scale-0 opacity-0 transition-all duration-300 button-ripple"></span>
+        </button>
       </div>
 
       {/* Hero Section with parallax effect */}
-      <section className="relative h-screen">
-        <div className="absolute inset-0 z-0">
+      <section className="relative h-screen overflow-hidden">
+        <div className="absolute inset-0 z-0 hero-image-container">
           {heroBackgrounds.map((bg, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1500 ease-in-out ${
+              className={`absolute inset-0 hero-image-transition ${
                 heroBackground === index ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -317,38 +429,49 @@ export default function Home() {
                 fill
                 priority={index === 0}
                 sizes="100vw"
-                quality={90}
-                className="object-cover"
+                quality={95} /* Increased quality for better transitions */
+                className={`object-cover mobile-hero-image ${
+                  heroBackground === index ? 'hero-image-enter' : 'hero-image-exit'
+                }`}
+                style={{
+                  objectPosition: '50% 50%' /* Center positioning for all screen sizes */
+                }}
               />
-              <div className="absolute inset-0 bg-black bg-opacity-60" /> {/* Increased opacity from 40% to 60% */}
+              <div className="absolute inset-0 bg-black bg-opacity-50" /> {/* Adjusted opacity for better visibility of text */}
             </div>
           ))}
         </div>
 
-        {/* Hero content */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-white px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-delay="119900">
-            <div className="mb-6 inline-block p-1 border border-primary/50 rounded-full"> {/* Increased border opacity */}
-              <span className="px-5 py-2 text-xs md:text-sm font-medium bg-primary/30 backdrop-blur-sm rounded-full"> {/* Increased background opacity */}
-                Luxury Living • Premium Location • Exceptional Design
-              </span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow animate-fade-in">
+        {/* Hero content - positioned lower on screen */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-end items-center text-white px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-in-out ${showHeroText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow">
               <span className="block">Lakeside Luxury Apartments</span>
               {/* <span className="block mt-2 text-primary-light">4/5BHK Residences</span> */}
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white drop-shadow-md animate-fade-in-delay"> {/* Changed from text-neutral-100 to text-white */}
+            <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white drop-shadow-md"> {/* Changed from text-neutral-100 to text-white */}
               Experience unparalleled luxury breathtaking lake views and world-class amenities
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 animate-fade-in-delay-2">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
               <button
-                onClick={scrollToForm}
-                className="px-8 py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl"
+                onClick={(e) => {
+                  // Add ripple and click effects
+                  createRippleEffect(e);
+                  
+                  // Add active/click effect
+                  const button = e.currentTarget;
+                  button.classList.add('click-pulse');
+                  setTimeout(() => button.classList.remove('click-pulse'), 500);
+                  
+                  // Scroll to form
+                  scrollToForm();
+                }}
+                className="px-8 py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 active:scale-95 active:bg-primary-dark shadow-xl relative overflow-hidden button-effect"
               >
-                Request Information
+                <span className="relative z-10">Request Information</span>
+                <span className="absolute inset-0 bg-white/20 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
               </button>
               <Link
                 href="/blog"
@@ -362,10 +485,14 @@ export default function Home() {
                 Luxury Insights
               </Link>
               <button
-                onClick={scrollToAbout}
-                className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border border-white/30 text-lg font-medium rounded-md transition-all duration-300 backdrop-blur-sm"
+                onClick={(e) => {
+                  createRippleEffect(e);
+                  scrollToAbout();
+                }}
+                className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border border-white/30 text-lg font-medium rounded-md transition-all duration-300 backdrop-blur-sm relative overflow-hidden button-effect"
               >
-                Discover More
+                <span className="relative z-10">Discover More</span>
+                <span className="absolute inset-0 bg-white/10 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
               </button>
             </div>
           </div>
@@ -377,12 +504,40 @@ export default function Home() {
             {heroBackgrounds.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => {
+                onClick={(e) => {
+                  // Add subtle ripple effect to indicator dot
+                  if (idx !== heroBackground) {
+                    const dot = e.currentTarget;
+                    dot.classList.add('click-pulse');
+                    setTimeout(() => dot.classList.remove('click-pulse'), 500);
+                  }
+                  
+                  setShowHeroText(false); // Hide text banner immediately
                   setHeroBackground(idx);
                   setIsUserScrollingHero(true);
+                  
+                  // Clear existing timeouts
                   if (autoScrollResumeTimeoutRef.current) {
                     clearTimeout(autoScrollResumeTimeoutRef.current);
                   }
+                  if (textBannerTimeoutRef.current) {
+                    clearTimeout(textBannerTimeoutRef.current);
+                  }
+                  
+                  // Increment the iteration counter for manual navigation first
+                  const newIterationCount = heroIterationCount + 1;
+                  setHeroIterationCount(newIterationCount);
+                  
+                  // Show text banner after a delay, but only if past first iteration
+                  console.log('Button click - iteration:', newIterationCount);
+                  if (newIterationCount >= 1) {
+                    textBannerTimeoutRef.current = setTimeout(() => {
+                      console.log('Button click - setting showHeroText to true');
+                      setShowHeroText(true);
+                    }, 2500); // Increased to 2.5 seconds to match other delays
+                  }
+                  
+                  // Resume auto rotation after inactivity
                   autoScrollResumeTimeoutRef.current = setTimeout(() => {
                     setIsUserScrollingHero(false);
                   }, 10000);
@@ -391,7 +546,7 @@ export default function Home() {
                   heroBackground === idx
                     ? 'bg-primary w-8'
                     : 'bg-white/50 hover:bg-white/80'
-                }`}
+                } relative overflow-hidden`}
                 aria-label={`View slide ${idx + 1}`}
               />
             ))}
@@ -611,7 +766,7 @@ export default function Home() {
 
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl border-2 border-primary-light/30 transform hover:scale-[1.02] transition-transform duration-500">
               <Image
-                src={getImagePath('images/bhartiya-city.png')}
+                src={getImagePath('images/houseofdreamreality-living.jpg')}
                 alt="Aerial view of the property and surrounding area"
                 fill
                 className="object-cover"
@@ -730,9 +885,19 @@ export default function Home() {
                   <div>
                     <button
                       type="submit"
-                      className="w-full py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="w-full py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 active:bg-primary-dark relative overflow-hidden button-effect"
+                      onClick={(e) => {
+                        // Add both ripple and pulse effects for enhanced visual feedback
+                        createRippleEffect(e);
+                        
+                        // Add click pulse effect
+                        const button = e.currentTarget;
+                        button.classList.add('click-pulse');
+                        setTimeout(() => button.classList.remove('click-pulse'), 500);
+                      }}
                     >
-                      Request Information
+                      <span className="relative z-10">Request Information</span>
+                      <span className="absolute inset-0 bg-white/20 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
                     </button>
                   </div>
                 </form>
@@ -752,18 +917,39 @@ export default function Home() {
                 Experience the pinnacle of luxury living with our exclusive lakefront residences.
               </p>
               <div className="flex gap-4">
-                <a href="https://www.facebook.com/profile.php?id=61577984246859" className="text-white hover:text-primary transition-colors">
+                <a href="https://www.facebook.com/profile.php?id=61577984246859" className="text-white hover:text-[#1877F2] transition-colors">
                   <span className="sr-only">Facebook</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </a>
-                <a href="#" className="text-white hover:text-primary transition-colors">
+                <a href="#" className="text-white hover:text-[#E4405F] transition-colors">
                   <span className="sr-only">Instagram</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="#" className="text-white hover:text-[#1DA1F2] transition-colors">
+                  <span className="sr-only">Twitter</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="text-white hover:text-[#0A66C2] transition-colors">
+                  <span className="sr-only">LinkedIn</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="#" className="text-white hover:text-[#FF0000] transition-colors">
+                  <span className="sr-only">YouTube</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                   </svg>
                 </a>
               </div>

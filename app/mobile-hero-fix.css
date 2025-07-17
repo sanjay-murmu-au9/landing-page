@@ -1,0 +1,12 @@
+/* Mobile hero image positioning fix */
+@media (max-width: 480px) {
+  .hero-image-container img {
+    object-position: center 20% !important; /* Adjust vertical position to show more of the subject */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-image-container img {
+    object-position: center 30% !important; /* Slight adjustment for medium-small screens */
+  }
+}
