@@ -35,23 +35,23 @@ export default function Home() {
   // Hero background images with optimized paths
   const heroBackgrounds = [
     {
-      src: getImagePath('images/optimized/hero-luxury-exterior-1.jpg'),
+      src: getImagePath('images/optimized/houseofdreamsreality.jpg'),
       alt: "Luxury lakefront villa with modern architecture"
     },
     {
-      src: getImagePath('images/optimized/hero-luxury-exterior-2.jpg'),
+      src: getImagePath('images/optimized/houseofdreamreality02.jpg'),
       alt: "Modern luxury apartment exterior with landscaping"
     },
     {
-      src: getImagePath('images/optimized/hero-living-space.jpg'),
+      src: getImagePath('images/optimized/houseofdreamreality03.jpg'),
       alt: "Elegant living space with panoramic lake view"
     },
     {
-      src: getImagePath('images/optimized/hero-pool-view.jpg'),
+      src: getImagePath('images/optimized/houseofdreamreality04.jpeg'),
       alt: "Premium infinity pool with architectural lighting"
     },
     {
-      src: getImagePath('images/luxury-home-facade.jpg'),
+      src: getImagePath('images/houseofdreamreality06.jpg'),
       alt: "Modern luxury home facade with artistic design"
     }
   ];
@@ -63,9 +63,9 @@ export default function Home() {
       caption: "Exquisite interiors with premium finishes"
     },
     {
-      src: getImagePath('images/luxury-bathroom.jpg'),
-      alt: "Luxury bathroom with marble and premium fixtures",
-      caption: "Premium bathrooms with imported marble"
+      src: getImagePath('images/optimized/hero-living-space.jpg'),
+      alt: "Luxury livingroom with marble and premium fixtures",
+      caption: "Premium livingrooms with imported marble"
     },
     {
       src: getImagePath('images/luxury-kitchen.jpg'),
@@ -327,7 +327,7 @@ export default function Home() {
 
         {/* Hero content */}
         <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-white px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-delay="200">
+          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-delay="119900">
             <div className="mb-6 inline-block p-1 border border-primary/50 rounded-full"> {/* Increased border opacity */}
               <span className="px-5 py-2 text-xs md:text-sm font-medium bg-primary/30 backdrop-blur-sm rounded-full"> {/* Increased background opacity */}
                 Luxury Living • Premium Location • Exceptional Design
@@ -633,7 +633,7 @@ export default function Home() {
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={getImagePath('images/luxury-home-facade.jpg')}
+            src={getImagePath('images/luxury-kitchen.jpg')}
             alt="Luxury home facade"
             fill
             className="object-cover"
