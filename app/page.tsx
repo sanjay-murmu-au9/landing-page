@@ -39,7 +39,7 @@ export default function Home() {
   const formRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-  
+
   // Effect to show banner on initial load after a delay
   useEffect(() => {
     // Show banner after initial load with delay
@@ -52,30 +52,30 @@ export default function Home() {
   // Function to create ripple effect on button click
   const createRippleEffect = (event: React.MouseEvent<HTMLButtonElement>) => {
     const button = event.currentTarget;
-    
+
     // Create ripple element
     const circle = document.createElement('span');
     const diameter = Math.max(button.clientWidth, button.clientHeight);
     const radius = diameter / 2;
-    
+
     // Position ripple based on click location
     const rect = button.getBoundingClientRect();
     circle.style.width = circle.style.height = `${diameter}px`;
     circle.style.left = `${event.clientX - rect.left - radius}px`;
     circle.style.top = `${event.clientY - rect.top - radius}px`;
-    
+
     // Add ripple class
     circle.classList.add('ripple-effect');
-    
+
     // Clear existing ripples
     const ripple = button.querySelector('.ripple-effect');
     if (ripple) {
       ripple.remove();
     }
-    
+
     // Add to DOM
     button.appendChild(circle);
-    
+
     // Remove after animation completes
     setTimeout(() => {
       if (circle) {
@@ -83,7 +83,7 @@ export default function Home() {
       }
     }, 600);
   };
-  
+
   // Hero background images with optimized paths
   const heroBackgrounds = [
       {
@@ -181,22 +181,22 @@ export default function Home() {
       heroTimer = setInterval(() => {
         // First hide the text banner
         setShowHeroText(false);
-        
+
         // Wait for text to fade out completely before changing background
         setTimeout(() => {
           // Increment the iteration counter first
           const newIterationCount = heroIterationCount + 1;
           setHeroIterationCount(newIterationCount);
-          
+
           // Change the background image with a smooth transition
           setHeroBackground((prev) => (prev + 1) % heroBackgrounds.length);
-          
+
           // After the image has loaded, show the text banner with a longer delay
           // But only if we're past the first iteration
           if (textBannerTimeoutRef.current) {
             clearTimeout(textBannerTimeoutRef.current);
           }
-          
+
           // Use the new iteration count we calculated
           if (newIterationCount >= 1) { // Only show banner from second iteration onwards
             textBannerTimeoutRef.current = setTimeout(() => {
@@ -216,7 +216,7 @@ export default function Home() {
         setShowHeroText(true);
       }, 3500); // Increased for consistency with other transitions
     }
-    
+
     return () => {
       clearInterval(carouselTimer);
       if (heroTimer) clearInterval(heroTimer);
@@ -243,7 +243,7 @@ export default function Home() {
     if (autoScrollResumeTimeoutRef.current) {
       clearTimeout(autoScrollResumeTimeoutRef.current);
     }
-    
+
     if (textBannerTimeoutRef.current) {
       clearTimeout(textBannerTimeoutRef.current);
     }
@@ -253,7 +253,7 @@ export default function Home() {
       // Increment the iteration counter for manual navigation first
       const newIterationCount = heroIterationCount + 1;
       setHeroIterationCount(newIterationCount);
-      
+
       // Change the background image
       setHeroBackground(prev => {
         if (direction === 'prev') {
@@ -262,7 +262,7 @@ export default function Home() {
           return (prev + 1) % heroBackgrounds.length;
         }
       });
-      
+
       // Show text banner after a longer delay, but only after first iteration
       if (newIterationCount >= 1) { // Only show banner from second iteration onwards
         textBannerTimeoutRef.current = setTimeout(() => {
@@ -459,12 +459,12 @@ export default function Home() {
                 onClick={(e) => {
                   // Add ripple and click effects
                   createRippleEffect(e);
-                  
+
                   // Add active/click effect
                   const button = e.currentTarget;
                   button.classList.add('click-pulse');
                   setTimeout(() => button.classList.remove('click-pulse'), 500);
-                  
+
                   // Scroll to form
                   scrollToForm();
                 }}
@@ -511,11 +511,11 @@ export default function Home() {
                     dot.classList.add('click-pulse');
                     setTimeout(() => dot.classList.remove('click-pulse'), 500);
                   }
-                  
+
                   setShowHeroText(false); // Hide text banner immediately
                   setHeroBackground(idx);
                   setIsUserScrollingHero(true);
-                  
+
                   // Clear existing timeouts
                   if (autoScrollResumeTimeoutRef.current) {
                     clearTimeout(autoScrollResumeTimeoutRef.current);
@@ -523,11 +523,11 @@ export default function Home() {
                   if (textBannerTimeoutRef.current) {
                     clearTimeout(textBannerTimeoutRef.current);
                   }
-                  
+
                   // Increment the iteration counter for manual navigation first
                   const newIterationCount = heroIterationCount + 1;
                   setHeroIterationCount(newIterationCount);
-                  
+
                   // Show text banner after a delay, but only if past first iteration
                   console.log('Button click - iteration:', newIterationCount);
                   if (newIterationCount >= 1) {
@@ -536,7 +536,7 @@ export default function Home() {
                       setShowHeroText(true);
                     }, 2500); // Increased to 2.5 seconds to match other delays
                   }
-                  
+
                   // Resume auto rotation after inactivity
                   autoScrollResumeTimeoutRef.current = setTimeout(() => {
                     setIsUserScrollingHero(false);
@@ -889,7 +889,7 @@ export default function Home() {
                       onClick={(e) => {
                         // Add both ripple and pulse effects for enhanced visual feedback
                         createRippleEffect(e);
-                        
+
                         // Add click pulse effect
                         const button = e.currentTarget;
                         button.classList.add('click-pulse');
@@ -961,7 +961,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-white text-opacity-90">123 Lake View Drive, Luxury Estate, India</span> {/* Changed from text-neutral-300 */}
+                <span className="text-white text-opacity-90">JP Nagar 8th Phase, Byrappa Layout, Bangalore – 560083</span> {/* Changed from text-neutral-300 */}
               </p>
               <p className="mb-2 flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
