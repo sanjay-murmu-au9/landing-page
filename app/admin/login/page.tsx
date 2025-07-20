@@ -29,7 +29,10 @@ export default function LoginPage() {
     setError('');
     
     try {
-      const response = await axios.post('https://api.lutui.in/tp/auth/login', formData);
+      const response = await axios.post('/api/auth/login', {
+        username: formData.username,
+        password: formData.password
+      });
       
       if (response.data.success) {
         // Store token in cookie (handled by the API route)

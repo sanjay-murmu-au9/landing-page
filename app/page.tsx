@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ImageSkeleton from '../components/ImageSkeleton';
@@ -87,57 +87,62 @@ export default function Home() {
   // Hero background images with optimized paths
   const heroBackgrounds = [
       {
-      src: getImagePath('images/houseofdreamreality-emotion.jpg'),
-      alt: 'images/houseofdreamreality-emotion.jpg'
+      // src: getImagePath('images/houseofdreamreality-emotion.jpg'),
+      src: getImagePath('images/houseofdreamsreality-night.jpg'),
+      alt: 'images/houseofdreamsreality-night.jpg'
     },
     {
       src: getImagePath('images/optimized/houseofdreamsreality.jpg'),
       alt: 'images/optimized/houseofdreamsreality.jpg'
     },
     {
-      src: getImagePath('images/optimized/houseofdreamreality02.jpg'),
-      alt: 'images/optimized/houseofdreamreality02.jpg'
+      src: getImagePath('images/optimized/houseofdreamreality-emotion.jpg'),
+      alt: 'images/optimized/houseofdreamreality-emotion.jpg'
+    },
+     {
+      src: getImagePath('images/optimized/houseofdreamsreality-lakesideview.jpg'),
+      alt: 'images/optimized/houseofdreamsreality-lakesideview.jpg'
     },
     {
       src: getImagePath('images/optimized/houseofdreamreality03.jpg'),
       alt: 'images/optimized/houseofdreamreality03.jpg'
     },
     {
-      src: getImagePath('images/optimized/houseofdreamreality04.jpeg'),
-      alt: 'images/optimized/houseofdreamreality04.jpeg'
+      src: getImagePath('images/optimized/houseofdreamsreality01.jpg'),
+      alt: 'images/optimized/houseofdreamsreality01.jpg'
     },
   ];
 
   const carouselImages = [
-        {
-        src: getImagePath('images/houseofdreamreality-living.jpg'),
-        alt: "Premium living room with modern amenities",
-        caption: "State-of-the-art living spaces"
-      },
+    {
+      src: getImagePath('images/houseofdreamreality-living.jpg'),
+      alt: "Premium living room with modern amenities",
+      caption: "Premium living room with modern amenities"
+    },
     {
       src: getImagePath('images/houseofdreamreality-penthouse.jpg'),
       alt: "Elegant penthouse interior with premium finishes",
-      caption: "Exquisite penthouse interiors with luxury details"
+      caption: "Elegant penthouse interior with premium finishes"
     },
     {
       src: getImagePath('images/optimized/hero-living-space.jpg'),
       alt: "Luxury living room with marble and premium fixtures",
-      caption: "Living rooms adorned with imported marble"
+      caption: "Luxury living room with marble and premium fixtures"
     },
     {
       src: getImagePath('images/houseofdreamreality-luxury-kitchen.jpg'),
       alt: "Premium kitchen with top-tier appliances",
-      caption: "Designer kitchens featuring high-end appliances"
+      caption: "Premium kitchen with top-tier appliances"
     },
     {
       src: getImagePath('images/modern-bedroom.jpg'),
       alt: "Modern bedroom with luxurious design elements",
-      caption: "Spacious bedrooms offering serene lake views"
+      caption: "Modern bedroom with luxurious design elements"
     },
     {
       src: getImagePath('images/houseofdreamreality-washroom.jpg'),
       alt: "Luxury washroom with premium fixtures",
-      caption: "Exclusive spa and wellness amenities"
+      caption: "Luxury washroom with premium fixtures"
     },
   ];
 
@@ -395,6 +400,26 @@ export default function Home() {
     }
   };
 
+  // Function to filter hero backgrounds based on screen size
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Use all hero backgrounds for both mobile and desktop
+  const filteredHeroBackgrounds = useMemo(() => heroBackgrounds, []);
 
   return (
     <main className="relative">
@@ -413,9 +438,9 @@ export default function Home() {
       </div>
 
       {/* Hero Section with parallax effect */}
-      <section className="relative h-screen overflow-hidden">
-        <div className="absolute inset-0 z-0 hero-image-container">
-          {heroBackgrounds.map((bg, index) => (
+      <section className="relative min-h-[400px] h-[65vh] overflow-hidden">
+        <div className="absolute inset-0 z-0 hero-image-container h-full w-full">
+          {filteredHeroBackgrounds.map((bg, index) => (
             <div
               key={index}
               className={`absolute inset-0 hero-image-transition ${
@@ -430,31 +455,31 @@ export default function Home() {
                 priority={index === 0}
                 sizes="100vw"
                 quality={95} /* Increased quality for better transitions */
-                className={`object-cover mobile-hero-image ${
+                className={`w-full h-full object-cover sm:object-cover mobile-hero-image ${
                   heroBackground === index ? 'hero-image-enter' : 'hero-image-exit'
                 }`}
                 style={{
-                  objectPosition: '50% 50%' /* Center positioning for all screen sizes */
+                  objectFit: 'cover'
                 }}
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50" /> {/* Adjusted opacity for better visibility of text */}
+              <div className="absolute inset-0 bg-black/50" /> {/* Adjusted opacity for better visibility of text */}
             </div>
           ))}
         </div>
 
         {/* Hero content - positioned lower on screen */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-end items-center text-white px-4 sm:px-6 lg:px-8 pb-24 sm:pb-32">
+        <div className="absolute inset-0 z-10 flex flex-col justify-center sm:justify-end items-center text-white px-3 sm:px-6 lg:px-8 pb-0 sm:pb-24">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-in-out ${showHeroText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-2 sm:mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow">
               <span className="block">Lakeside Luxury Apartments</span>
               {/* <span className="block mt-2 text-primary-light">4/5BHK Residences</span> */}
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white drop-shadow-md"> {/* Changed from text-neutral-100 to text-white */}
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto mb-6 sm:mb-10 text-white drop-shadow-md"> {/* Changed from text-neutral-100 to text-white */}
               Experience unparalleled luxury breathtaking lake views and world-class amenities
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
               <button
                 onClick={(e) => {
                   // Add ripple and click effects
@@ -468,17 +493,17 @@ export default function Home() {
                   // Scroll to form
                   scrollToForm();
                 }}
-                className="px-8 py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 active:scale-95 active:bg-primary-dark shadow-xl relative overflow-hidden button-effect"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white text-sm sm:text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 active:scale-95 active:bg-primary-dark shadow-xl relative overflow-hidden button-effect"
               >
                 <span className="relative z-10">Request Information</span>
                 <span className="absolute inset-0 bg-white/20 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
               </button>
               <Link
                 href="/blog"
-                className="px-8 py-4 bg-secondary hover:bg-secondary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-secondary hover:bg-secondary-dark text-white text-sm sm:text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center"
               >
                 <span className="mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                   </svg>
                 </span>
@@ -489,7 +514,7 @@ export default function Home() {
                   createRippleEffect(e);
                   scrollToAbout();
                 }}
-                className="px-8 py-4 bg-transparent hover:bg-white/10 text-white border border-white/30 text-lg font-medium rounded-md transition-all duration-300 backdrop-blur-sm relative overflow-hidden button-effect"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent hover:bg-white/10 text-white border border-white/30 text-sm sm:text-lg font-medium rounded-md transition-all duration-300 backdrop-blur-sm relative overflow-hidden button-effect"
               >
                 <span className="relative z-10">Discover More</span>
                 <span className="absolute inset-0 bg-white/10 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
@@ -630,7 +655,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
             <span className="inline-block text-primary font-semibold mb-2">VIRTUAL TOUR</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 text-secondary-dark luxury-heading">Experience The Luxury</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 text-neutral-dark luxury-heading">Experience The Luxury</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           </div>
 
@@ -712,7 +737,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <span className="inline-block text-primary font-semibold mb-2">PREMIUM FINISHES</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 text-secondary-dark luxury-heading">Exceptional Specifications</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 text-neutral-dark luxury-heading">Exceptional Specifications</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
             <p className="max-w-3xl mx-auto text-lg text-primary-dark font-semibold">
               Every detail is meticulously crafted with premium materials and finishes to enhance your living experience.
@@ -785,22 +810,23 @@ export default function Home() {
       </section>
 
       {/* Call to action */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={getImagePath('images/luxury-kitchen.jpg')}
-            alt="Luxury home facade"
+            src={getImagePath('images/optimized/houseofdreamsreality-lakesideview.jpg')}
+            alt="Lakeside view of the luxury apartments"
             fill
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-80"></div> {/* Increased opacity from 70% to 80% */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-secondary-dark/95 to-primary-dark/90"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
         <div className="max-w-5xl mx-auto relative z-10">
-          <div className="bg-white/15 backdrop-blur-md rounded-xl p-8 md:p-12 shadow-xl border border-white/30"> {/* Increased opacity */}
-            <div className="text-center mb-12 text-white">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 drop-shadow-md"> {/* Added drop-shadow */}
+          <div className="bg-white/15 backdrop-blur-md rounded-xl p-6 md:p-10 shadow-xl border border-white/30">
+            <div className="text-center mb-8 text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6 text-white drop-shadow-md">
                 Reserve Your Exclusive Residence
               </h2>
               <p className="text-lg text-white max-w-3xl mx-auto drop-shadow-sm"> {/* Changed from opacity-90 to text-white */}
@@ -834,9 +860,9 @@ export default function Home() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="Full Name"
-                      className={`w-full px-4 py-3 bg-white/30 border ${  /* Increased opacity from 20% to 30% */
-                        formErrors.fullName ? "border-red-400" : "border-white/50"  /* Increased border opacity from 40% to 50% */
-                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all`} /* Increased placeholder opacity from 80% to 90% */
+                      className={`w-full px-4 py-3 bg-white/30 border ${
+                        formErrors.fullName ? "border-red-400" : "border-white/50"
+                      } rounded-md backdrop-blur-sm text-white placeholder-neutral-700 focus:outline-none focus:border-primary transition-all`}
                     />
                     {formErrors.fullName && (
                       <p className="mt-1 text-red-200 text-sm font-medium">{formErrors.fullName}</p> /* Changed from text-red-300 to text-red-200 */
@@ -849,9 +875,9 @@ export default function Home() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="Email Address"
-                      className={`w-full px-4 py-3 bg-white/30 border ${  /* Increased opacity from 20% to 30% */
-                        formErrors.email ? "border-red-400" : "border-white/50"  /* Increased border opacity from 40% to 50% */
-                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all`} /* Increased placeholder opacity from 80% to 90% */
+                      className={`w-full px-4 py-3 bg-white/30 border ${
+                        formErrors.email ? "border-red-400" : "border-white/50"
+                      } rounded-md backdrop-blur-sm text-white placeholder-neutral-700 focus:outline-none focus:border-primary transition-all`}
                     />
                     {formErrors.email && (
                       <p className="mt-1 text-red-200 text-sm font-medium">{formErrors.email}</p> /* Changed from text-red-300 to text-red-200 */
@@ -864,9 +890,9 @@ export default function Home() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="Phone Number"
-                      className={`w-full px-4 py-3 bg-white/30 border ${  /* Increased opacity from 20% to 30% */
-                        formErrors.phone ? "border-red-400" : "border-white/50"  /* Increased border opacity from 40% to 50% */
-                      } rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all`} /* Increased placeholder opacity from 80% to 90% */
+                      className={`w-full px-4 py-3 bg-white/30 border ${
+                        formErrors.phone ? "border-red-400" : "border-white/50"
+                      } rounded-md backdrop-blur-sm text-white placeholder-neutral-700 focus:outline-none focus:border-primary transition-all`}
                     />
                     {formErrors.phone && (
                       <p className="mt-1 text-red-200 text-sm font-medium">{formErrors.phone}</p> /* Changed from text-red-300 to text-red-200 */
@@ -879,7 +905,7 @@ export default function Home() {
                       onChange={handleInputChange}
                       placeholder="Your Message (Optional)"
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/30 border border-white/50 rounded-md backdrop-blur-sm text-white placeholder-white/90 focus:outline-none focus:border-primary transition-all" /* Increased background and border opacity */
+                      className="w-full px-4 py-3 bg-white/30 border border-white/50 rounded-md backdrop-blur-sm text-white placeholder-neutral-700 focus:outline-none focus:border-primary transition-all"
                     />
                   </div>
                   <div>
@@ -907,6 +933,71 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO - FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What types of luxury apartments are available?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer premium 4 & 5 BHK lakefront residences with world-class amenities and breathtaking views."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where is House of Dreams Realty located?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our luxury apartments are located in JP Nagar 8th Phase, Byrappa Layout, Bangalore – 560083, offering excellent connectivity and lake views."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the key amenities offered?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Amenities include lakefront views, premium marble flooring, 84% open & green area, private balconies, premium fixtures, and world-class security."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
+      {/* SEO - Local Business Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "RealEstateAgent",
+            "name": "House of Dreams Realty",
+            "image": "https://houseofdreamsrealty.com/images/optimized/houseofdreamsreality-lakesideview.jpg",
+            "description": "Luxury lakefront apartments in Bangalore with premium amenities and stunning views",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "JP Nagar 8th Phase, Byrappa Layout",
+              "addressLocality": "Bangalore",
+              "postalCode": "560083",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "12.8588",
+              "longitude": "77.5877"
+            },
+            "url": "https://houseofdreamsrealty.com",
+            "telephone": "+918260028808",
+            "openingHours": "Mo-Sa 09:00-18:00"
+          })
+        }}
+      />
       {/* Footer */}
       <footer className="bg-secondary-dark text-white py-12 px-4 sm:px-6 lg:px-8"> {/* Changed from bg-neutral-dark to bg-secondary-dark */}
         <div className="max-w-7xl mx-auto">

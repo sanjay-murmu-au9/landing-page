@@ -2,11 +2,20 @@
 @media (max-width: 480px) {
   .hero-image-container img {
     object-position: center 20% !important; /* Adjust vertical position to show more of the subject */
+    height: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* Ensure smooth transitions on mobile */
+  .hero-image-transition {
+    transition: opacity 0.8s ease-in-out !important;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .hero-image-container img {
     object-position: center 30% !important; /* Slight adjustment for medium-small screens */
+    height: 100% !important;
+    width: 100% !important;
   }
 }

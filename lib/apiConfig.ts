@@ -2,10 +2,10 @@
 
 // Base URLs for different environments
 const API_URLS = {
-  development: '/api', // Local development
-  test: 'https://test-api.example.com', // Test environment
-  staging: 'https://staging-api.example.com', // Staging environment
-  production: 'https://api.example.com' // Production environment
+  development: 'https://api.lutui.in', // Local development
+  test: 'https://api.lutui.in', // Test environment
+  staging: 'https://api.lutui.in', // Staging environment
+  production: 'https://api.lutui.in' // Production environment
 };
 
 // Determine current environment

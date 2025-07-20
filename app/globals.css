@@ -53,8 +53,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Specific styles for the luxury heading */
 .luxury-heading {
-  color: var(--secondary-dark);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   display: inline-block;
 }
@@ -470,5 +470,36 @@ input:focus, textarea:focus {
   height: 2px;
   background-color: var(--primary-dark);
   opacity: 0.5;
+}
+
+/* Section transitions */
+.section-transition {
+  position: relative;
+  background: linear-gradient(to bottom, var(--neutral-light) 0%, transparent 100%);
+  margin-top: -6rem;
+  padding-top: 6rem;
+  z-index: 1;
+}
+
+.section-connector {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--neutral-light));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section-wave {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(45deg, transparent 33.33%, var(--neutral-light) 33.33%, var(--neutral-light) 66.66%, transparent 66.66%);
+  background-size: 40px 40px;
+  opacity: 0.1;
 }
 

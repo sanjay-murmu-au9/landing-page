@@ -7,13 +7,7 @@ export const dynamic = 'force-static';
 // Secret key for JWT
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
-// Hard-coded admin credentials for demonstration
-// In a real implementation, this would be verified against your backend API
-const ADMIN_CREDENTIALS = {
-  username: 'admin',
-  password: 'password123', // This would be hashed in a real scenario
-  email: 'admin@example.com'
-};
+import { API_BASE_URL } from '@/lib/apiConfig';
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,40 +20,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // In a real implementation, this would call your backend API
-    // const response = await fetch('https://your-backend-api.com/auth/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ username, password })
-    // });
-    // const data = await response.json();
+    const response = await fetch(`${API_BASE_URL}/tp/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    
+    const data = await response.json();
 
-    // Simple credential check for demonstration
-    if (username !== ADMIN_CREDENTIALS.username || password !== ADMIN_CREDENTIALS.password) {
+    if (!response.ok) {
       return NextResponse.json(
-        { success: false, message: 'Invalid credentials' },
-        { status: 401 }
+        { success: false, message: data.message || 'Invalid credentials' },
+        { status: response.status }
       );
     }
 
-    // Generate JWT token
-    const token = jwt.sign(
-      { id: '1', username: ADMIN_CREDENTIALS.username, isAdmin: true },
-      JWT_SECRET,
-      { expiresIn: '1d' }
-    );
+    // Use the token from the API response
+    const token = data.token;
 
     // Return success response with token
-    return NextResponse.json({
+    const resp = NextResponse.json({
       success: true,
-      message: 'Login successful',
-      token,
-      admin: {
-        id: '1',
-        username: ADMIN_CREDENTIALS.username,
-        email: ADMIN_CREDENTIALS.email,
-      },
+      token
     });
+
+    // Set cookie with appropriate options
+    resp.cookies.set('admin_token', token, {
+      path: '/',
+      maxAge: 86400, // 24 hours
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    return resp;
 
   } catch (error) {
     console.error('Login error:', error);

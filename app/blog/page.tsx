@@ -45,26 +45,25 @@ export default function Blog() {
                   loadingAnimation="shimmer"
                   borderRadius="12px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/60 to-transparent flex items-end">
-                  <div className="p-4 sm:p-6 md:p-8 text-white">
-                    <div className="inline-block bg-primary px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-2 sm:mb-4">
-                      {blogPosts[0].category}
-                    </div>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold mb-2 sm:mb-4">
-                      {blogPosts[0].title}
-                    </h2>
-                    <p className="text-sm sm:text-base md:text-lg mb-2 sm:mb-4 text-white/90 line-clamp-2 sm:line-clamp-3">
-                      {blogPosts[0].excerpt}
-                    </p>
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 mr-4">
-                        <span className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold">
-                          {blogPosts[0].author.charAt(0)}
-                        </span>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="p-6 md:p-8">
+                    <div className="max-w-3xl">
+                      <div className="inline-block bg-primary px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-2">
+                        {blogPosts[0].category}
                       </div>
-                      <div>
-                        <p className="text-white font-medium">{blogPosts[0].author}</p>
-                        <p className="text-white/70 text-sm">{blogPosts[0].date}</p>
+                      <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold mb-2 text-white">
+                        {blogPosts[0].title}
+                      </h2>
+                      <div className="flex items-center mt-4">
+                        <div className="flex-shrink-0 mr-3">
+                          <span className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-sm">
+                            {blogPosts[0].author.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-white/90 text-sm font-medium">{blogPosts[0].author}</p>
+                          <p className="text-white/70 text-xs">{blogPosts[0].date}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
