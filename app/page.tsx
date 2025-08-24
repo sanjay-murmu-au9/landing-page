@@ -438,7 +438,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section with parallax effect */}
-      <section className="relative min-h-[400px] h-[65vh] overflow-hidden">
+      <section className="relative min-h-[800px] h-[85vh] overflow-hidden">
         <div className="absolute inset-0 z-0 hero-image-container h-full w-full">
           {filteredHeroBackgrounds.map((bg, index) => (
             <div
