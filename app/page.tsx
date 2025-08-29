@@ -3,11 +3,182 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+const LoadingSpinner = () => (
+  <svg
+    className="animate-spin h-5 w-5 text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      className="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+    />
+  </svg>
+);
 import ImageSkeleton from '../components/ImageSkeleton';
 import { getImagePath } from '../lib/image-path';
 import CanonicalUrl from '../components/CanonicalUrl';
 
 export default function Home() {
+  // Popup form state
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupFormData, setPopupFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [popupFormErrors, setPopupFormErrors] = useState({
+    fullName: '',
+    email: '',
+    phone: ''
+  });
+  const [isPopupFormSubmitted, setIsPopupFormSubmitted] = useState(false);
+  const [popupAlreadyRegistered, setPopupAlreadyRegistered] = useState(false);
+
+  // Popup form timing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 15000); // Show popup after 15 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handlePopupFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setPopupFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    // Clear error when user types
+    if (popupFormErrors[name as keyof typeof popupFormErrors]) {
+      setPopupFormErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const validatePopupForm = () => {
+    const errors = {
+      fullName: '',
+      email: '',
+      phone: ''
+    };
+    let isValid = true;
+
+    if (!popupFormData.fullName.trim()) {
+      errors.fullName = 'Name is required';
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!popupFormData.email.trim() || !emailRegex.test(popupFormData.email)) {
+      errors.email = 'Valid email is required';
+      isValid = false;
+    }
+
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!popupFormData.phone.trim() || !phoneRegex.test(popupFormData.phone)) {
+      errors.phone = 'Valid Indian phone number is required';
+      isValid = false;
+    }
+
+    setPopupFormErrors(errors);
+    return isValid;
+  };
+
+  const handlePopupFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validatePopupForm()) {
+      return;
+    }
+
+    try {
+      // Submit to external API
+      const externalResponse = await fetch('https://api.lutui.in/tp/hod/join', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(popupFormData),
+      });
+
+      // Check for 409 status code (already registered)
+      if (externalResponse.status === 409) {
+        console.log('User already registered');
+        setPopupAlreadyRegistered(true);
+        setShowPopup(false);
+
+        // Reset form after a delay
+        setTimeout(() => {
+          setPopupAlreadyRegistered(false);
+          setPopupFormData({
+            fullName: '',
+            email: '',
+            phone: '',
+            message: '',
+          });
+        }, 3000);
+        return;
+      }
+
+      if (!externalResponse.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Also submit to internal API for admin dashboard
+      try {
+        await fetch('/api/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(popupFormData),
+        });
+      } catch (internalError) {
+        // Log error but don't fail the form submission
+        console.error('Error saving to internal database:', internalError);
+      }
+
+      console.log('Popup form submitted:', popupFormData);
+      setIsPopupFormSubmitted(true);
+      setShowPopup(false);
+
+      // Reset form after a delay
+      setTimeout(() => {
+        setIsPopupFormSubmitted(false);
+        setPopupFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+      }, 3000);
+
+    } catch (error) {
+      console.error('Error during form submission:', error);
+      setPopupFormErrors({
+        fullName: '',
+        email: '',
+        phone: 'An error occurred. Please try again later.',
+      });
+    }
+  };
   const [activeSlide, setActiveSlide] = useState(0);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -322,12 +493,14 @@ export default function Home() {
   };
 
   const [alreadyRegistered, setAlreadyRegistered] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Run validation first
     if (validateForm()) {
+      setIsSubmitting(true);
       try {
         // Submit to external API
         const externalResponse = await fetch('https://api.lutui.in/tp/hod/join', {
@@ -396,6 +569,8 @@ export default function Home() {
           phone: '',
         });
         return;
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
@@ -911,19 +1086,33 @@ export default function Home() {
                   <div>
                     <button
                       type="submit"
-                      className="w-full py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 active:bg-primary-dark relative overflow-hidden button-effect"
+                      disabled={isSubmitting}
+                      className={`w-full py-4 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 active:bg-primary-dark relative overflow-hidden button-effect flex items-center justify-center gap-2 ${
+                        isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                      }`}
                       onClick={(e) => {
-                        // Add both ripple and pulse effects for enhanced visual feedback
-                        createRippleEffect(e);
+                        if (!isSubmitting) {
+                          // Add both ripple and pulse effects for enhanced visual feedback
+                          createRippleEffect(e);
 
-                        // Add click pulse effect
-                        const button = e.currentTarget;
-                        button.classList.add('click-pulse');
-                        setTimeout(() => button.classList.remove('click-pulse'), 500);
+                          // Add click pulse effect
+                          const button = e.currentTarget;
+                          button.classList.add('click-pulse');
+                          setTimeout(() => button.classList.remove('click-pulse'), 500);
+                        }
                       }}
                     >
-                      <span className="relative z-10">Request Information</span>
-                      <span className="absolute inset-0 bg-white/20 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
+                      {isSubmitting ? (
+                        <>
+                          <LoadingSpinner />
+                          <span className="relative z-10">Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="relative z-10">Request Information</span>
+                          <span className="absolute inset-0 bg-white/20 transform scale-0 opacity-0 transition-all duration-300 rounded-md button-ripple"></span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
@@ -1096,6 +1285,103 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Popup Form */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setShowPopup(false)}
+          />
+          <div className="relative bg-white rounded-xl p-6 md:p-8 w-full max-w-lg animate-fadeIn">
+            <button
+              onClick={() => setShowPopup(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="text-center mb-6">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-900">Get Exclusive Offers</h2>
+              <p className="mt-2 text-gray-600">Sign up now to receive priority access and special pricing!</p>
+            </div>
+
+            {isPopupFormSubmitted ? (
+              <div className="bg-green-50 text-green-800 p-4 rounded-lg text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <h3 className="text-lg font-medium mb-2">Thank You!</h3>
+                <p>Your information has been submitted. We'll contact you soon with exclusive offers.</p>
+              </div>
+            ) : popupAlreadyRegistered ? (
+              <div className="bg-blue-50 text-blue-800 p-4 rounded-lg text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-lg font-medium mb-2">Already Registered!</h3>
+                <p>We have your information. Our team will be in touch shortly.</p>
+              </div>
+            ) : (
+              <form onSubmit={handlePopupFormSubmit} className="space-y-4 popup-form">
+                <div>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={popupFormData.fullName}
+                    onChange={handlePopupFormChange}
+                    placeholder="Full Name"
+                    className={`w-full px-4 py-3 border ${
+                      popupFormErrors.fullName ? "border-red-500" : "border-gray-300"
+                    } rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors placeholder-gray-500`}
+                  />
+                  {popupFormErrors.fullName && (
+                    <p className="mt-1 text-red-500 text-sm">{popupFormErrors.fullName}</p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={popupFormData.email}
+                    onChange={handlePopupFormChange}
+                    placeholder="Email Address"
+                    className={`w-full px-4 py-3 border ${
+                      popupFormErrors.email ? "border-red-500" : "border-gray-300"
+                    } rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors`}
+                  />
+                  {popupFormErrors.email && (
+                    <p className="mt-1 text-red-500 text-sm">{popupFormErrors.email}</p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={popupFormData.phone}
+                    onChange={handlePopupFormChange}
+                    placeholder="Phone Number"
+                    className={`w-full px-4 py-3 border ${
+                      popupFormErrors.phone ? "border-red-500" : "border-gray-300"
+                    } rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors`}
+                  />
+                  {popupFormErrors.phone && (
+                    <p className="mt-1 text-red-500 text-sm">{popupFormErrors.phone}</p>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-md transition-all duration-300 transform hover:scale-105 active:scale-95"
+                >
+                  Get Exclusive Access
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
