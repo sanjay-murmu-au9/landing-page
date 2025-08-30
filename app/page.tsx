@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -193,23 +193,13 @@ export default function Home() {
     phone: ''
   });
 
-  // Add state for hero background
-  const [heroBackground, setHeroBackground] = useState(0);
-  // Track if user is manually scrolling through hero images
-  const [isUserScrollingHero, setIsUserScrollingHero] = useState(false);
-  // State to track whether to show text banner
+  // State for hero text
   const [showHeroText, setShowHeroText] = useState(false);
-  // State to track iteration count - to show banner from 2nd iteration
-  // Start at 1 to immediately show the banner for debugging
-  const [heroIterationCount, setHeroIterationCount] = useState(1);
-  // Timeout to resume auto rotation after manual scrolling
-  const autoScrollResumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  // Timeout for showing text banner
-  const textBannerTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const formRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Effect to show banner on initial load after a delay
   useEffect(() => {
@@ -255,34 +245,56 @@ export default function Home() {
     }, 600);
   };
 
-  // Hero background images with optimized paths
+  // Video background path
+  const heroVideoPath = '/video/houseofdreamreality.com.mp4';
+
+  // Commented out hero background images for future use
+  /*
   const heroBackgrounds = [
-      {
-      // src: getImagePath('images/houseofdreamreality-emotion.jpg'),
+    {
       src: getImagePath('images/houseofdreamsreality-night.jpg'),
-      alt: 'images/houseofdreamsreality-night.jpg'
+      alt: 'Luxury property night view'
     },
     {
       src: getImagePath('images/optimized/houseofdreamsreality.jpg'),
-      alt: 'images/optimized/houseofdreamsreality.jpg'
+      alt: 'Luxury property day view'
     },
     {
       src: getImagePath('images/optimized/houseofdreamreality-emotion.jpg'),
-      alt: 'images/optimized/houseofdreamreality-emotion.jpg'
+      alt: 'Emotional perspective of luxury living'
     },
-     {
+    {
       src: getImagePath('images/optimized/houseofdreamsreality-lakesideview.jpg'),
-      alt: 'images/optimized/houseofdreamsreality-lakesideview.jpg'
+      alt: 'Lakeside view of the property'
     },
     {
       src: getImagePath('images/optimized/houseofdreamreality03.jpg'),
-      alt: 'images/optimized/houseofdreamreality03.jpg'
+      alt: 'Property overview'
     },
     {
       src: getImagePath('images/optimized/houseofdreamsreality01.jpg'),
-      alt: 'images/optimized/houseofdreamsreality01.jpg'
-    },
+      alt: 'Premium property view'
+    }
   ];
+
+  // Hero image rotation logic
+  useEffect(() => {
+    let heroTimer: NodeJS.Timeout | null = null;
+    if (!isUserScrollingHero) {
+      heroTimer = setInterval(() => {
+        setShowHeroText(false);
+        setTimeout(() => {
+          setHeroBackground((prev) => (prev + 1) % heroBackgrounds.length);
+          setShowHeroText(true);
+        }, 1200);
+      }, 8500);
+    }
+
+    return () => {
+      if (heroTimer) clearInterval(heroTimer);
+    };
+  }, [isUserScrollingHero, heroBackgrounds.length]);
+  */
 
   const carouselImages = [
     {
@@ -351,56 +363,16 @@ export default function Home() {
       setActiveSlide((prev) => (prev + 1) % carouselImages.length);
     }, 5000);
 
-    // Hero background rotation only if user is not manually scrolling
-    let heroTimer: NodeJS.Timeout | null = null;
-    if (!isUserScrollingHero) {
-      heroTimer = setInterval(() => {
-        // First hide the text banner
-        setShowHeroText(false);
-
-        // Wait for text to fade out completely before changing background
-        setTimeout(() => {
-          // Increment the iteration counter first
-          const newIterationCount = heroIterationCount + 1;
-          setHeroIterationCount(newIterationCount);
-
-          // Change the background image with a smooth transition
-          setHeroBackground((prev) => (prev + 1) % heroBackgrounds.length);
-
-          // After the image has loaded, show the text banner with a longer delay
-          // But only if we're past the first iteration
-          if (textBannerTimeoutRef.current) {
-            clearTimeout(textBannerTimeoutRef.current);
-          }
-
-          // Use the new iteration count we calculated
-          if (newIterationCount >= 1) { // Only show banner from second iteration onwards
-            textBannerTimeoutRef.current = setTimeout(() => {
-              setShowHeroText(true);
-            }, 3500); // 3.5 seconds delay for smoother transition with the new animations
-          }
-        }, 1200); // Wait longer for text to fade out completely for smoother transitions
-      }, 8500); // Increased duration between slides for better viewing experience
-    }
-
-    // Initial setup - show text banner if we're already past the first iteration
-    if (heroIterationCount >= 1 && !showHeroText) {
-      if (textBannerTimeoutRef.current) {
-        clearTimeout(textBannerTimeoutRef.current);
-      }
-      textBannerTimeoutRef.current = setTimeout(() => {
-        setShowHeroText(true);
-      }, 3500); // Increased for consistency with other transitions
-    }
+    // Show text banner after a delay
+    const textTimer = setTimeout(() => {
+      setShowHeroText(true);
+    }, 2000);
 
     return () => {
       clearInterval(carouselTimer);
-      if (heroTimer) clearInterval(heroTimer);
-      if (textBannerTimeoutRef.current) {
-        clearTimeout(textBannerTimeoutRef.current);
-      }
+      clearTimeout(textTimer);
     };
-  }, [carouselImages.length, heroBackgrounds.length, isUserScrollingHero, heroIterationCount]);
+  }, [carouselImages.length]);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -410,48 +382,7 @@ export default function Home() {
     aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Function to manually navigate hero backgrounds
-  const navigateHeroBackground = (direction: 'prev' | 'next') => {
-    setIsUserScrollingHero(true);
-    setShowHeroText(false); // Hide text banner immediately
 
-    // Clear any existing timeout
-    if (autoScrollResumeTimeoutRef.current) {
-      clearTimeout(autoScrollResumeTimeoutRef.current);
-    }
-
-    if (textBannerTimeoutRef.current) {
-      clearTimeout(textBannerTimeoutRef.current);
-    }
-
-    // Wait for text to fade out before changing background
-    setTimeout(() => {
-      // Increment the iteration counter for manual navigation first
-      const newIterationCount = heroIterationCount + 1;
-      setHeroIterationCount(newIterationCount);
-
-      // Change the background image
-      setHeroBackground(prev => {
-        if (direction === 'prev') {
-          return prev === 0 ? heroBackgrounds.length - 1 : prev - 1;
-        } else {
-          return (prev + 1) % heroBackgrounds.length;
-        }
-      });
-
-      // Show text banner after a longer delay, but only after first iteration
-      if (newIterationCount >= 1) { // Only show banner from second iteration onwards
-        textBannerTimeoutRef.current = setTimeout(() => {
-          setShowHeroText(true);
-        }, 3500); // 3.5 seconds delay for smoother transition
-      }
-    }, 1200); // Longer delay before changing background for smoother transition
-
-    // Resume auto rotation after 10 seconds of inactivity
-    autoScrollResumeTimeoutRef.current = setTimeout(() => {
-      setIsUserScrollingHero(false);
-    }, 10000);
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -594,7 +525,7 @@ export default function Home() {
   }, []);
 
   // Use all hero backgrounds for both mobile and desktop
-  const filteredHeroBackgrounds = useMemo(() => heroBackgrounds, []);
+
 
   return (
     <main className="relative">
@@ -612,47 +543,48 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Hero Section with parallax effect */}
+      {/* Hero Section with video background */}
       <section className="relative min-h-[800px] h-[85vh] overflow-hidden">
-        <div className="absolute inset-0 z-0 hero-image-container h-full w-full">
-          {filteredHeroBackgrounds.map((bg, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 hero-image-transition ${
-                heroBackground === index ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <ImageSkeleton className="absolute inset-0" />
-              <Image
-                src={bg.src}
-                alt={bg.alt}
-                fill
-                priority={index === 0}
-                sizes="100vw"
-                quality={95} /* Increased quality for better transitions */
-                className={`w-full h-full object-cover sm:object-cover mobile-hero-image ${
-                  heroBackground === index ? 'hero-image-enter' : 'hero-image-exit'
-                }`}
-                style={{
-                  objectFit: 'cover'
-                }}
-              />
-              <div className="absolute inset-0 bg-black/50" /> {/* Adjusted opacity for better visibility of text */}
-            </div>
-          ))}
+        <div className="absolute inset-0 z-0 hero-video-container h-full w-full">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute w-full h-full object-cover"
+            onLoadedData={(e) => {
+              const video = e.target as HTMLVideoElement;
+              video.play().catch(error => {
+                console.log("Video autoplay was prevented:", error);
+              });
+            }}
+          >
+            <source src={heroVideoPath} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 bg-black/40 z-10" /> {/* Overlay for better text visibility */}
         </div>
 
         {/* Hero content - positioned lower on screen */}
         <div className="absolute inset-0 z-10 flex flex-col justify-center sm:justify-end items-center text-white px-3 sm:px-6 lg:px-8 pb-0 sm:pb-24">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-in-out ${showHeroText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-2 sm:mb-4 tracking-tight text-white drop-shadow-lg hero-text-shadow">
-              <span className="block">Lakeside Luxury Apartments</span>
+              <span className="block">Luxury Apartments In Bengalore</span>
               {/* <span className="block mt-2 text-primary-light">4/5BHK Residences</span> */}
             </h1>
 
-            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto mb-6 sm:mb-10 text-white drop-shadow-md"> {/* Changed from text-neutral-100 to text-white */}
-              Experience unparalleled luxury breathtaking lake views and world-class amenities
-            </p>
+            <div className="space-y-3 mb-6 sm:mb-10">
+              <p className="text-sm sm:text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto text-primary-light font-bold drop-shadow-md">
+                🎉 EXCLUSIVE LIMITED-TIME OFFER
+              </p>
+              <p className="text-base sm:text-xl md:text-2xl lg:text-3xl max-w-2xl mx-auto text-white font-bold drop-shadow-md">
+                Own Now, Pay After 2 Years
+              </p>
+              <h6 className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto text-white/90">
+                *Limited period offer. Terms and conditions apply
+              </h6>
+            </div>
 
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
               <button
@@ -698,60 +630,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero navigation controls */}
-        <div className="absolute bottom-10 left-0 right-0 z-20 flex justify-center gap-4">
-          <div className="flex gap-2">
-            {heroBackgrounds.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={(e) => {
-                  // Add subtle ripple effect to indicator dot
-                  if (idx !== heroBackground) {
-                    const dot = e.currentTarget;
-                    dot.classList.add('click-pulse');
-                    setTimeout(() => dot.classList.remove('click-pulse'), 500);
-                  }
 
-                  setShowHeroText(false); // Hide text banner immediately
-                  setHeroBackground(idx);
-                  setIsUserScrollingHero(true);
-
-                  // Clear existing timeouts
-                  if (autoScrollResumeTimeoutRef.current) {
-                    clearTimeout(autoScrollResumeTimeoutRef.current);
-                  }
-                  if (textBannerTimeoutRef.current) {
-                    clearTimeout(textBannerTimeoutRef.current);
-                  }
-
-                  // Increment the iteration counter for manual navigation first
-                  const newIterationCount = heroIterationCount + 1;
-                  setHeroIterationCount(newIterationCount);
-
-                  // Show text banner after a delay, but only if past first iteration
-                  console.log('Button click - iteration:', newIterationCount);
-                  if (newIterationCount >= 1) {
-                    textBannerTimeoutRef.current = setTimeout(() => {
-                      console.log('Button click - setting showHeroText to true');
-                      setShowHeroText(true);
-                    }, 2500); // Increased to 2.5 seconds to match other delays
-                  }
-
-                  // Resume auto rotation after inactivity
-                  autoScrollResumeTimeoutRef.current = setTimeout(() => {
-                    setIsUserScrollingHero(false);
-                  }, 10000);
-                }}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  heroBackground === idx
-                    ? 'bg-primary w-8'
-                    : 'bg-white/50 hover:bg-white/80'
-                } relative overflow-hidden`}
-                aria-label={`View slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
 
         {/* Scroll down indicator */}
         <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">

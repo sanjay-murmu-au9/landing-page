@@ -92,7 +92,7 @@ export default function RootLayout({
         <meta name="geo.placename" content="Bangalore" />
         <meta name="geo.position" content="13.0108;77.6550" />
         <meta name="ICBM" content="13.0108, 77.6550" />
-        
+
         {/* JSON-LD structured data for real estate property */}
         <script
           type="application/ld+json"
@@ -144,7 +144,7 @@ export default function RootLayout({
             })
           }}
         />
-        
+
         {/* JSON-LD structured data for real estate listing */}
         <script
           type="application/ld+json"
@@ -193,7 +193,7 @@ export default function RootLayout({
             })
           }}
         />
-        
+
         {/* JSON-LD structured data for breadcrumbs */}
         <script
           type="application/ld+json"
@@ -228,6 +228,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}
         data-theme="light"
+        suppressHydrationWarning
       >
         {children}
         {/* Cookie Consent Banner - client component loaded at the root */}
